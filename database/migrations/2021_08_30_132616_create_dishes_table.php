@@ -21,7 +21,7 @@ class CreateDishesTable extends Migration
             $table->text('ingredients');
             $table->text('description');
             $table->decimal('price', 5, 2, true);
-            $table->boolean('active');
+            $table->boolean('visible');
             $table->string('image')->nullable();
             $table->timestamps();
         });

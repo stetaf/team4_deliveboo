@@ -22,8 +22,8 @@ class CreateOrdersTable extends Migration
             $table->string('customer_phone', 15);
             $table->string('customer_address');
             $table->text('notes')->nullable();
-            $table->decimal('order_total', 5, 2);
-            $table->tinyInteger('order_status');    
+            $table->decimal('total', 5, 2);
+            $table->tinyInteger('status');    
             $table->timestamps();
         });
     }
