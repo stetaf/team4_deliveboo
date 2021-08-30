@@ -15,7 +15,7 @@ class CreateDishesTable extends Migration
     {
         Schema::create('dishes', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('restaurant_id')->after('id');
+            $table->bigInteger('restaurant_id')->unsigned();
             $table->foreign('restaurant_id')->references('id')->on('restaurants')->onDelete('CASCADE');
             $table->string('name', 100);
             $table->text('ingredients');
