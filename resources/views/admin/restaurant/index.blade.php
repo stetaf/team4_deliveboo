@@ -37,5 +37,23 @@
 
             <button type="submit" class="btn btn-danger">Confirm</button>
         </form>
+
+        <h2>Piatti</h2>
+        <ul>
+            @foreach ($dishes as $dish) 
+                <li>{{ $dish->name }}</li>
+            @endforeach
+        </ul>
+
+        <form action="{{ Route('admin.dish.store', $restaurant->id) }}" method="POST">
+            @csrf
+            <input type="text" name="name" class="form-control @error('name') is-invalid @enderror" id="name" placeholder="Enter the name" value="{{ old('name') }}" required>
+            <input type="text" name="ingredients" class="form-control @error('ingredients') is-invalid @enderror" id="ingredients" placeholder="Enter the ingredients" value="{{ old('ingredients') }}" required>
+            <input type="text" name="description" class="form-control @error('description') is-invalid @enderror" id="description" placeholder="Enter the description" value="{{ old('description') }}" required>
+            <input type="text" name="price" class="form-control @error('price') is-invalid @enderror" id="price" placeholder="Enter the price" value="{{ old('price') }}" required>
+            <input type="number" name="visible" class="form-control @error('visible') is-invalid @enderror" id="visible" placeholder="Enter the visible" value="{{ old('visible') }}" required>
+
+            <button type="submit" class="btn btn-danger">Confirm</button>
+        </form>
     </body>
 </html>
