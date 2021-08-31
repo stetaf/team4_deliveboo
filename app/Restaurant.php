@@ -14,4 +14,8 @@ class Restaurant extends Model
     protected $fillable = [
         'name', 'address', 'piva', 'image'
     ];
+
+    public function user() {
+        return $this->belongsTo(User::class);
+    }
 }
