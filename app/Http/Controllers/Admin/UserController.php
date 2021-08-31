@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Restaurant;
 use App\Type;
+use App\Dish;
 
 class UserController extends Controller
 {
@@ -22,7 +23,7 @@ class UserController extends Controller
         return view('admin.home', compact('restaurants'));
     }
 
- /**
+   /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
@@ -67,7 +68,9 @@ class UserController extends Controller
      */
     public function show(Restaurant $restaurant)
     {
-        return view('admin.restaurant', compact('restaurant'));
+        $dishes = Dish::where('restaurant_id', $restaurant->id)->orderBy('name', 'ASC')->get();
+        
+        return view('admin.restaurant.index', compact('dishes', 'restaurant'));
     }
 
     /**
