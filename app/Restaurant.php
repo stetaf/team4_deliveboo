@@ -19,7 +19,7 @@ class Restaurant extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function dish() {
+    public function dishes() {
         return $this->hasMany(Dish::class);
     }
 }
