@@ -31,7 +31,7 @@ class UserController extends Controller
     {
         $types = Type::all();
 
-        return view('admin.restaurant.create', compact('types'));
+        return view('admin.home', compact('types'));
     }
 
     /**
@@ -55,7 +55,7 @@ class UserController extends Controller
         
         //$restaurant->types()->attach($request->types);
 
-        return redirect()->route('admin.dashboard')->with('message', "Nuovo ristorante $restaurant->name inserito!");
+        return redirect()->route('admin.restaurants.index')->with('message', "Nuovo ristorante $restaurant->name inserito!");
     }
 
 
@@ -104,6 +104,6 @@ class UserController extends Controller
         //$restaurant->types()->sync([]);
         $restaurant->delete();
 
-        return redirect()->route('admin.dashboard')->with('message', "Ristorante $restaurant->name eliminato con successo!");
+        return redirect()->route('admin.restaurants.index')->with('message', "Ristorante $restaurant->name eliminato con successo!");
     }
 }
