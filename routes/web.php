@@ -21,5 +21,8 @@ Route::prefix('admin')
       ->middleware('auth')
       ->group(function() {
         Route::resource('restaurants', 'UserController');
+        Route::put('restaurant/{id}/dish/update', 'RestaurantController@Update')->name('dish.update');
         Route::post('restaurant/{id}/dish/store', 'RestaurantController@Store')->name('dish.store');
+        Route::get('restaurant/{id}/dish/edit', 'RestaurantController@Edit')->name('dish.edit');
+        Route::delete('restaurant/{id}/dish/delete', 'RestaurantController@Destroy')->name('dish.delete');
 });   
