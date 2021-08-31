@@ -14,4 +14,8 @@ class Dish extends Model
     protected $fillable = [
         'name', 'ingredients', 'description', 'price', 'visible', 'image'
     ];
+
+    public function restaurant() {
+        return $this->belongsTo(Restaurant::class);
+    }
 }
