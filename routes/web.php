@@ -20,5 +20,6 @@ Route::prefix('admin')
       ->name('admin.')
       ->middleware('auth')
       ->group(function() {
-          Route::resource('restaurants', 'UserController');
+        Route::resource('restaurants', 'UserController');
+        Route::post('restaurant/{id}/dish/store', 'RestaurantController@Store')->name('dish.store');
 });   
