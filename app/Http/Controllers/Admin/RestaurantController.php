@@ -64,7 +64,9 @@ class RestaurantController extends Controller
      */
     public function edit($id)
     {
-        //
+        $dish = Dish::find($id);
+
+        return view('admin.restaurant.edit', compact('dish'));
     }
 
     /**
@@ -76,7 +78,24 @@ class RestaurantController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $dish = Dish::find($id);
+
+        $validated = $request->validate([
+            'name'         => 'required|max:100',
+            'ingredients'  => 'required',
+            'description'  => 'required',
+            'price'        => 'required|between:0,999.99',
+            'visible'      => 'required|boolean',
+            'image'        => 'nullable|image',
+            'restaurant_id'=> 'exists:restaurants,id'
+        ]);       
+
+        
+        $restaurant_id = $validated['restaurant_id'];
+        
+        $dish->update($validated);
+        
+        return redirect()->route('admin.restaurants.show', $restaurant_id)->with('message', "Piatto $dish->name modificato correttamente!");
     }
 
     /**
@@ -87,6 +106,9 @@ class RestaurantController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $dish = Dish::find($id);
+        $dish->delete();
+    
+        return redirect()->back();
     }
 }
