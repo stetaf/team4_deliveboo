@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Middleware\VerifyUser;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +14,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('/', function () {
+  return view('guests.home');
+});
+
+
 Auth::routes();
 
 Route::prefix('admin')
@@ -21,8 +27,15 @@ Route::prefix('admin')
       ->middleware('auth')
       ->group(function() {
         Route::resource('restaurants', 'UserController');
-        Route::put('restaurant/{id}/dish/update', 'RestaurantController@Update')->name('dish.update');
-        Route::post('restaurant/{id}/dish/store', 'RestaurantController@Store')->name('dish.store');
-        Route::get('restaurant/{id}/dish/edit', 'RestaurantController@Edit')->name('dish.edit');
-        Route::delete('restaurant/{id}/dish/delete', 'RestaurantController@Destroy')->name('dish.delete');
+});   
+
+Route::prefix('admin')
+      ->namespace('Admin')
+      ->name('admin.')
+      ->middleware(['auth', VerifyUser::class])
+      ->group(function() {
+        Route::put('restaurant/dish/{dish}/update', 'RestaurantController@Update')->name('dish.update');
+        Route::post('restaurant/dish/{dish}/store', 'RestaurantController@Store')->name('dish.store');
+        Route::get('restaurant/dish/{dish}/edit', 'RestaurantController@Edit')->name('dish.edit');
+        Route::delete('restaurant/dish/{dish}/delete', 'RestaurantController@Destroy')->name('dish.delete');
 });   
