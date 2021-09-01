@@ -18,7 +18,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        $restaurants = Restaurant::all();
+        $restaurants = Restaurant::where('user_id', Auth::user()->id)->get();
 
         return view('admin.home', compact('restaurants'));
     }
@@ -68,6 +68,10 @@ class UserController extends Controller
      */
     public function show(Restaurant $restaurant)
     {
+        if ($restaurant->user_id !== Auth::user()->id) {
+            abort(403, 'Access denied');
+        }
+
         $dishes = Dish::where('restaurant_id', $restaurant->id)->orderBy('name', 'ASC')->get();
         
         return view('admin.restaurant.index', compact('dishes', 'restaurant'));
@@ -82,6 +86,12 @@ class UserController extends Controller
     public function edit($id)
     {
         /// TO BE CODED AS AN ADDITIONAL FUNCTIONALITY
+
+        /*
+        if ($restaurant->user_id !== Auth::user()->id) {
+            abort(403, 'Access denied');
+        }
+        */
     }
 
     /**
@@ -104,6 +114,10 @@ class UserController extends Controller
      */
     public function destroy(Restaurant $restaurant)
     {
+        if ($restaurant->user_id !== Auth::user()->id) {
+            abort(403, 'Access denied');
+        }
+
         //$restaurant->types()->sync([]);
         $restaurant->delete();
 
