@@ -28,8 +28,6 @@ class RestaurantController extends Controller
      */
     public function store(Request $request, $restaurant)
     {
-        $rest = Restaurant::find($restaurant);
-
         $validated = $request->validate([
             'name'         => 'required|max:100',
             'ingredients'  => 'required',
@@ -40,9 +38,9 @@ class RestaurantController extends Controller
         ]);       
 
         $dish = Dish::create($validated);
-        $dish->restaurant()->associate($rest->id)->save();
+        $dish->restaurant()->associate($restaurant)->save();
         
-        return redirect()->route('admin.restaurants.index')->with('message', "Nuovo piatto $dish->name inserito!");
+        return redirect()->route('admin.restaurants.show', $restaurant)->with('message', "Nuovo piatto $dish->name inserito!");
     }
 
     /**
@@ -109,6 +107,6 @@ class RestaurantController extends Controller
         $dish = Dish::find($id);
         $dish->delete();
     
-        return redirect()->back();
+        return redirect()->back()->with('message', "Piatto $dish->name eliminato correttamente!");;
     }
 }
