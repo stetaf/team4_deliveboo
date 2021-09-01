@@ -27,15 +27,15 @@ Route::prefix('admin')
       ->middleware('auth')
       ->group(function() {
         Route::resource('restaurants', 'UserController');
-});   
-
+        Route::post('restaurant/dish/{dish}/store', 'RestaurantController@Store')->name('dish.store');
+      });   
+      
 Route::prefix('admin')
       ->namespace('Admin')
       ->name('admin.')
       ->middleware(['auth', VerifyUser::class])
       ->group(function() {
         Route::put('restaurant/dish/{dish}/update', 'RestaurantController@Update')->name('dish.update');
-        Route::post('restaurant/dish/{dish}/store', 'RestaurantController@Store')->name('dish.store');
         Route::get('restaurant/dish/{dish}/edit', 'RestaurantController@Edit')->name('dish.edit');
         Route::delete('restaurant/dish/{dish}/delete', 'RestaurantController@Destroy')->name('dish.delete');
 });   
