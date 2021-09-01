@@ -4,6 +4,8 @@
  * building robust, powerful web applications using Vue and Laravel.
  */
 
+const { default: Axios } = require('axios');
+
 require('./bootstrap');
 
 window.Vue = require('vue');
@@ -29,4 +31,29 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
 
 const app = new Vue({
     el: '#app',
+
+    data: {
+        results: [],
+        filtered: [],
+        filter: 0
+    },
+    methods: {
+        sortBy(id) {    
+            this.filter++;
+            this.results.forEach((restaurant) => {
+                restaurant.types.forEach((type) => {
+                    console.log(type);
+                    if (type.id == id) this.filtered.splice(-1, 0, restaurant);
+                });
+            })
+        }
+    },
+    mounted: function() {
+        Axios.get('/api/restaurants')
+        .then(resp => {
+            this.results = resp.data.data;
+        }).catch(e => {
+            console.error("There is somethint wrong: " + e);
+        });
+    },
 });

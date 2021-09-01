@@ -49848,6 +49848,9 @@ module.exports = function(module) {
  * includes Vue and other libraries. It is a great starting point when
  * building robust, powerful web applications using Vue and Laravel.
  */
+var _require = __webpack_require__(/*! axios */ "./node_modules/axios/index.js"),
+    Axios = _require["default"];
+
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
@@ -49869,7 +49872,34 @@ Vue.component('example-component', __webpack_require__(/*! ./components/ExampleC
  */
 
 var app = new Vue({
-  el: '#app'
+  el: '#app',
+  data: {
+    results: [],
+    filtered: [],
+    filter: 0
+  },
+  methods: {
+    sortBy: function sortBy(id) {
+      var _this = this;
+
+      this.filter++;
+      this.results.forEach(function (restaurant) {
+        restaurant.types.forEach(function (type) {
+          console.log(type);
+          if (type.id == id) _this.filtered.splice(-1, 0, restaurant);
+        });
+      });
+    }
+  },
+  mounted: function mounted() {
+    var _this2 = this;
+
+    Axios.get('/api/restaurants').then(function (resp) {
+      _this2.results = resp.data.data;
+    })["catch"](function (e) {
+      console.error("There is somethint wrong: " + e);
+    });
+  }
 });
 
 /***/ }),
