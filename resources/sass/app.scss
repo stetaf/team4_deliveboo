@@ -6,3 +6,39 @@
 
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
+
+// Header
+@import 'partials/header';
+
+// Main
+@import 'partials/main';
+
+// Footer
+@import 'partials/footer';
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+a {
+    color: unset !important;
+}
+
+h1, h2, h3, h4, h5 { font-family: 'Itim', cursive; }
+
+footer, header { 
+    background-color: #d25852;
+    color: white;
+    padding: 15px 0;
+}
+
+li { list-style: none !important; }
+
+.login {
+margin-bottom:5px;
+}
+.dropdown-menu {
+width: 300px !important;
+}

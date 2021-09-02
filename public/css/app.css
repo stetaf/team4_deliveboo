@@ -10002,3 +10002,107 @@ h3 {
     border-color: #dee2e6;
   }
 }
+header {
+  color: #d3273e;
+  box-shadow: 0px 0px 10px 4px rgba(0, 0, 0, 0.37);
+  position: relative;
+  height: 70px;
+}
+header .logo {
+  margin-bottom: 0 !important;
+  font-weight: bold;
+  font-size: 40px;
+}
+header span {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+main .jumbotron {
+  height: 500px;
+  width: 100%;
+  background: url("http://chimpgroup.com/themeforest/foodbakery-html/assets/extra-images/bg-image1.jpg");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  margin-bottom: 0 !important;
+}
+main .jumbotron h1 {
+  font-size: 4.5rem;
+  text-align: center;
+  width: 700px;
+}
+main .categories {
+  padding: 25px 0;
+  background-color: white;
+}
+main .card {
+  position: relative;
+  box-shadow: 3px 6px 6px -2px #8e8e8e;
+  margin: 20px 0;
+}
+main .cuisine {
+  position: absolute;
+  left: -5px;
+  top: 0px;
+}
+main .sep {
+  background-color: #d25852;
+}
+main .fs-35 {
+  font-size: 35px;
+}
+main .type {
+  background-color: white;
+  border-radius: 50%;
+  width: 125px;
+  padding: 15px;
+  text-align: center;
+}
+main .type img {
+  width: 75px;
+  height: 75px;
+}
+
+footer i {
+  margin-left: 5px;
+  font-size: 20px;
+  vertical-align: middle;
+}
+footer li {
+  display: flex;
+  justify-content: flex-end;
+  padding-top: 5px;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+a {
+  color: unset !important;
+}
+
+h1, h2, h3, h4, h5 {
+  font-family: "Itim", cursive;
+}
+
+footer, header {
+  background-color: #d25852;
+  color: white;
+  padding: 15px 0;
+}
+
+li {
+  list-style: none !important;
+}
+
+.login {
+  margin-bottom: 5px;
+}
+
+.dropdown-menu {
+  width: 300px !important;
+}
