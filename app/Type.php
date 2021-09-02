@@ -14,4 +14,8 @@ class Type extends Model
     protected $fillable = [
         'name', 'image'
     ];
+
+    public function restaurant() {
+        return $this->hasMany(Restaurant::class);
+    }
 }

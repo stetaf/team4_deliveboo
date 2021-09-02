@@ -27,6 +27,8 @@
         @include('layouts.partials.header')
 
         <main>
+            @include('layouts.partials.errors')
+            @include('layouts.partials.message')
             @yield('content')
         </main>
 
