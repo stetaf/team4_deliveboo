@@ -57,9 +57,11 @@
         <input type="text" name="name" class="form-control @error('name') is-invalid @enderror" id="name" placeholder="Enter the name" value="{{ old('name') }}" required>
         <input type="text" name="ingredients" class="form-control @error('ingredients') is-invalid @enderror" id="ingredients" placeholder="Enter the ingredients" value="{{ old('ingredients') }}" required>
         <input type="text" name="description" class="form-control @error('description') is-invalid @enderror" id="description" placeholder="Enter the description" value="{{ old('description') }}" required>
-        <input type="text" name="price" class="form-control @error('price') is-invalid @enderror" id="price" placeholder="Enter the price" value="{{ old('price') }}" required>
-        <input type="number" name="visible" class="form-control @error('visible') is-invalid @enderror" id="visible" placeholder="Enter the visible" value="{{ old('visible') }}" required>
-
+        <input type="number" name="price" class="form-control @error('price') is-invalid @enderror" id="price" placeholder="Enter the price" value="{{ old('price') }}" step="0.01" pattern="[0-9]" min="0.00" required>
+        <input type="radio" id="visible" name="visible" value="1">
+        <label for="visible"> Visibile</label><br>
+        <input type="radio" id="visible" name="visible" value="0">
+        <label for="visible"> Non visibile</label><br>
         <button type="submit" class="btn btn-danger">Confirm</button>
     </form>
     <!-- /NUOVO PIATTO RISTORANTE -->

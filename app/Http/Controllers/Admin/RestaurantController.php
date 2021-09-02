@@ -37,7 +37,7 @@ class RestaurantController extends Controller
             'image'        => 'nullable|image'
         ]);       
 
-        $dish = Dish::create($validated);
+        $dish = new Dish($validated);
         $dish->restaurant()->associate($restaurant)->save();
         
         return redirect()->route('admin.restaurants.show', $restaurant)->with('message', "Nuovo piatto $dish->name inserito!");
