@@ -50264,7 +50264,6 @@ window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.
  */
 // const files = require.context('./', true, /\.vue$/i)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
-// Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 
 Vue.component('pagination', __webpack_require__(/*! laravel-vue-pagination */ "./node_modules/laravel-vue-pagination/dist/laravel-vue-pagination.common.js"));
 /**
@@ -50275,39 +50274,34 @@ Vue.component('pagination', __webpack_require__(/*! laravel-vue-pagination */ ".
 
 var app = new Vue({
   el: '#app',
-  data: {
-    results: [],
-    filtered: [],
-    fil: [],
-    filter: '',
-    types: [],
-    laravelData: {}
+  data: function data() {
+    return {
+      results: [],
+      types: [],
+      filter: 0,
+      filtered_results: {}
+    };
   },
   methods: {
-    // sortBy(id) {    
-    //     this.filtered = [];
-    //     this.results.forEach((restaurant) => {
-    //         restaurant.types.forEach((type) => {
-    //             if (type.id == id) { 
-    //                 this.filtered.push(restaurant);
-    //                 this.filter = type.name;
-    //             }
-    //         })
-    //     })
-    // },
     getResults: function getResults() {
       var _this = this;
 
       var page = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 1;
-      axios.get('/api/restaurants/filter?page=' + page).then(function (response) {
-        _this.laravelData = response.data;
+      var url = '/api/restaurants/filter/' + this.filter + '?page=' + page;
+      axios.get(url).then(function (response) {
+        _this.filtered_results = response.data;
+      })["catch"](function (errors) {
+        console.error("Something went wrong: " + errors);
       });
+    },
+    filterBy: function filterBy(id) {
+      this.filter = id;
+      this.getResults();
     }
   },
   mounted: function mounted() {
     var _this2 = this;
 
-    this.getResults();
     var restaurants = axios.get('/api/restaurants');
     var ctypes = axios.get('/api/types');
     axios.all([restaurants, ctypes]).then(axios.spread(function () {
@@ -50390,8 +50384,8 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! E:\MAMP\htdocs\php\deliveboo\team4_deliveboo\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! E:\MAMP\htdocs\php\deliveboo\team4_deliveboo\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\Users\Ste\Documents\Boolean\team4_deliveboo\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\Users\Ste\Documents\Boolean\team4_deliveboo\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

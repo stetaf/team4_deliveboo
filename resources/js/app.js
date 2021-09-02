@@ -21,7 +21,6 @@ window.Vue = require('vue');
 // const files = require.context('./', true, /\.vue$/i)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
-// Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 Vue.component('pagination', require('laravel-vue-pagination'));
 
 /**
@@ -32,47 +31,43 @@ Vue.component('pagination', require('laravel-vue-pagination'));
 
 const app = new Vue({
     el: '#app',
-    data: {
-        results: [],
-        filtered: [],
-        fil: [],
-        filter: '',
-        types: [],
-        laravelData: {},
+    data() {
+        return {
+            results: [],
+            types: [],
+            filter: 0,
+            filtered_results: {},
+        }
     },
     methods: {
-        // sortBy(id) {    
-        //     this.filtered = [];
-
-        //     this.results.forEach((restaurant) => {
-        //         restaurant.types.forEach((type) => {
-        //             if (type.id == id) { 
-        //                 this.filtered.push(restaurant);
-        //                 this.filter = type.name;
-        //             }
-        //         })
-        //     })
-        // },
         getResults(page = 1) {
-			axios.get('/api/restaurants/filter?page=' + page)
+            const url = '/api/restaurants/filter/' + this.filter + '?page=' + page;
+
+			axios.get(url)
 				.then(response => {
-					this.laravelData = response.data;
-				});
-		}
+					this.filtered_results = response.data;
+				})
+                .catch(errors => {
+                    console.error("Something went wrong: " + errors);
+                });
+		},
+        filterBy(id) {
+            this.filter = id;
+            this.getResults();
+        }
     },
     mounted: function() {
+        const restaurants = axios.get('/api/restaurants');
+        const ctypes = axios.get('/api/types');      
 
-        this.getResults();
-         const restaurants = axios.get('/api/restaurants');
-         const ctypes = axios.get('/api/types');      
-         axios.all([restaurants, ctypes])
-             .then(axios.spread((...responses) => {
-                 this.results = responses[0].data.data;
-                 this.types = responses[1].data;
-                 this.getPosts();
-             }))
-             .catch(errors => {
-                 console.error("Something went wrong: " + errors);
-             })
+        axios.all([restaurants, ctypes])
+            .then(axios.spread((...responses) => {
+                this.results = responses[0].data.data;
+                this.types = responses[1].data;
+                this.getPosts();
+            }))
+            .catch(errors => {
+                console.error("Something went wrong: " + errors);
+            })
     }
 })
