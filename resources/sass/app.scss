@@ -42,3 +42,13 @@ margin-bottom:5px;
 .dropdown-menu {
 width: 300px !important;
 }
+
+        .active {
+            
+            &>.page-link { 
+                color: white !important;
+                background-color: #d25852 !important;
+                border-color: #d25852 !important;
+            }
+
+        }
