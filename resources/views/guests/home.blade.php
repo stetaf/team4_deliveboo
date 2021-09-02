@@ -17,11 +17,21 @@
         @endif
     </div>
 
-    <a href="#" id="1"><span @click="sortBy(1)">Italiano</span></a>
-    <a href="#" id="8"><span @click="sortBy(8)">Vegano</span></a>
-    <a href="#" id="9"><span @click="sortBy(9)">Fast Food</span></a>
-
-    <div class="results">
-
+    <div v-for="type in types" @click="sortBy(type.id)">
+        <span>@{{ type.name }}</span>
+        <img :src="/img/ + type.image" width="45">
     </div>
+
+    <h3>Risultati per: @{{ filter }}</h3>
+
+    <ul>
+        <li v-for="restaurant in laravelData.data">
+            <span>@{{ restaurant.name }}</span>
+        </li>
+    </ul>
+
+    <pagination :data="laravelData" @pagination-change-page="getResults" :show-disabled="true">
+        <span slot="prev-nav">&lt; Previous</span>
+        <span slot="next-nav">Next &gt;</span>
+    </pagination>  
 @endsection

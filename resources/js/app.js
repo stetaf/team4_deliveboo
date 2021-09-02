@@ -21,7 +21,8 @@ window.Vue = require('vue');
 // const files = require.context('./', true, /\.vue$/i)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
-Vue.component('example-component', require('./components/ExampleComponent.vue').default);
+// Vue.component('example-component', require('./components/ExampleComponent.vue').default);
+Vue.component('pagination', require('laravel-vue-pagination'));
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -31,29 +32,47 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
 
 const app = new Vue({
     el: '#app',
-
     data: {
         results: [],
         filtered: [],
-        filter: 0
+        fil: [],
+        filter: '',
+        types: [],
+        laravelData: {},
     },
     methods: {
         sortBy(id) {    
-            this.filter++;
+            this.filtered = [];
+
             this.results.forEach((restaurant) => {
                 restaurant.types.forEach((type) => {
-                    console.log(type);
-                    if (type.id == id) this.filtered.splice(-1, 0, restaurant);
-                });
+                    if (type.id == id) { 
+                        this.filtered.push(restaurant);
+                        this.filter = type.name;
+                    }
+                })
             })
-        }
+        },
+        getResults(page = 1) {
+			axios.get('/api/restaurants?page=' + page)
+				.then(response => {
+					this.laravelData = response.data;
+				});
+		}
     },
     mounted: function() {
-        Axios.get('/api/restaurants')
-        .then(resp => {
-            this.results = resp.data.data;
-        }).catch(e => {
-            console.error("There is somethint wrong: " + e);
-        });
-    },
-});
+        this.getResults();
+        const restaurants = axios.get('/api/restaurants');
+        const ctypes = axios.get('/api/types');      
+
+        axios.all([restaurants, ctypes])
+            .then(axios.spread((...responses) => {
+                this.results = responses[0].data.data;
+                this.types = responses[1].data;
+                this.getPosts();
+            }))
+            .catch(errors => {
+                console.error("Something went wrong: " + errors);
+            })
+    }
+})
