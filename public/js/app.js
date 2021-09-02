@@ -50284,31 +50284,28 @@ var app = new Vue({
     laravelData: {}
   },
   methods: {
-    sortBy: function sortBy(id) {
+    // sortBy(id) {    
+    //     this.filtered = [];
+    //     this.results.forEach((restaurant) => {
+    //         restaurant.types.forEach((type) => {
+    //             if (type.id == id) { 
+    //                 this.filtered.push(restaurant);
+    //                 this.filter = type.name;
+    //             }
+    //         })
+    //     })
+    // },
+    getResults: function getResults() {
       var _this = this;
 
-      this.filtered = [];
-      this.results.forEach(function (restaurant) {
-        restaurant.types.forEach(function (type) {
-          if (type.id == id) {
-            _this.filtered.push(restaurant);
-
-            _this.filter = type.name;
-          }
-        });
-      });
-    },
-    getResults: function getResults() {
-      var _this2 = this;
-
       var page = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 1;
-      axios.get('/api/restaurants?page=' + page).then(function (response) {
-        _this2.laravelData = response.data;
+      axios.get('/api/restaurants/filter?page=' + page).then(function (response) {
+        _this.laravelData = response.data;
       });
     }
   },
   mounted: function mounted() {
-    var _this3 = this;
+    var _this2 = this;
 
     this.getResults();
     var restaurants = axios.get('/api/restaurants');
@@ -50318,10 +50315,10 @@ var app = new Vue({
         responses[_key] = arguments[_key];
       }
 
-      _this3.results = responses[0].data.data;
-      _this3.types = responses[1].data;
+      _this2.results = responses[0].data.data;
+      _this2.types = responses[1].data;
 
-      _this3.getPosts();
+      _this2.getPosts();
     }))["catch"](function (errors) {
       console.error("Something went wrong: " + errors);
     });

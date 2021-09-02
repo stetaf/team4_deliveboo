@@ -41,38 +41,38 @@ const app = new Vue({
         laravelData: {},
     },
     methods: {
-        sortBy(id) {    
-            this.filtered = [];
+        // sortBy(id) {    
+        //     this.filtered = [];
 
-            this.results.forEach((restaurant) => {
-                restaurant.types.forEach((type) => {
-                    if (type.id == id) { 
-                        this.filtered.push(restaurant);
-                        this.filter = type.name;
-                    }
-                })
-            })
-        },
+        //     this.results.forEach((restaurant) => {
+        //         restaurant.types.forEach((type) => {
+        //             if (type.id == id) { 
+        //                 this.filtered.push(restaurant);
+        //                 this.filter = type.name;
+        //             }
+        //         })
+        //     })
+        // },
         getResults(page = 1) {
-			axios.get('/api/restaurants?page=' + page)
+			axios.get('/api/restaurants/filter?page=' + page)
 				.then(response => {
 					this.laravelData = response.data;
 				});
 		}
     },
     mounted: function() {
-        this.getResults();
-        const restaurants = axios.get('/api/restaurants');
-        const ctypes = axios.get('/api/types');      
 
-        axios.all([restaurants, ctypes])
-            .then(axios.spread((...responses) => {
-                this.results = responses[0].data.data;
-                this.types = responses[1].data;
-                this.getPosts();
-            }))
-            .catch(errors => {
-                console.error("Something went wrong: " + errors);
-            })
+        this.getResults();
+         const restaurants = axios.get('/api/restaurants');
+         const ctypes = axios.get('/api/types');      
+         axios.all([restaurants, ctypes])
+             .then(axios.spread((...responses) => {
+                 this.results = responses[0].data.data;
+                 this.types = responses[1].data;
+                 this.getPosts();
+             }))
+             .catch(errors => {
+                 console.error("Something went wrong: " + errors);
+             })
     }
 })
