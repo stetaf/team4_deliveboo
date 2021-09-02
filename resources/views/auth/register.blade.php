@@ -5,6 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
+                @include('layouts.partials.errors')
                 <div class="card-header">Registra un nuovo account</div>
 
                 <div class="card-body">
@@ -14,12 +15,12 @@
                         <h4>Dati utente</h4>
 
                         <div class="form-group row">
-                            <label for="name" class="col-md-4 col-form-label text-md-right">Nome e cognome  <small style="color:red">*</small></label>
+                            <label for="fullname" class="col-md-4 col-form-label text-md-right">Nome e cognome  <small style="color:red">*</small></label>
 
                             <div class="col-md-6">
-                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
+                                <input id="fullname" type="text" class="form-control @error('fullname') is-invalid @enderror" name="fullname" value="{{ old('fullname') }}" required autocomplete="fullname" autofocus>
 
-                                @error('name')
+                                @error('fullname')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
@@ -68,10 +69,10 @@
                         <h4>Dati ristorante</h4>
 
                         <div class="form-group row">
-                            <label for="nome_attivita" class="col-md-4 col-form-label text-md-right">Nome Attivit&agrave;  <small style="color:red">*</small></label>
+                            <label for="name" class="col-md-4 col-form-label text-md-right">Nome Attivit&agrave;  <small style="color:red">*</small></label>
 
                             <div class="col-md-6">
-                                <input id="nome_attivita" type="text" class="form-control @error('nome_attivita') is-invalid @enderror" name="nome_attivita" value="{{ old('nome_attivita') }}" required autocomplete="nome_attivita">
+                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name">
 
                                 @error('nome_attivita')
                                     <span class="invalid-feedback" role="alert">
@@ -82,12 +83,12 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="indirizzo" class="col-md-4 col-form-label text-md-right">Indirizzo  <small style="color:red">*</small></label>
+                            <label for="address" class="col-md-4 col-form-label text-md-right">Indirizzo  <small style="color:red">*</small></label>
 
                             <div class="col-md-6">
-                                <input id="indirizzo" type="text" class="form-control @error('indirizzo') is-invalid @enderror" name="indirizzo" value="{{ old('indirizzo') }}" required autocomplete="indirizzo">
+                                <input id="address" type="text" class="form-control @error('address') is-invalid @enderror" name="address" value="{{ old('address') }}" required autocomplete="address">
 
-                                @error('indirizzo')
+                                @error('address')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>

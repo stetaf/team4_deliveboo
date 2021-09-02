@@ -51,11 +51,11 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => ['required', 'string', 'max:255'],
+            'fullname' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
-            'nome_attivita' => ['required', 'string'],
-            'indirizzo' => ['required', 'string'],
+            'name' => ['required', 'string'],
+            'address' => ['required', 'string'],
             'piva' => ['required', 'numeric', 'regex:/^[0-9]{11}$/'],
             'tipologie' => ['required'],
             'image' => ['nullable', 'image']
@@ -70,22 +70,14 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-
         $user = User::create([
-                    'name' => $data['name'],
+                    'fullname' => $data['fullname'],
                     'email' => $data['email'],
                     'password' => Hash::make($data['password']),
                 ]);
 
-        $restaurant = Restaurant::create([
-                        'name' => $data['nome_attivita'],
-                        'piva' => $data['piva'],
-                        'address' => $data['indirizzo'],
-                        'image' => $data['image'],
-                    ]);
-
+        $restaurant = new Restaurant($data);                    
         $restaurant->user()->associate($user)->save();
-
         $restaurant->types()->attach($data['tipologie']);
 
         return $user;
