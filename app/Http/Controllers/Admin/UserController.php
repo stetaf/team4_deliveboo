@@ -51,7 +51,7 @@ class UserController extends Controller
             'image'   => 'nullable|image|max:150'
         ]);       
 
-        $restaurant = Restaurant::create($validated);
+        $restaurant = new Restaurant($validated);
         $restaurant->user()->associate(Auth::user()->id)->save();
         
         //$restaurant->types()->attach($request->types);
