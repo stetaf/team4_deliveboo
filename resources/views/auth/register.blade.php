@@ -99,7 +99,7 @@
                             <label for="piva" class="col-md-4 col-form-label text-md-right">P.IVA  <small style="color:red">*</small></label>
 
                             <div class="col-md-6">
-                                <input id="piva" type="text" class="form-control @error('piva') is-invalid @enderror" name="piva" value="{{ old('piva') }}" required autocomplete="piva">
+                                <input id="piva" type="text" class="form-control @error('piva') is-invalid @enderror" name="piva" value="{{ old('piva') }}" required autocomplete="piva" minlength="11" maxlength="11">
 
                                 @error('piva')
                                     <span class="invalid-feedback" role="alert">
@@ -115,7 +115,7 @@
 
                             <div class="col-md-6">
                                 <select class="custom-select" name="tipologie[]" multiple required>
-                                    <option selected>Seleziona almeno una tipologia</option>
+                                    <option selected disabled="disabled">Seleziona almeno una tipologia</option>
                                     <option value="1">Italiano</option>
                                     <option value="2">Cinese</option>
                                     <option value="3">Giapponese</option>
