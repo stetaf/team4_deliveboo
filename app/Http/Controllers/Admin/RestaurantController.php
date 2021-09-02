@@ -33,7 +33,7 @@ class RestaurantController extends Controller
             'ingredients'  => 'required',
             'description'  => 'required',
             'price'        => 'required|between:0,999.99',
-            'visible'      => 'required|boolean',
+            'visible'      => 'required|integer|max:1|min:0',
             'image'        => 'nullable|image'
         ]);       
 
