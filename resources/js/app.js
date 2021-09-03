@@ -60,11 +60,10 @@ const app = new Vue({
         const restaurants = axios.get('/api/restaurants');
         const ctypes = axios.get('/api/types');      
 
-        axios.all([restaurants, ctypes])
+        axios.all([ctypes, restaurants])
             .then(axios.spread((...responses) => {
-                this.results = responses[0].data.data;
-                this.types = responses[1].data;
-                this.getPosts();
+                this.types = responses[0].data;
+                this.results = responses[1].data.data;
             }))
             .catch(errors => {
                 console.error("Something went wrong: " + errors);

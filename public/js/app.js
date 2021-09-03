@@ -50304,15 +50304,13 @@ var app = new Vue({
 
     var restaurants = axios.get('/api/restaurants');
     var ctypes = axios.get('/api/types');
-    axios.all([restaurants, ctypes]).then(axios.spread(function () {
+    axios.all([ctypes, restaurants]).then(axios.spread(function () {
       for (var _len = arguments.length, responses = new Array(_len), _key = 0; _key < _len; _key++) {
         responses[_key] = arguments[_key];
       }
 
-      _this2.results = responses[0].data.data;
-      _this2.types = responses[1].data;
-
-      _this2.getPosts();
+      _this2.types = responses[0].data;
+      _this2.results = responses[1].data.data;
     }))["catch"](function (errors) {
       console.error("Something went wrong: " + errors);
     });
