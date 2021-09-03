@@ -43,12 +43,12 @@
                     <a href="{{ Route('admin.dish.show', $dish->id) }}">
                         <span class="btn btn-sm btn-success w-100">    
                             
-                            <i class="fas fa-eye fa-sm fa-fw"></i> View 
+                            <i class="fas fa-eye fa-sm fa-fw"></i> Vedi
                         </span>
                     </a>
                     <a href="{{ Route('admin.dish.edit', $dish->id) }}">
                         <span class="btn btn-sm btn-warning my-1 w-100">
-                            <i class="fas fa-pencil-alt fa-sm fa-fw"></i> Edit 
+                            <i class="fas fa-pencil-alt fa-sm fa-fw"></i> Modifica
                         </span>
                     </a>                    
                     <form action="{{ Route('admin.dish.delete', $dish->id) }}" class="d-inline-block" method="post">

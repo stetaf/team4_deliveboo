@@ -32,9 +32,9 @@
         <!-- //radio button -->
 
         <button type="submit" class="btn btn-success mb-2">Modifica</button>
-        <span class="btn border-info mb-2">
-            <a href="{{ url()->previous() }}" class="text-info">Indietro</a>
-        </span>
+        <a href="{{ url()->previous() }}">
+            <span class="btn border-info mb-2 text-info">Indietro</span>
+        </a>
     </form>
     
 </div>
