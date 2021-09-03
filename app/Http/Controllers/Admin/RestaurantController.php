@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Dish;
 use App\Restaurant;
+use Illuminate\Support\Facades\Storage;
 
 class RestaurantController extends Controller
 {
@@ -89,9 +90,15 @@ class RestaurantController extends Controller
             'image'        => 'nullable|image'
         ]);
         
+        if(array_key_exists('image', $validated)){
+            $file_path = Storage::disk('public')->put('dish_img', $validated['image']);
+            $validated['image'] = $file_path;
+        }
+
         $dish->update($validated);
-        
-        return redirect()->back()->with('message', "Piatto $dish->name modificato correttamente!");
+        $restaurant = $dish->restaurant;
+
+        return redirect()->route('admin.restaurants.show', compact('restaurant'))->with('message', "Piatto $dish->name modificato correttamente!");
     }
 
     /**
