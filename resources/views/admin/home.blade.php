@@ -31,10 +31,16 @@
                         </div>
                         <div class="actions d-flex flex-column justify-content-center align-items-end w-50">
 
-                            <a href="{{ Route('admin.restaurants.show', $restaurant->id) }}" class="btn btn-sm btn-success mb-2 w-50 text-white">
+                            <a href="{{ Route('admin.restaurants.show', $restaurant->id) }}" class="btn btn-sm btn-success w-50 text-white">
                                 <span>
                                     <i class="fas fa-cog mr-1" style="vertical-align:middle"></i>
                                     Gestione
+                                </span>
+                            </a>
+                            <a href="#" data-toggle="modal" data-target="#" class="btn btn-sm btn-primary w-50 text-white my-2">
+                                <span>
+                                    <i class="fas fa-chart-line" style="vertical-align:middle"></i> 
+                                    Statistiche
                                 </span>
                             </a>
                             <a href="#" data-toggle="modal" data-target="#del{{ $restaurant->id }}" class="btn btn-sm btn-danger w-50 text-white">
