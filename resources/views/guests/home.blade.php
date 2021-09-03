@@ -46,7 +46,7 @@
     </div>
     <div class="categories">
         <div class="container">
-            <div class="row row-cols-sm-1 row-cols-md-3 row-cols-lg-6">
+            <div class="row row-cols-sm-1 row-cols-md-3 row-cols-lg-4">
                 <div class="col">
                     <div class="card text-right">
                         <img src="https://foodies-api.initstore.net/uploads/2.jpg" alt="">
