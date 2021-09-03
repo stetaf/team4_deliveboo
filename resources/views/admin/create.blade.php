@@ -5,7 +5,7 @@
 <div class="pt-5">
     <h2>Nuovo ristorante</h2>
 
-    <form action="{{ Route('admin.restaurants.store') }}" class="my-5" method="POST">
+    <form action="{{ Route('admin.restaurants.store') }}" class="my-5" method="POST" enctype="multipart/form-data">
         @csrf
         <small>Immagine</small>
         <input type="file" name="image" class="@error('image') is-invalid @enderror d-block" id="image" placeholder="Carica un'immagine di massimo 150KB" value="{{ old('image') }}">

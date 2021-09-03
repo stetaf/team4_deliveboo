@@ -5,7 +5,7 @@
 <div class="pt-5">
     <h2>Modifica il piatto</h2>
 
-    <form action="{{ Route('admin.dish.update', $dish->id) }}" class="my-5" method="POST">
+    <form action="{{ Route('admin.dish.update', $dish->id) }}" class="my-5" method="POST" enctype="multipart/form-data">
         @csrf
         @method('PUT')
         <small>Immagine</small>

@@ -9,7 +9,7 @@
                 <div class="card-header">Registra un nuovo account</div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('register') }}">
+                    <form method="POST" action="{{ route('register') }}" enctype="multipart/form-data">
                         @csrf
 
                         <h4>Dati utente</h4>
