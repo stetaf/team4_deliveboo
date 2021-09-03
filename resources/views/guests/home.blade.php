@@ -12,24 +12,30 @@
                 <p class="display-3 text-white">Cosa vuoi mangiare?</p>
             </div>
             <div class="row row-cols-xs-1 row-cols-sm-2 row-cols-md-4 row-cols-lg-6">
-                <div v-for="type in types" class="my-3 col d-flex align-items-center flex-column ih-item circle colored effect1">
-                    <a class="m-auto" href="#">
+                <div v-for="type in types" @click="filterBy(type.id)" class="my-3 col d-flex align-items-center flex-column ih-item circle colored effect1">
+                    <span class="m-auto" href="#">
                         <div class="spinner"></div>
                         <div class="img">
-                            <img :src="/img/ + type.image" alt="img" @click="filterBy(type.id)">
+                            <img :src="/img/ + type.image" alt="img">
                         </div>
                         <div class="info">
                             <div class="info-back">
                                 <h3>@{{ type.name }}</h3>
                             </div>
                         </div>
-                    </a>
+                    </span>
                 </div>
             </div>
         </div>
     </div>
     <div class="results">
         <div class="container">
+            <div class="text-center py-2" v-if="filtered_results.data && filtered_results.data.length > 0">
+                <h2 class="display-5">Risultati inerenti alla tua ricerca:</h2>
+            </div>
+            <div class="text-center py-2" v-else>
+                <h2 class="display-5">Nessun risultato inerente alla tua ricerca</h2>
+            </div>
             <div class="row row-cols-xs-1 row-cols-sm-1 row-cols-md-3 row-cols-lg-4">
                 <div class="col" v-for="restaurant in filtered_results.data" :key="restaurant.id">
                     <div class="card text-right" style="min-height:255px">
@@ -183,6 +189,6 @@
                 </div>
             </div>
 
-        </div> --}}
+        </div>
     </div>
 @endsection

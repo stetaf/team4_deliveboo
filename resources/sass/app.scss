@@ -131,14 +131,14 @@ width: 300px !important;
   font-size: 12px;
   border-top: 1px solid rgba(255, 255, 255, 0.5);
 }
-.ih-item.circle.effect1 a:hover .spinner {
+.ih-item.circle.effect1 span:hover .spinner {
   -webkit-transform: rotate(180deg);
   -moz-transform: rotate(180deg);
   -ms-transform: rotate(180deg);
   -o-transform: rotate(180deg);
   transform: rotate(180deg);
 }
-.ih-item.circle.effect1 a:hover .info {
+.ih-item.circle.effect1 span:hover .info {
   opacity: 1;
 }
 
@@ -203,3 +203,4 @@ width: 300px !important;
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
 }
+
