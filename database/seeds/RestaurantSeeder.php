@@ -13,12 +13,17 @@ class RestaurantSeeder extends Seeder
      */
     public function run(Faker $faker)
     {
-        for ($i = 0; $i < 45; $i++) {
+        $images = [
+            "/img/restaurants/cafe.jpg", "/img/restaurants/cafe_2.jpg", "/img/restaurants/rest.jpg", "/img/restaurants/rest_2.jpg"
+        ];
+
+        for ($i = 0; $i < 5; $i++) {
             $r = new Restaurant;
             $r->user_id = 1;
             $r->name = 'Ristorante da ' . $faker->name();
             $r->address = $faker->address();
             $r->piva = '11111111111';
+            $r->image = $faker->randomElement($images);
             $r->save();
             for ($h = 0; $h < mt_rand(1, 2); $h++) {
                 $types = mt_rand(1,12);

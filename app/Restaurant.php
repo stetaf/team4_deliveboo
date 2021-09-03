@@ -15,6 +15,8 @@ class Restaurant extends Model
         'name', 'address', 'piva', 'image'
     ];
 
+    protected $appends = ['type_id'];
+
     public function user() {
         return $this->belongsTo(User::class);
     }
@@ -25,5 +27,9 @@ class Restaurant extends Model
 
     public function types() {
         return $this->belongsToMany(Type::class);
+    }
+
+    public function getTypeIdAttribute() {
+        return $this->types()->pluck('type_id');
     }
 }

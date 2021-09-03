@@ -27,9 +27,11 @@
         @include('layouts.partials.header')
 
         <main>
-            @include('layouts.partials.errors')
-            @include('layouts.partials.message')
-            @yield('content')
+            <div class="container">
+                @include('layouts.partials.errors')
+                @include('layouts.partials.message')
+                @yield('content')
+            </div>
         </main>
 
         @include('layouts.partials.footer')
