@@ -29,7 +29,7 @@ Vue.component('pagination', require('laravel-vue-pagination'));
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-const app = new Vue({
+ const app = new Vue({
     el: '#app',
     data() {
         return {
@@ -43,14 +43,14 @@ const app = new Vue({
         getResults(page = 1) {
             const url = '/api/restaurants/filter/' + this.filter + '?page=' + page;
 
-			axios.get(url)
-				.then(response => {
-					this.filtered_results = response.data;
-				})
+            axios.get(url)
+                .then(response => {
+                    this.filtered_results = response.data;
+                })
                 .catch(errors => {
                     console.error("Something went wrong: " + errors);
                 });
-		},
+        },
         filterBy(id) {
             this.filter = id;
             this.getResults();
@@ -58,7 +58,7 @@ const app = new Vue({
     },
     mounted: function() {
         const restaurants = axios.get('/api/restaurants');
-        const ctypes = axios.get('/api/types');      
+        const ctypes = axios.get('/api/types');
 
         axios.all([ctypes, restaurants])
             .then(axios.spread((...responses) => {
