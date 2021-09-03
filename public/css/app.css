@@ -10063,6 +10063,10 @@ main .type img {
   width: 75px;
   height: 75px;
 }
+main .row {
+  margin: 0;
+  padding: 0;
+}
 
 footer i {
   margin-left: 5px;
