@@ -46,7 +46,7 @@ class UserController extends Controller
         $validated = $request->validate([
             'name'    => 'required|max:255',
             'address' => 'required|max:255',
-            'piva'    => 'required|numeric|max:11|min:11',
+            'piva'    => 'required|max:11|min:11',
             'image'   => 'nullable|image|max:150',
             'types'   => 'required'
         ]);       

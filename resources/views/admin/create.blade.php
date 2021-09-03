@@ -17,7 +17,7 @@
         <input type="text" name="address" class="form-control @error('address') is-invalid @enderror" id="address" placeholder="Inserisci l'indirizzo" value="{{ old('address') }}" required>
         
         <small>Partita IVA</small>
-        <input id="piva" type="text" pattern="[0-9]" class="form-control @error('piva') is-invalid @enderror" name="piva" placeholder="Inserisci la partita IVA" value="{{ old('piva') }}" required autocomplete="piva" minlength="11" maxlength="11">
+        <input id="piva" type="text" pattern="[0-9]+" class="form-control @error('piva') is-invalid @enderror" name="piva" placeholder="Inserisci la partita IVA" value="{{ old('piva') }}" required autocomplete="piva" minlength="11" maxlength="11">
 
         <small class="d-block">Tipo/i di cucina</small>
         <div class="mb-3">
