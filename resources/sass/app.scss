@@ -24,6 +24,7 @@
 
 a {
     color: unset !important;
+    text-decoration: none !important;
 }
 
 h1, h2, h3, h4, h5 { font-family: 'Itim', cursive; }
@@ -52,3 +53,9 @@ width: 300px !important;
             }
 
         }
+
+.admin_image { 
+    height: 150px;
+    width: 300px;
+    object-fit: cover;
+}

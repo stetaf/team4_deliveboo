@@ -10083,6 +10083,7 @@ footer li {
 
 a {
   color: unset !important;
+  text-decoration: none !important;
 }
 
 h1, h2, h3, h4, h5 {
@@ -10111,4 +10112,11 @@ li {
   color: white !important;
   background-color: #d25852 !important;
   border-color: #d25852 !important;
+}
+
+.admin_image {
+  height: 150px;
+  width: 300px;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
