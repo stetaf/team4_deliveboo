@@ -49,7 +49,7 @@
 
         </div>
 
-        <div class="row d-flex justify-content-center border-top border-danger p-2">
+        <div class="row d-flex justify-content-center border-top border-white p-2">
             <span>Copyright Deliveboo &copy;2021</span>
         </div>
 

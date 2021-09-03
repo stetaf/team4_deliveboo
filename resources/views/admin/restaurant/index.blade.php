@@ -28,18 +28,18 @@
         <tbody>
             @foreach($dishes as $dish)
             <tr>
-                <td> <img width="100" src="{{$dish->image}}" alt="{{$dish->name}}"> </td>
-                <td> {{$dish->name}} </td>
-                <td> {{substr($dish->description, 0, 70)}}... </td>
-                <td> {{substr($dish->ingredients, 0, 29)}}... </td>
-                <td class="text-center">&euro;{{$dish->price}} </td>
-                <td class="text-center"> @if ($dish->visible)
+                <td class="align-middle"> <img width="100" src="{{$dish->image}}" alt="{{$dish->name}}"> </td>
+                <td class="align-middle"> {{$dish->name}} </td>
+                <td class="align-middle"> {{substr($dish->description, 0, 70)}}... </td>
+                <td class="align-middle"> {{substr($dish->ingredients, 0, 29)}}... </td>
+                <td class="text-center align-middle">&euro;{{$dish->price}} </td>
+                <td class="text-center align-middle"> @if ($dish->visible)
                         <i class="fas fa-circle text-success"></i>
                     @else
                         <i class="fas fa-circle text-danger"></i>
                     @endif
                 </td>
-                <td class="d-flex flex-column">
+                <td class="d-flex flex-column align-middle">
                     <a href="{{ Route('admin.dish.show', $dish->id) }}">
                         <span class="btn btn-sm btn-success w-100">    
                             

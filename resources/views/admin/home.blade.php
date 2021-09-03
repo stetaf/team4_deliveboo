@@ -12,7 +12,7 @@
             </div>
         </div>
         @foreach ($restaurants as $restaurant)
-        <div class="card mb-12"><!-- mb-12? -->
+        <div class="card">
             <div class="row no-gutters">
                 <div class="col-md-4">
                     <img src="{{ asset($restaurant->image) }}" alt="" class="admin_image">
@@ -30,16 +30,20 @@
                             </div>
                         </div>
                         <div class="actions d-flex flex-column justify-content-center align-items-end w-50">
-                            <span class="btn btn-sm btn-success mb-2 w-50">
-                                <i class="fas fa-cog mr-1" style="vertical-align:middle"></i>
-                                <a href="{{ Route('admin.restaurants.show', $restaurant->id) }}">Gestione</a>
-                            </span>
-                            <span class="btn btn-sm btn-danger w-50">
-                                <a href="#" data-toggle="modal" data-target="#del{{ $restaurant->id }}">
+
+                            <a href="{{ Route('admin.restaurants.show', $restaurant->id) }}" class="btn btn-sm btn-success mb-2 w-50 text-white">
+                                <span>
+                                    <i class="fas fa-cog mr-1" style="vertical-align:middle"></i>
+                                    Gestione
+                                </span>
+                            </a>
+                            <a href="#" data-toggle="modal" data-target="#del{{ $restaurant->id }}" class="btn btn-sm btn-danger w-50 text-white">
+                                <span>
                                     <i class="fas fa-trash-alt mr-1" style="vertical-align:middle"></i>
                                     Elimina
-                                </a>
-                            </span>
+                                </span>
+                            </a>
+
                             <div class="modal fade" id="del{{ $restaurant->id }}" tabindex="-1" role="dialog" aria-labelledby="modal_label" aria-hidden="true">
                                 <div class="modal-dialog" role="document">
                                     <div class="modal-content">
