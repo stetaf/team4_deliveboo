@@ -29,6 +29,7 @@ Route::prefix('admin')
         Route::resource('restaurants', 'UserController');
         Route::post('restaurant/dish/{dish}/store', 'RestaurantController@Store')->name('dish.store');
         Route::get('restaurant/{restaurant}/dish/', 'RestaurantController@Create')->name('dish.create');
+        Route::get('restaurant/dish/{dish}/show', 'RestaurantController@Show')->name('dish.show');
       });   
       
 Route::prefix('admin')

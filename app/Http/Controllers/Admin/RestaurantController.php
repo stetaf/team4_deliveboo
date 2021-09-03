@@ -51,7 +51,9 @@ class RestaurantController extends Controller
      */
     public function show($id)
     {
-        /// TO BE ADDED
+        $dish = Dish::find($id);
+
+        return view('admin.restaurant.show', compact('dish'));
     }
 
     /**
