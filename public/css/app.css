@@ -10067,6 +10067,9 @@ main .row {
   margin: 0;
   padding: 0;
 }
+main input {
+  margin-bottom: 1rem;
+}
 
 footer i {
   margin-left: 5px;
@@ -10119,8 +10122,8 @@ li {
 }
 
 .admin_image {
-  height: 150px;
-  width: 300px;
+  width: 100%;
+  height: 100%;
   -o-object-fit: cover;
      object-fit: cover;
 }
