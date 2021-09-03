@@ -32,7 +32,7 @@ class UserController extends Controller
     {
         $types = Type::all();
 
-        return view('admin.home', compact('types'));
+        return view('admin.create', compact('types'));
     }
 
     /**
@@ -46,15 +46,15 @@ class UserController extends Controller
         $validated = $request->validate([
             'name'    => 'required|max:255',
             'address' => 'required|max:255',
-            'piva'    => 'required|max:11|min:11',
-            'user_id' => 'exists:users,id',
-            'image'   => 'nullable|image|max:150'
+            'piva'    => 'required|numeric|max:11|min:11',
+            'image'   => 'nullable|image|max:150',
+            'types'   => 'required'
         ]);       
 
         $restaurant = new Restaurant($validated);
         $restaurant->user()->associate(Auth::user()->id)->save();
         
-        //$restaurant->types()->attach($request->types);
+        $restaurant->types()->sync($validated['types']);
 
         return redirect()->route('admin.restaurants.index')->with('message', "Nuovo ristorante $restaurant->name inserito!");
     }

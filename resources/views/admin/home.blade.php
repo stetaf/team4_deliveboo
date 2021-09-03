@@ -5,8 +5,10 @@
         <div class="head d-flex justify-content-between align-items-center mt-3 w-100">
             <h2>I tuoi ristoranti</h2>
             <div class="btn btn-sm btn-success">
-                <i class="fas fa-plus mr-1" style="vertical-align:middle"></i>
-                Aggiungi ristorante
+                <a href="{{ Route('admin.restaurants.create') }}">
+                    <i class="fas fa-plus mr-1" style="vertical-align:middle"></i>
+                    Aggiungi ristorante
+                </a>
             </div>
         </div>
         @foreach ($restaurants as $restaurant)
