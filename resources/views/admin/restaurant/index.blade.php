@@ -2,12 +2,8 @@
 
 @section('content')
 <div class="py-5 px-0">
-
     <h1>{{ $restaurant->name }}</h1>
-    
     <hr>
-
-    <!-- PIATTI RISTORANTE -->
     <div class="d-flex justify-content-between align-items-center">
         <h2>Menu</h2>
         <a href="{{ route('admin.dish.create', $restaurant) }}">
@@ -16,8 +12,7 @@
                 Aggiungi un piatto
             </span>
         </a>
-    </div>
-   
+    </div>   
     <table class="table table-striped table-inverse table-responsive">
         <thead class="thead-inverse">
             <tr>
@@ -26,12 +21,10 @@
                 <th class="w-50">DESCRIZIONE</th>
                 <th>INGREDIENTI</th>
                 <th>PREZZO</th>
-                <th>VISIBILE'</th>
+                <th>VISIBILE</th>
                 <th class="pr-5">AZIONI</th>
             </tr>
-
         </thead>
-
         <tbody>
             @foreach($dishes as $dish)
             <tr>
@@ -39,29 +32,25 @@
                 <td> {{$dish->name}} </td>
                 <td> {{substr($dish->description, 0, 70)}}... </td>
                 <td> {{substr($dish->ingredients, 0, 29)}}... </td>
-                <td class="text-center"> {{$dish->price}} </td>
+                <td class="text-center">&euro;{{$dish->price}} </td>
                 <td class="text-center"> @if ($dish->visible)
                         <i class="fas fa-circle text-success"></i>
                     @else
                         <i class="fas fa-circle text-danger"></i>
                     @endif
                 </td>
-
                 <td class="d-flex flex-column">
-
-                    <a href="{{route('admin.restaurants.show', $dish->id)}}">
+                    <a href="{{ Route('admin.dish.show', $dish->id) }}">
                         <span class="btn btn-sm btn-success w-100">    
                             
                             <i class="fas fa-eye fa-sm fa-fw"></i> View 
                         </span>
                     </a>
-
                     <a href="{{ Route('admin.dish.edit', $dish->id) }}">
                         <span class="btn btn-sm btn-warning my-1 w-100">
                             <i class="fas fa-pencil-alt fa-sm fa-fw"></i> Edit 
                         </span>
-                    </a>
-                    
+                    </a>                    
                     <form action="{{ Route('admin.dish.delete', $dish->id) }}" class="d-inline-block" method="post">
                         @csrf
                         @method('DELETE')
@@ -69,15 +58,17 @@
                             <i class="fas fa-trash fa-sm fa-fw"></i> 
                             Elimina
                         </button>
-                    </form>
-                   
+                    </form>                   
                 </td>
-
             </tr>
             @endforeach
         </tbody>
     </table>
-
-</div>
-    
+    <a href="{{ Route('admin.restaurants.index') }}">
+        <span class="btn btn-sm btn-secondary">
+            <i class="fas fa-arrow-left mr-1"></i>
+            Torna alla dashboard
+        </span>
+    </a>
+</div>    
 @endsection
