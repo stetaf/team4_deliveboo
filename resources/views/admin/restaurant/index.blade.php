@@ -1,68 +1,83 @@
 @extends('layouts.admin')
 
 @section('content')
-    <span>{{ $restaurant->name }}</span>
+<div class="py-5 px-0">
+
+    <h1>{{ $restaurant->name }}</h1>
     
     <hr>
-    <!-- DELETE -->
-    <h1>Delete restaurant</h1>
 
-    <form action="{{ Route('admin.restaurants.destroy', $restaurant->id) }}" method="POST">
-        @csrf
-        @method('DELETE')
-        <button type="submit" class="btn btn-danger">Confirm</button>
-    </form>
-    <!-- /DELETE -->
-
-    <hr>
-    <!-- NEW -->
-    <H1>New restaurant</H1>
-
-    <form action="{{ Route('admin.restaurants.store') }}" method="POST">
-        @csrf
-
-        <input type="text" name="name" class="form-control @error('name') is-invalid @enderror" id="name" placeholder="Enter the name" value="{{ old('name') }}" required>
-        <input type="text" name="address" class="form-control @error('address') is-invalid @enderror" id="address" placeholder="Enter the address" value="{{ old('address') }}" required>
-        <input type="number" name="piva" class="form-control @error('piva') is-invalid @enderror" id="piva" placeholder="Enter the piva" value="{{ old('piva') }}" required>
-
-        <button type="submit" class="btn btn-danger">Confirm</button>
-    </form>
-    <!-- /NEW -->
-
-    <hr>
     <!-- PIATTI RISTORANTE -->
-    <h1>Piatti</h1>
+    <div class="d-flex justify-content-between align-items-center">
+        <h2>Menu</h2>
+        <a href="{{ route('admin.dish.create', $restaurant) }}">
+            <span class="btn btn-sm btn-info text-light">
+                <i class="fas fa-plus mr-1" style="vertical-align:middle"></i>
+                Aggiungi un piatto
+            </span>
+        </a>
+    </div>
+   
+    <table class="table table-striped table-inverse table-responsive">
+        <thead class="thead-inverse">
+            <tr>
+                <th>IMMAGINE</th>
+                <th>NOME</th>
+                <th class="w-50">DESCRIZIONE</th>
+                <th>INGREDIENTI</th>
+                <th>PREZZO</th>
+                <th>VISIBILE'</th>
+                <th class="pr-5">AZIONI</th>
+            </tr>
 
-    <ul>
-        @foreach ($dishes as $dish) 
-            <li>
-                {{ $dish->name }}
-                <a href="{{ Route('admin.dish.edit', $dish->id) }}"><input class="btn btn-sm btn-primary ml-4" type="button" value="modifica"></a>
-                <form action="{{ Route('admin.dish.delete', $dish->id) }}" class="d-inline-block" method="post">
-                    @csrf
-                    @method('DELETE')
-                    <input type="submit" class="btn btn-sm btn-danger" value="Elimina">
-                </form>
-            </li>
-        @endforeach
-    </ul>
-    <!-- /PIATTI RISTORANTE -->
+        </thead>
 
-    <hr>
-    <!-- NUOVO PIATTO RISTORANTE -->
-    <h1>Nuovo piatto</h1>
+        <tbody>
+            @foreach($dishes as $dish)
+            <tr>
+                <td> <img width="100" src="{{$dish->image}}" alt="{{$dish->name}}"> </td>
+                <td> {{$dish->name}} </td>
+                <td> {{substr($dish->description, 0, 70)}}... </td>
+                <td> {{substr($dish->ingredients, 0, 29)}}... </td>
+                <td class="text-center"> {{$dish->price}} </td>
+                <td class="text-center"> @if ($dish->visible)
+                        <i class="fas fa-circle text-success"></i>
+                    @else
+                        <i class="fas fa-circle text-danger"></i>
+                    @endif
+                </td>
 
-    <form action="{{ Route('admin.dish.store', $restaurant->id) }}" method="POST">
-        @csrf
-        <input type="text" name="name" class="form-control @error('name') is-invalid @enderror" id="name" placeholder="Enter the name" value="{{ old('name') }}" required>
-        <input type="text" name="ingredients" class="form-control @error('ingredients') is-invalid @enderror" id="ingredients" placeholder="Enter the ingredients" value="{{ old('ingredients') }}" required>
-        <input type="text" name="description" class="form-control @error('description') is-invalid @enderror" id="description" placeholder="Enter the description" value="{{ old('description') }}" required>
-        <input type="number" name="price" class="form-control @error('price') is-invalid @enderror" id="price" placeholder="Enter the price" value="{{ old('price') }}" step="0.01" pattern="[0-9]" min="0.00" required>
-        <input type="radio" id="visible" name="visible" value="1">
-        <label for="visible"> Visibile</label><br>
-        <input type="radio" id="visible" name="visible" value="0">
-        <label for="visible"> Non visibile</label><br>
-        <button type="submit" class="btn btn-danger">Confirm</button>
-    </form>
-    <!-- /NUOVO PIATTO RISTORANTE -->
+                <td class="d-flex flex-column">
+
+                    <a href="{{route('admin.restaurants.show', $dish->id)}}">
+                        <span class="btn btn-sm btn-success w-100">    
+                            
+                            <i class="fas fa-eye fa-sm fa-fw"></i> View 
+                        </span>
+                    </a>
+
+                    <a href="{{ Route('admin.dish.edit', $dish->id) }}">
+                        <span class="btn btn-sm btn-warning my-1 w-100">
+                            <i class="fas fa-pencil-alt fa-sm fa-fw"></i> Edit 
+                        </span>
+                    </a>
+                    
+                    <form action="{{ Route('admin.dish.delete', $dish->id) }}" class="d-inline-block" method="post">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" value="Elimina" class="btn btn-sm btn-danger" style="min-width: 100%;">
+                            <i class="fas fa-trash fa-sm fa-fw"></i> 
+                            Elimina
+                        </button>
+                    </form>
+                   
+                </td>
+
+            </tr>
+            @endforeach
+        </tbody>
+    </table>
+
+</div>
+    
 @endsection

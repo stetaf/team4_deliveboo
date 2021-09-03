@@ -2,15 +2,15 @@
 
 @section('content')
     <div class="row row-cols-sm-1 row-cols-md-1 row-cols-lg-1">
-        <div class="head d-flex justify-content-between align-items-center mt-3">
+        <div class="head d-flex justify-content-between align-items-center mt-3 w-100">
             <h2>I tuoi ristoranti</h2>
-            <span class="btn btn-sm btn-success">
+            <div class="btn btn-sm btn-success">
                 <i class="fas fa-plus mr-1" style="vertical-align:middle"></i>
                 Aggiungi ristorante
-            </span>
+            </div>
         </div>
         @foreach ($restaurants as $restaurant)
-        <div class="card mb-12">
+        <div class="card mb-12"><!-- mb-12? -->
             <div class="row no-gutters">
                 <div class="col-md-4">
                     <img src="{{ asset($restaurant->image) }}" alt="" class="admin_image">
@@ -27,7 +27,7 @@
                                 @endforeach
                             </div>
                         </div>
-                        <div class="actions d-flex flex-column justify-content-center align-items-end w-25">
+                        <div class="actions d-flex flex-column justify-content-center align-items-end w-50">
                             <span class="btn btn-sm btn-success mb-2 w-50">
                                 <i class="fas fa-cog mr-1" style="vertical-align:middle"></i>
                                 <a href="{{ Route('admin.restaurants.show', $restaurant->id) }}">Gestione</a>

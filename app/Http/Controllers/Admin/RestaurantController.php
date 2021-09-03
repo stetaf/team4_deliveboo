@@ -15,9 +15,9 @@ class RestaurantController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Restaurant $restaurant)
     {
-        return view('admin.restaurant.create');
+        return view('admin.restaurant.create', compact('restaurant'));
     }
 
     /**
@@ -84,16 +84,12 @@ class RestaurantController extends Controller
             'description'  => 'required',
             'price'        => 'required|between:0,999.99',
             'visible'      => 'required|boolean',
-            'image'        => 'nullable|image',
-            'restaurant_id'=> 'exists:restaurants,id'
-        ]);       
-
-        
-        $restaurant_id = $validated['restaurant_id'];
+            'image'        => 'nullable|image'
+        ]);
         
         $dish->update($validated);
         
-        return redirect()->route('admin.restaurants.show', $restaurant_id)->with('message', "Piatto $dish->name modificato correttamente!");
+        return redirect()->back()->with('message', "Piatto $dish->name modificato correttamente!");
     }
 
     /**
