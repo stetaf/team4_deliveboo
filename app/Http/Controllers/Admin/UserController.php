@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Restaurant;
 use App\Type;
 use App\Dish;
+use Illuminate\Support\Facades\Storage;
 
 class UserController extends Controller
 {
@@ -49,7 +50,12 @@ class UserController extends Controller
             'piva'    => 'required|max:11|min:11',
             'image'   => 'nullable|image|max:150',
             'types'   => 'required'
-        ]);       
+        ]);
+
+        if(array_key_exists('image', $validated)){
+            $file_path = Storage::disk('public')->put('restaurant_img', $validated['image']);
+            $validated['image'] = $file_path;
+        }
 
         $restaurant = new Restaurant($validated);
         $restaurant->user()->associate(Auth::user()->id)->save();

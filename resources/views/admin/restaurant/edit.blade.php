@@ -8,7 +8,8 @@
     <form action="{{ Route('admin.dish.update', $dish->id) }}" class="my-5" method="POST" enctype="multipart/form-data">
         @csrf
         @method('PUT')
-        <small>Immagine</small>
+
+        <img src="{{asset('storage/'. $dish->image)}}" class="img-fluid ${3|rounded-top,rounded-right,rounded-bottom,rounded-left,rounded-circle,|} mb-2" alt="">
         <input type="file" name="image" class="@error('image') is-invalid @enderror d-block" id="image" placeholder="Carica un'immagine di massimo 150K" value="{{ $dish->image }}">
         
         <small>Nome</small>

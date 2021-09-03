@@ -28,7 +28,7 @@
         <tbody>
             @foreach($dishes as $dish)
             <tr>
-                <td class="align-middle"> <img width="100" src="{{asset('storage/'. $dish->img)}}" alt="{{$dish->name}}"> </td>
+                <td class="align-middle"> <img width="100" src="{{asset('storage/'. $dish->image)}}" alt="{{$dish->name}}"> </td>
                 <td class="align-middle"> {{$dish->name}} </td>
                 <td class="align-middle"> {{substr($dish->description, 0, 70)}}... </td>
                 <td class="align-middle"> {{substr($dish->ingredients, 0, 29)}}... </td>

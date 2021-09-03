@@ -8,6 +8,7 @@
 
     <form action="{{ Route('admin.dish.store', $restaurant->id) }}" class="my-5" method="POST" enctype="multipart/form-data">
         @csrf
+
         <input type="file" name="image" class="@error('image') is-invalid @enderror" id="image" placeholder="Carica un'immagine di massimo 150K" value="{{ old('image') }}">
         <input type="text" name="name" class="form-control @error('name') is-invalid @enderror" id="name" placeholder="Enter the name" value="{{ old('name') }}" required>
         <input type="text" name="ingredients" class="form-control @error('ingredients') is-invalid @enderror" id="ingredients" placeholder="Enter the ingredients" value="{{ old('ingredients') }}" required>

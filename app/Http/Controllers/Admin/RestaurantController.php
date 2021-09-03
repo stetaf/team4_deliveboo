@@ -38,6 +38,12 @@ class RestaurantController extends Controller
             'image'        => 'nullable|image'
         ]);       
 
+           
+        if(array_key_exists('image', $validated)){
+            $file_path = Storage::disk('public')->put('dish_img', $validated['image']);
+            $validated['image'] = $file_path;
+        }
+
         $dish = new Dish($validated);
         $dish->restaurant()->associate($restaurant)->save();
         
@@ -89,10 +95,13 @@ class RestaurantController extends Controller
             'visible'      => 'required|boolean',
             'image'        => 'nullable|image'
         ]);
-        
-        if(array_key_exists('image', $validated)){
-            $file_path = Storage::disk('public')->put('dish_img', $validated['image']);
-            $validated['image'] = $file_path;
+
+        if ($request->hasFile('image')) {
+            Storage::delete($dish->image);
+            $image = Storage::disk('public')->put('dish_img', $request->image);
+            $validated['image'] = $image;
+
+            $dish->image = $validated['image'];
         }
 
         $dish->update($validated);

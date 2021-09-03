@@ -15,7 +15,7 @@
         <div class="card">
             <div class="row no-gutters">
                 <div class="col-md-4">
-                    <img src="{{ asset($restaurant->image) }}" alt="" class="admin_image">
+                    <img src="{{asset('storage/'. $restaurant->image)}}" alt="" class="admin_image">
                 </div>
                 <div class="col-md-8">
                     <div class="card-body d-flex justify-content-between align-items-center h-100">
