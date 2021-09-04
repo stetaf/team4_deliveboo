@@ -50,10 +50,7 @@ main {
             height: 75px;
         }
     }
-    .row {
-        margin: 0;
-        padding: 0;
-    }
+
     input {
         margin-bottom: 1rem;
     }
@@ -93,7 +90,7 @@ main {
           position: absolute;
           top: 9px;
           bottom: 0;
-          left: 9px;
+          left: 4px;
           right: 0;
           width: 140px;
           height: 140px;
@@ -224,8 +221,8 @@ main {
 
       @media screen and (max-width: 1199.98px)  {
         .ih-item.circle.effect1 .img {
-          left: 22px;
-          right: -1px;
+          left: 19px;
+          right: 0px;
           top: 11px;
           width: 125px;
           height: 125px;
