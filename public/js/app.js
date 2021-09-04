@@ -50279,7 +50279,8 @@ var app = new Vue({
       results: [],
       types: [],
       filter: 0,
-      filtered_results: {}
+      filtered_results: {},
+      searched: false
     };
   },
   methods: {
@@ -50296,6 +50297,7 @@ var app = new Vue({
     },
     filterBy: function filterBy(id) {
       this.filter = id;
+      this.searched = true;
       this.getResults();
     }
   },

@@ -33,7 +33,7 @@
             <div class="text-center py-2" v-if="filtered_results.data && filtered_results.data.length > 0">
                 <h2 class="display-5">Risultati inerenti alla tua ricerca:</h2>
             </div>
-            <div class="text-center py-2" v-else>
+            <div class="text-center py-2" v-if="searched == true && filtered_results.data.length == 0">
                 <h2 class="display-5">Nessun risultato inerente alla tua ricerca</h2>
             </div>
             <div class="row row-cols-xs-1 row-cols-sm-1 row-cols-md-3 row-cols-lg-4">
@@ -64,8 +64,11 @@
             </pagination>
         </div>
     </div>
-    {{-- <div class="categories">
+    <div class="categories">
         <div class="container">
+            <div class="text-center">
+                <p class="display-4 text-white text-dark">Ristoranti popolari</p>
+            </div>
             <div class="row row-cols-sm-1 row-cols-md-3 row-cols-lg-4">
                 <div class="col">
                     <div class="card text-right">

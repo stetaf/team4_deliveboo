@@ -37,6 +37,7 @@ Vue.component('pagination', require('laravel-vue-pagination'));
             types: [],
             filter: 0,
             filtered_results: {},
+            searched: false
         }
     },
     methods: {
@@ -53,6 +54,7 @@ Vue.component('pagination', require('laravel-vue-pagination'));
         },
         filterBy(id) {
             this.filter = id;
+            this.searched = true;
             this.getResults();
         }
     },
