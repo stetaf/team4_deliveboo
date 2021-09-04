@@ -49,7 +49,9 @@
                             <i class="fas fa-pizza-slice" style="position: absolute;left: 20%;top: 31%; color: white; font-size: 23px;"></i>
                         </div>
                         <div style="background-color: #dedede" class="p-2 d-flex justify-content-between align-items-center">
-                            <span class="btn btn-sm text-light" style="background-color: #d3273e">Ordina</span>
+                            <span class="btn btn-sm text-light" style="background-color: #d3273e">
+                                <a :href="/restaurant/ + restaurant.id">Ordina</a>
+                            </span>
                         </div>
                     </div>
                 </div>
