@@ -1,8 +1,7 @@
 @extends('layouts.admin')
 
 @section('content')
-
-<div class="pt-5">
+<div class="pt-1">
     <h2>Nuovo ristorante</h2>
 
     <form action="{{ Route('admin.restaurants.store') }}" class="my-5" method="POST" enctype="multipart/form-data">
@@ -39,6 +38,4 @@
         </span>
     </form>    
 </div>
-<!-- /NUOVO PIATTO RISTORANTE -->
-
 @endsection
