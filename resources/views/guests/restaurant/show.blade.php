@@ -16,7 +16,7 @@
                     <div class="cp_img">
                         <img src="{{ $dish->image }}" alt="Product" class="img-fluid w-100">
                         <div class="hover">
-                            <a href="#" class="btn btn-secondary btn-sm waves-effect text-white w-25" data-toggle="modal" data-target="#modalPush">
+                            <a href="#" class="btn btn-secondary btn-sm waves-effect text-white w-25" data-toggle="modal" data-target="{{ '#modalPush' . $dish->id }}">
                                 <i class="fas fa-info"></i>
                             </a>
                             <a href="javascript:void(0);" class="btn btn-success btn-sm waves-effect text-white w-25">
@@ -34,7 +34,7 @@
             </div>
         </div>
         <!-- Product modal -->
-        <div class="modal fade" id="modalPush" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        <div class="modal fade" id="{{ 'modalPush' . $dish->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
             <div class="modal-dialog modal-dialog modal-dialog-centered modal-notify modal-info" role="document">
                 <div class="modal-content text-center">
