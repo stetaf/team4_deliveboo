@@ -7,7 +7,7 @@
 </div>
 
 <div class="container">
-    <h2 class="mt-2">I nostri piatti</h2>
+    <h2 class="mt-3 mb-5">I nostri piatti</h2>
     <div class="row">
         @foreach ($dishes as $dish)
         <div class="col-lg-3 col-md-4 col-sm-6">
@@ -75,6 +75,11 @@
         </div>
         <!-- /Product modal -->
         @endforeach
+    </div>
+
+    <div class="shopping_cart">
+        <i class="fas fa-shopping-cart"></i>
+        <span class="items">0</span>
     </div>
 </div>
 @endsection

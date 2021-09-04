@@ -53,3 +53,15 @@ li { list-style: none !important; }
     height: 100%;
     object-fit: cover;
 }
+
+@media screen and (max-width:575.98px) {
+    .nav-link { 
+        padding-left: 0;
+    }
+
+    .nav-item { font-size: 14px; }
+
+    header .logo { font-size: 25px; }
+
+    .restaurant_image h1 { font-size: 35px; }
+}
