@@ -1,4 +1,4 @@
-@import url(https://fonts.googleapis.com/css?family=Nunito);@charset "UTF-8";
+@charset "UTF-8";
 /*!
  * Bootstrap v4.6.0 (https://getbootstrap.com/)
  * Copyright 2011-2021 The Bootstrap Authors
@@ -10497,7 +10497,7 @@ main .ec-checkout .wizard .content ul.card-type li {
   display: inline-block;
   margin-right: 10px;
 }
-main .card {
+main .dish_card {
   background: #fff;
   margin-bottom: 30px;
   transition: 0.5s;
@@ -10507,7 +10507,7 @@ main .card {
   width: 100%;
   box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.1);
 }
-main .card .body {
+main .dish_card .body {
   font-size: 14px;
   color: #424242;
   padding: 20px;
@@ -10538,10 +10538,6 @@ footer li {
 a {
   color: unset !important;
   text-decoration: none !important;
-}
-
-h1, h2, h3, h4, h5 {
-  font-family: "Itim", cursive;
 }
 
 footer, header {
