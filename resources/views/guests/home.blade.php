@@ -9,7 +9,7 @@
     <div class="sep p-4">
         <div class="container">
             <div class="text-center">
-                <p class="display-3 text-white">Cosa vuoi mangiare?</p>
+                <p class="display-4 text-white">Cosa vuoi mangiare?</p>
             </div>
             <div class="row row-cols-xs-1 row-cols-sm-2 row-cols-md-4 row-cols-lg-6">
                 <div v-for="type in types" @click="filterBy(type.id)" class="my-3 col d-flex align-items-center flex-column ih-item circle colored effect1">
@@ -49,9 +49,11 @@
                             <i class="fas fa-pizza-slice" style="position: absolute;left: 20%;top: 31%; color: white; font-size: 23px;"></i>
                         </div>
                         <div style="background-color: #dedede" class="p-2 d-flex justify-content-between align-items-center">
-                            <span class="btn btn-sm text-light" style="background-color: #d3273e">
-                                <a :href="/restaurant/ + restaurant.id">Ordina</a>
-                            </span>
+                            <a :href="/restaurant/ + restaurant.id">
+                                <span class="btn btn-sm text-light" style="background-color: #d3273e">
+                                    Ordina
+                                </span>
+                            </a>
                         </div>
                     </div>
                 </div>
