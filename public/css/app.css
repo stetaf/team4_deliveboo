@@ -10080,6 +10080,7 @@ main .restaurant_image img {
   height: 300px;
   -o-object-fit: cover;
      object-fit: cover;
+  filter: brightness(0.45);
 }
 main .restaurant_image h1 {
   color: white;
