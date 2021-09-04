@@ -54,6 +54,16 @@ li { list-style: none !important; }
     object-fit: cover;
 }
 
+.dropdown-item.active, .dropdown-item:active {
+    background-color: #ff702a !important;
+    color: white !important;
+}
+
+.dropdown-item:hover, .dropdown-item:focus {
+    background-color: #ff702a !important;
+    color: white !important;
+}
+
 @media screen and (max-width:575.98px) {
     .nav-link { 
         padding-left: 0;
