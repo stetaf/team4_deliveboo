@@ -33,16 +33,20 @@
             <div class="text-center py-2" v-if="filtered_results.data && filtered_results.data.length > 0">
                 <h2 class="display-5">Risultati inerenti alla tua ricerca:</h2>
             </div>
-            <div class="text-center py-2" v-if="searched == true && filtered_results.data.length == 0">
+            <div class="text-center py-2" :class=" (no_results) ? '' : 'd-none'">
                 <h2 class="display-5">Nessun risultato inerente alla tua ricerca</h2>
             </div>
             <div class="row row-cols-xs-1 row-cols-sm-1 row-cols-md-3 row-cols-lg-4">
                 <div class="col" v-for="restaurant in filtered_results.data" :key="restaurant.id">
-                    <div class="card text-right" style="min-height:255px">
-                        <img src="https://foodies-api.initstore.net/uploads/2.jpg" alt="">
-                        <div class="p-1">
-                            <p class="font-weight-bold">@{{ restaurant.name }}</p>
-                            <span class="badge badge-primary ml-1" style="background-color: #d3273e; color: #dedede; padding: 4px 6px !important" v-for="type in restaurant.types">@{{ type.name }}</span>
+                    <div class="card text-right" style="min-height:255px; position:relative">
+                        <div class="image img-fluid position-relative">
+                            <img src="https://foodies-api.initstore.net/uploads/2.jpg" alt="" class="w-100">
+                            <div class="badges text-right position-absolute" style="right:0px; bottom:0px">
+                                <span class="badge badge-primary m-1" style="background-color: #d3273e; color: #dedede; padding: 4px 6px !important" v-for="type in restaurant.types">@{{ type.name }}</span>
+                            </div>
+                        </div>    
+                        <div class="px-1 pt-2" style="min-height: 55px">
+                            <h5 class="font-weight-bold text-center">@{{ restaurant.name }}</h5>
                         </div>
                         <div class="cuisine">
                             <i class="fas fa-bookmark" style="font-size: 60px;color: #0c6f80;transform: rotate(270deg);"></i>
@@ -54,6 +58,7 @@
                                     Ordina
                                 </span>
                             </a>
+                            <small><i>@{{ restaurant.address }}</i></small>
                         </div>
                     </div>
                 </div>
