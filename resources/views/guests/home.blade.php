@@ -203,4 +203,35 @@
 
         </div>
     </div>
+    <div class="container">
+
+        <div class="how">
+            <div class="row text-center">
+                <div class="col">
+                    <h2>Come funziona?</h2>
+                    <p>E' facile! Devi solo scegliere cosa mangiare</p>
+                </div>
+            </div>
+            <div class="row text-center">
+                <div class=" step col">
+                    <i class="fas fa-store-alt fa-2x"></i>
+                    <span class='number'>1</span>
+                    <h4>Scegli un ristorante</h4>
+                    <small>Scegli, tra la nostra selezione di ristoranti, quello che più ti piace</small>
+                </div>
+                <div class="step col">
+                    <i class="fas fa-credit-card fa-2x"></i>
+                    <span class='number'>2</span>
+                    <h4>Paga con carta di credito</h4>
+                    <small>Facile, veloce e 100% sicuro!</small>
+                </div>
+                <div class="step col">
+                    <i class="fas fa-truck fa-2x"></i>
+                    <span class='number'>3</span>
+                    <h4>Aspetta la consegna</h4>
+                    <small>Entro 30 minuti, direttamente a casa tua</small>
+                </div>
+            </div>
+        </div>
+    </div>
 @endsection
