@@ -19,9 +19,9 @@
                             <a href="#" class="btn btn-secondary btn-sm waves-effect text-white w-25" data-toggle="modal" data-target="{{ '#modalPush' . $dish->id }}">
                                 <i class="fas fa-info"></i>
                             </a>
-                            <a href="javascript:void(0);" class="btn btn-success btn-sm waves-effect text-white w-25">
-                                <i class="fas fa-shopping-cart"></i>
-                            </a>
+                            <span class="btn btn-success btn-sm waves-effect text-white" @click="addToCart({{ $restaurant->id }}, {{ $dish }})">
+                                <i class="fas fa-shopping-cart px-2"></i>
+                            </span>
                         </div>
                     </div>
                     <div class="product_details">
@@ -65,10 +65,10 @@
                     </div>
                     <div class="modal-footer d-flex justify-content-between">
                         <span class="lead">&euro; {{ $dish->price }}</span>
-                        <a href="javascript:void(0);" class="btn btn-success btn-sm waves-effect text-white">
+                        <span class="btn btn-success btn-sm waves-effect text-white" @click="addToCart({{ $restaurant->id }}, 1)">
                             <i class="fas fa-shopping-cart mr-1"></i>
                             Aggiungi al carrello
-                        </a>
+                        </span>
                     </div>
                 </div>
             </div>
@@ -77,9 +77,93 @@
         @endforeach
     </div>
 
-    <div class="shopping_cart">
+    <div class="shopping_cart" data-toggle="modal" data-target="#cart">
         <i class="fas fa-shopping-cart"></i>
-        <span class="items">0</span>
+        <span class="items" v-if="cart[1].length > 0">
+            @{{ cart[1].length }}
+        </span>
+        <span class="items" v-else>
+            0
+        </span>
     </div>
+
+    <!-- Cart modal -->
+    <div class="modal fade" id="cart" tabindex="-1" role="dialog" aria-labelledby="cartTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="cartTitle">Il tuo carrello</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="cart_table table-responsive">
+                        <h3 v-if="cart[1].length == 0">Non hai ancora aggiunto nessun piatto!</h3>
+                        <table class="table tbl-cart" v-else>
+                            <thead>
+                                <tr>
+                                    <td class="hidden-xs">Immagine</td>
+                                    <td>Prodotto</td>
+                                    <td>Quantità</td>
+                                    <td>Prezzo</td>
+                                    <td></td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr v-for="item in cart[1]">
+                                    <td class="hidden-xs">
+                                        <a href="#">
+                                            <img :src="item.image" :alt="item.name" width="50" height="50">
+                                        </a>
+                                    </td>
+                                    <td>
+                                        <span>@{{ item.name }}</span>
+                                    </td>
+                                    <td>
+                                        <div class="qty">
+                                            <span class="minus" @click="removeItem(item)">
+                                                <i class="fas fa-minus"></i>
+                                            </span>
+                                            <input type="number" class="count border-0 text-center" name="qty" :value="item.qty">
+                                            <span class="plus" @click="addToCart({{ $restaurant->id }}, item)">
+                                                <i class="fas fa-plus"></i>
+                                            </span>
+                                        </div>
+                                    </td>
+                                    <td class="price">
+                                        &euro; @{{ (item.price * item.qty).toFixed(2) }}
+                                    </td>
+                                    <td class="text-center">
+                                        <span style="font-size:20px" @click="clearItem(item)">
+                                            <i class="fas fa-trash-alt text-danger"></i>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td>Totale: € @{{ cart_total.toFixed(2) }}</td>
+                                    <td></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                        <i class="fas fa-times mr-1"></i>
+                        Chiudi
+                    </button>
+                    <button type="button" class="btn btn-success" data-dismiss="modal" :disabled="cart[1].length == 0">
+                        <i class="far fa-credit-card mr-1 align-middle"></i>
+                        Vai alla cassa
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /Cart modal -->
 </div>
 @endsection
