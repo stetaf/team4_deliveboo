@@ -10059,8 +10059,8 @@ main .cuisine {
 main .sep {
   background-color: #ff702a;
 }
-main .fs-35 {
-  font-size: 35px;
+main .results .res, main .results i {
+  color: #ff702a;
 }
 main .type {
   background-color: white;
@@ -10611,6 +10611,10 @@ footer li {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
+}
+
+.fs-35 {
+  font-size: 35px;
 }
 
 a {

@@ -36,7 +36,9 @@ main {
         background-color: #ff702a;
     }
 
-    .fs-35 { font-size: 35px; }
+    .results {
+        .res, i { color: #ff702a; }
+    }
 
     .type {
         background-color: white;
@@ -643,7 +645,7 @@ main {
         -moz-user-select: none; 
         -ms-user-select: none; 
         user-select: none; 
-        
+
         .count { 
             width: 25px;
             &>:focus { border: 0; }

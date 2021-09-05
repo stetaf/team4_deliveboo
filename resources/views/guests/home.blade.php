@@ -31,10 +31,11 @@
     <div class="results">
         <div class="container">
             <div class="text-center py-2" v-if="filtered_results.data && filtered_results.data.length > 0">
-                <h2 class="display-5">Risultati inerenti alla tua ricerca:</h2>
+                <h2 class="res">Risultati inerenti alla tua ricerca:</h2>
             </div>
-            <div class="text-center py-2" :class=" (no_results) ? '' : 'd-none'">
-                <h2 class="display-5">Nessun risultato inerente alla tua ricerca</h2>
+            <div class="text-center py-2 fs-35" :class=" (no_results) ? '' : 'd-none'">
+                <i class="far fa-frown"></i>
+                <h2 class="res">Nessun risultato inerente alla tua ricerca</h2>
             </div>
             <div class="row row-cols-xs-1 row-cols-sm-1 row-cols-md-3 row-cols-lg-4">
                 <div class="col" v-for="restaurant in filtered_results.data" :key="restaurant.id">
@@ -58,7 +59,7 @@
                                     Ordina
                                 </span>
                             </a>
-                            <small><i>@{{ restaurant.address }}</i></small>
+                            <small class="font-italic">@{{ restaurant.address }}</small>
                         </div>
                     </div>
                 </div>
