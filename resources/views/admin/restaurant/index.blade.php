@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @section('content')
-<div class="py-5 px-0">
+<div class="pb-5 mt-3">
     <h1>{{ $restaurant->name }}</h1>
     <hr>
     <div class="d-flex justify-content-between align-items-center">

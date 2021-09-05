@@ -3,7 +3,7 @@
 @section('content')
 
 <!-- NUOVO PIATTO RISTORANTE -->
-<div class="pt-5">
+<div class="pb-5 mt-3">
     <h2>Nuovo piatto</h2>
 
     <form action="{{ Route('admin.dish.store', $restaurant->id) }}" class="my-5" method="POST" enctype="multipart/form-data">
