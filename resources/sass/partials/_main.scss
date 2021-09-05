@@ -609,6 +609,7 @@ main {
     }
     /* /SINGLE PAGE RESTAURANT MENU */
 
+    /* SHOPPING CART */
     .shopping_cart {
         background: #a54617;
         position: fixed;
@@ -636,20 +637,63 @@ main {
     }
 
     .cart_table {
+        -webkit-touch-callout: none;
+        -webkit-user-select: none; 
+        -khtml-user-select: none; 
+        -moz-user-select: none; 
+        -ms-user-select: none; 
+        user-select: none; 
+        
         .count { 
-            width: 23px;
+            width: 25px;
             &>:focus { border: 0; }
         }
 
         input::-webkit-outer-spin-button,
         input::-webkit-inner-spin-button {
-            /* display: none; <- Crashes Chrome on hover */
             -webkit-appearance: none;
-            margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+            margin: 0;
         }
 
         input[type=number] {
-            -moz-appearance:textfield; /* Firefox */
+            -moz-appearance:textfield;
         }
     }
+    /* /SHOPPING CART */
+
+    /* HOW IT WORKS */
+    .how {
+        margin: 30px 0;
+        
+        .step{
+            padding: 10px;
+            margin: 10px;
+            position: relative;
+            border: 1px solid $orange;
+        }
+        &>h2{
+            font-size: 3rem;
+        }
+        .fa-store-alt , .fa-credit-card , .fa-truck{
+            padding: 10px;
+            color: $orange;
+        }
+        &>h4{
+            font-weight: 900;
+        }
+        .number{
+            font-weight: 900;
+            color: $orange;
+            border: 1px solid $orange;
+            border-radius: 50%;
+            display: inline-block;
+            width: 25px;
+            height: 25px;
+            position: absolute;
+            top: -10%;
+            background: white;
+            left: 46%;
+        }
+    }
+    /* /HOW IT WORKS */
 }

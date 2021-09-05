@@ -19,7 +19,7 @@
                             <a href="#" class="btn btn-secondary btn-sm waves-effect text-white w-25" data-toggle="modal" data-target="{{ '#modalPush' . $dish->id }}">
                                 <i class="fas fa-info"></i>
                             </a>
-                            <span class="btn btn-success btn-sm waves-effect text-white" @click="addToCart({{ $restaurant->id }}, {{ $dish }})">
+                            <span class="btn btn-success btn-sm waves-effect text-white w-25" @click="addToCart({{ $restaurant->id }}, {{ $dish }})">
                                 <i class="fas fa-shopping-cart px-2"></i>
                             </span>
                         </div>
@@ -92,30 +92,31 @@
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="cartTitle">Il tuo carrello</h5>
+                    <h2 class="modal-title" id="cartTitle">
+                        <i class="fas fa-shopping-cart"></i>
+                        Il tuo carrello
+                    </h2>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
                     <div class="cart_table table-responsive">
-                        <h3 v-if="cart[1].length == 0">Non hai ancora aggiunto nessun piatto!</h3>
+                        <h4 v-if="cart[1].length == 0">Non hai ancora aggiunto nessun piatto!</h4>
                         <table class="table tbl-cart" v-else>
                             <thead>
                                 <tr>
-                                    <td class="hidden-xs">Immagine</td>
-                                    <td>Prodotto</td>
-                                    <td>Quantità</td>
-                                    <td>Prezzo</td>
-                                    <td></td>
+                                    <td class="border-top-0">Immagine</td>
+                                    <td class="border-top-0">Prodotto</td>
+                                    <td class="border-top-0">Quantità</td>
+                                    <td class="border-top-0">Prezzo</td>
+                                    <td class="border-top-0"></td>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr v-for="item in cart[1]">
                                     <td class="hidden-xs">
-                                        <a href="#">
-                                            <img :src="item.image" :alt="item.name" width="50" height="50">
-                                        </a>
+                                        <img :src="item.image" :alt="item.name" width="50" height="50">
                                     </td>
                                     <td>
                                         <span>@{{ item.name }}</span>
@@ -125,7 +126,7 @@
                                             <span class="minus" @click="removeItem(item)">
                                                 <i class="fas fa-minus"></i>
                                             </span>
-                                            <input type="number" class="count border-0 text-center" name="qty" :value="item.qty">
+                                            <input type="number" class="count border-0 text-center" name="qty" :value="item.qty" max="99">
                                             <span class="plus" @click="addToCart({{ $restaurant->id }}, item)">
                                                 <i class="fas fa-plus"></i>
                                             </span>
