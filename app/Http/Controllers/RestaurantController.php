@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 class RestaurantController extends Controller
 {
     public function show($id) {
-        $restaurant = Restaurant::find($id);
+        $restaurant = Restaurant::findOrFail($id);
         $dishes = Dish::where('restaurant_id', '=', $id)->get();
 
         return view('guests.restaurant.show', compact('dishes', 'restaurant'));
