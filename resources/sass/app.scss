@@ -67,9 +67,10 @@ width: 300px !important;
   border-right-color: #1ad280;
   border-bottom-color: #1ad280;
   border-radius: 50%;
-  -webkit-transition: all 0.8s ease-in-out;
-  -moz-transition: all 0.8s ease-in-out;
-  transition: all 0.8s ease-in-out;
+  -webkit-transition: all 0.5s ease-in-out;
+  -moz-transition: all 0.5s ease-in-out;
+  transition: all 0.5s ease-in-out;
+  cursor: pointer;
 }
 .ih-item.circle.effect1 .img {
     position: absolute;
@@ -98,16 +99,17 @@ width: 300px !important;
 }
 .ih-item.circle.effect1 .info {
 
-    width: 160px;
-    height: 160px;
+    width: 140px;
+    height: 140px;
     margin: auto;
     left: 5px;
     background: #333333;
     background: rgba(0, 0, 0, 0.6);
     opacity: 0;
-    -webkit-transition: all 0.8s ease-in-out;
-    -moz-transition: all 0.8s ease-in-out;
-    transition: all 0.8s ease-in-out;
+    -webkit-transition: all 0.5s ease-in-out;
+    -moz-transition: all 0.5s ease-in-out;
+    transition: all 0.5s ease-in-out;
+    cursor: pointer;
 }
 .ih-item.circle.effect1 .info h3 {
     color: #fff;
@@ -116,7 +118,7 @@ width: 300px !important;
     letter-spacing: 2px;
     font-size: 1rem;
     font-weight: 600;
-    margin: 10px 15px;
+    margin: 5px 5px;
     padding: 55px 0 0 0;
     height: 110px;
     text-shadow: 0 0 1px white, 0 1px 2px rgb(0 0 0 / 30%);
