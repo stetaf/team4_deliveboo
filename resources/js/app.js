@@ -82,6 +82,7 @@ Vue.component('pagination', require('laravel-vue-pagination'));
         },
         addItem(item) {
             const info = {
+                'id'   : item.id,
                 'name' : item.name,
                 'image': item.image,
                 'price': item.price,
@@ -90,10 +91,14 @@ Vue.component('pagination', require('laravel-vue-pagination'));
 
             this.cart[1].push(info);
         },
-        removeItem(item) {
+        removeItem(item, input) {
             for (let i = 0; i < this.cart[1].length; i++) {
                 if (item.name == this.cart[1][i]['name']) {
-                    ((this.cart[1][i]['qty'] - 1) == 0) ? this.cart[1].splice(i, 1) : this.cart[1][i]['qty'] -= 1;
+                    if ((this.cart[1][i]['qty'] - 1) == 0) {
+                        this.cart[1].splice(i, 1);
+                    } else {
+                        this.cart[1][i]['qty'] -= 1;   
+                    }
                 }
             }
             this.calculateSubtotal();
@@ -105,6 +110,9 @@ Vue.component('pagination', require('laravel-vue-pagination'));
                 }
             }
             this.calculateSubtotal();
+        },
+        addQty(item) {
+            console.log(item);
         },
         calculateSubtotal() {
             this.cart_total = 0;

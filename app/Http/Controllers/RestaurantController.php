@@ -14,4 +14,10 @@ class RestaurantController extends Controller
 
         return view('guests.restaurant.show', compact('dishes', 'restaurant'));
     }
+
+    public function checkout($id) {
+        $restaurant = Restaurant::findOrFail($id);
+
+        return view('guests.restaurant.checkout', compact('restaurant'));
+    }
 }

@@ -19,6 +19,7 @@ Route::get('/', function () {
 })->name('home');
 
 Route::get('/restaurant/{id}', 'RestaurantController@show')->name('guests.restaurant.show');
+Route::get('/restaurant/{id}/checkout', 'RestaurantController@checkout')->name('guests.restaurant.checkout');
 
 Auth::routes();
 

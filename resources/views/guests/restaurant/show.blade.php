@@ -157,10 +157,10 @@
                         <i class="fas fa-times mr-1"></i>
                         Chiudi
                     </button>
-                    <button type="button" class="btn btn-success" data-dismiss="modal" :disabled="cart[1].length == 0">
+                    <a href="{{ Route('guests.restaurant.checkout', $restaurant->id) }}"  class="btn btn-success" :disabled="cart[1].length == 0">
                         <i class="far fa-credit-card mr-1 align-middle"></i>
                         Vai alla cassa
-                    </button>
+                    </a>
                 </div>
             </div>
         </div>

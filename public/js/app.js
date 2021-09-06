@@ -50326,6 +50326,7 @@ var app = new Vue({
     },
     addItem: function addItem(item) {
       var info = {
+        'id': item.id,
         'name': item.name,
         'image': item.image,
         'price': item.price,
@@ -50333,10 +50334,14 @@ var app = new Vue({
       };
       this.cart[1].push(info);
     },
-    removeItem: function removeItem(item) {
+    removeItem: function removeItem(item, input) {
       for (var i = 0; i < this.cart[1].length; i++) {
         if (item.name == this.cart[1][i]['name']) {
-          this.cart[1][i]['qty'] - 1 == 0 ? this.cart[1].splice(i, 1) : this.cart[1][i]['qty'] -= 1;
+          if (this.cart[1][i]['qty'] - 1 == 0) {
+            this.cart[1].splice(i, 1);
+          } else {
+            this.cart[1][i]['qty'] -= 1;
+          }
         }
       }
 
@@ -50350,6 +50355,9 @@ var app = new Vue({
       }
 
       this.calculateSubtotal();
+    },
+    addQty: function addQty(item) {
+      console.log(item);
     },
     calculateSubtotal: function calculateSubtotal() {
       var _this2 = this;
@@ -50456,8 +50464,8 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\MAMP\htdocs\php\deliveboo_team\team4_deliveboo\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\MAMP\htdocs\php\deliveboo_team\team4_deliveboo\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\Users\Ste\Documents\Boolean\team4_deliveboo\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\Users\Ste\Documents\Boolean\team4_deliveboo\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
