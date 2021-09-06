@@ -116,7 +116,7 @@
                             <tbody>
                                 <tr v-for="item in cart[1]">
                                     <td class="hidden-xs">
-                                        <img :src="item.image" :alt="item.name" width="50" height="50">
+                                        <img :src="'/storage/'+ item.image" :alt="item.name" width="50" height="50">
                                     </td>
                                     <td>
                                         <span>@{{ item.name }}</span>
