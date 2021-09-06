@@ -10,7 +10,7 @@ class RestaurantController extends Controller
 {
     public function show($id) {
         $restaurant = Restaurant::findOrFail($id);
-        $dishes = Dish::where('restaurant_id', '=', $id)->get();
+        $dishes = Dish::where('restaurant_id', '=', $id)->where('visible', '=', '1')->get();
 
         return view('guests.restaurant.show', compact('dishes', 'restaurant'));
     }
