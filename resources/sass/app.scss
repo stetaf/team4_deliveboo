@@ -1,6 +1,3 @@
-// Fonts
-@import url('https://fonts.googleapis.com/css?family=Nunito');
-
 // Variables
 @import 'variables';
 
@@ -22,12 +19,12 @@
     box-sizing: border-box;
 }
 
+.fs-35 { font-size: 35px; }
+
 a {
     color: unset !important;
     text-decoration: none !important;
 }
-
-h1, h2, h3, h4, h5 { font-family: 'Itim', cursive; }
 
 footer, header {
     background-color: #ff702a;
@@ -38,21 +35,20 @@ footer, header {
 li { list-style: none !important; }
 
 .login {
-margin-bottom:5px;
+    margin-bottom:5px;
 }
+
 .dropdown-menu {
-width: 300px !important;
+    width: 300px !important;
 }
 
-        .active {
-
-            &>.page-link {
-                color: white !important;
-                background-color: #d25852 !important;
-                border-color: #d25852 !important;
-            }
-
-        }
+.active {
+  &>.page-link {
+      color: white !important;
+      background-color: #d25852 !important;
+      border-color: #d25852 !important;
+  }
+}
 
 .admin_image {
     width: 100%;
@@ -144,65 +140,14 @@ width: 300px !important;
   opacity: 1;
 }
 
-.ih-item {
-  position: relative;
-  -webkit-transition: all 0.35s ease-in-out;
-  -moz-transition: all 0.35s ease-in-out;
-  transition: all 0.35s ease-in-out;
-}
-.ih-item,
-.ih-item * {
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
-}
-.ih-item a {
-  color: #333;
-}
-.ih-item a:hover {
-  text-decoration: none;
-}
-.ih-item img {
-  width: 100%;
-  height: 100%;
-}
+@media screen and (max-width:575.98px) {
+    .nav-link {
+        padding-left: 0;
+    }
 
-.ih-item.circle {
-  position: relative;
-  width: 220px;
-  height: 220px;
-  border-radius: 50%;
-}
-.ih-item.circle .img {
-  position: relative;
-  width: 220px;
-  height: 220px;
-  border-radius: 50%;
-}
-.ih-item.circle .img:before {
-  position: absolute;
-  display: block;
-  content: '';
-  width: 100%;
-  height: 100%;
-  border-radius: 50%;
-  box-shadow: inset 0 0 0 16px rgba(255, 255, 255, 0.6), 0 1px 2px rgba(0, 0, 0, 0.3);
-  -webkit-transition: all 0.35s ease-in-out;
-  -moz-transition: all 0.35s ease-in-out;
-  transition: all 0.35s ease-in-out;
-}
-.ih-item.circle .img img {
-  border-radius: 50%;
-}
-.ih-item.circle .info {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  text-align: center;
-  border-radius: 50%;
-  -webkit-backface-visibility: hidden;
-  backface-visibility: hidden;
-}
+    .nav-item { font-size: 14px; }
 
+    header .logo { font-size: 25px; }
+
+    .restaurant_image h1 { font-size: 35px; }
+}

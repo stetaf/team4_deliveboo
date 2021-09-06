@@ -1,8 +1,7 @@
 @extends('layouts.admin')
 
 @section('content')
-
-<div class="pt-5">
+<div class="pt-3">
     <h2>Nuovo ristorante</h2>
 
     <form action="{{ Route('admin.restaurants.store') }}" class="my-5" method="POST" enctype="multipart/form-data">
@@ -34,11 +33,11 @@
         </div>
 
         <button type="submit" class="btn btn-success mb-2">Crea</button>
-        <span class="btn border-info mb-2">
-            <a href="{{ url()->previous() }}" class="text-info">Indietro</a>
-        </span>
+        <a href="{{ Route('admin.restaurants.index') }}">
+            <span class="btn border-info text-info mb-2">
+                Indietro
+            </span>
+        </a>
     </form>    
 </div>
-<!-- /NUOVO PIATTO RISTORANTE -->
-
 @endsection

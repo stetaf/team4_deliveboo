@@ -18,6 +18,7 @@ Route::get('/', function () {
   return view('guests.home');
 })->name('home');
 
+Route::get('/restaurant/{id}', 'RestaurantController@show')->name('guests.restaurant.show');
 
 Auth::routes();
 

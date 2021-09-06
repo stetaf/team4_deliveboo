@@ -37,6 +37,12 @@ Vue.component('pagination', require('laravel-vue-pagination'));
             types: [],
             filter: 0,
             filtered_results: {},
+            no_results: false,
+            cart: [
+                { 'rest_id' : 0 },
+                [ ]
+            ],
+            cart_total: 0
         }
     },
     methods: {
@@ -46,6 +52,7 @@ Vue.component('pagination', require('laravel-vue-pagination'));
             axios.get(url)
                 .then(response => {
                     this.filtered_results = response.data;
+                    (this.filtered_results.data.length == 0) ? this.no_results = true : this.no_results = false;
                 })
                 .catch(errors => {
                     console.error("Something went wrong: " + errors);
@@ -53,7 +60,62 @@ Vue.component('pagination', require('laravel-vue-pagination'));
         },
         filterBy(id) {
             this.filter = id;
+            this.searched = true;
             this.getResults();
+        },
+        addToCart(id, item) {
+            if (this.cart[1].length > 0) {
+                let already_there = false;
+                
+                for (let i = 0; i < this.cart[1].length; i++) {
+                    if (item.name == this.cart[1][i]['name']) {
+                        already_there = true;
+                        this.cart[1][i]['qty'] += 1;
+                    }
+                }
+                (already_there) ? '' : this.addItem(item);
+            } else {
+                this.addItem(item);
+                this.cart[0]['rest_id'] = id;
+            }
+            this.calculateSubtotal();
+        },
+        addItem(item) {
+            const info = {
+                'name' : item.name,
+                'image': item.image,
+                'price': item.price,
+                'qty'  : 1
+            };
+
+            this.cart[1].push(info);
+        },
+        removeItem(item) {
+            for (let i = 0; i < this.cart[1].length; i++) {
+                if (item.name == this.cart[1][i]['name']) {
+                    ((this.cart[1][i]['qty'] - 1) == 0) ? this.cart[1].splice(i, 1) : this.cart[1][i]['qty'] -= 1;
+                }
+            }
+            this.calculateSubtotal();
+        },
+        clearItem(item) {
+            for (let i = 0; i < this.cart[1].length; i++) {
+                if (item.name == this.cart[1][i]['name']) {
+                    this.cart[1].splice(i, 1);
+                }
+            }
+            this.calculateSubtotal();
+        },
+        calculateSubtotal() {
+            this.cart_total = 0;
+
+            this.cart[1].forEach(item => {
+                this.cart_total += parseFloat(item.price) * item.qty;
+            });
+
+            this.cart_total.toFixed(2);
+
+            localStorage.setItem('cart', JSON.stringify(this.cart));
         }
     },
     mounted: function() {
@@ -68,5 +130,16 @@ Vue.component('pagination', require('laravel-vue-pagination'));
             .catch(errors => {
                 console.error("Something went wrong: " + errors);
             })
+        
+        let url_path = window.location.pathname;
+        if (url_path.includes('restaurant')) {
+            const cart = JSON.parse(localStorage.getItem('cart'));
+            const rest_id = url_path.match(/\d+/)[0];
+            
+            if (cart[0].rest_id == rest_id) {
+                this.cart = cart;
+                this.calculateSubtotal();
+            }
+        }
     }
 })

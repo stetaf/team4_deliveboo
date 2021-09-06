@@ -1,39 +1,25 @@
 @extends('layouts.admin')
 
 @section('content')
-<!-- MODIFICA PIATTO RISTORANTE -->
 <div class="pt-5">
-    <h2>Piatto: {{ $dish->name }}</h2>
-
-    <form action="{{ Route('admin.dish.update', $dish->id) }}" class="my-5" method="POST">
-        @csrf
-        @method('PUT')
-        <small>Immagine</small>
-        <input type="file" name="image" class="@error('image') is-invalid @enderror d-block" id="image" placeholder="Carica un'immagine di massimo 150K" value="{{ $dish->image }}">
-        
-        <small>Nome</small>
-        <input type="text" name="name" class="form-control @error('name') is-invalid @enderror" id="name" placeholder="Enter the name" value="{{ $dish->name }}" required>
-        
-        <small>Ingredienti</small>
-        <input type="text" name="ingredients" class="form-control @error('ingredients') is-invalid @enderror" id="ingredients" placeholder="Enter the ingredients" value="{{ $dish->ingredients }}" required>
-        
-        <small>Descrizione</small>
-        <input type="text" name="description" class="form-control @error('description') is-invalid @enderror" id="description" placeholder="Enter the description" value="{{ $dish->description }}" required>
-        
-        <small>Prezzo</small>
-        <input type="number" name="price" class="form-control @error('price') is-invalid @enderror" id="price" placeholder="Enter the price" value="{{ $dish->price }}" step="0.01" pattern="[0-9]" min="0.00" required>
-        
-        <!-- radio button -->
-        <input type="radio" id="visible" name="visible" value="1" {{ ($dish->visible == true) ? 'checked' : '' }}>
-        <label for="visible"> Visibile</label><br>
-        <input type="radio" id="visible" name="visible" value="0" {{ ($dish->visible == false) ? 'checked' : '' }}>
-        <label for="visible"> Non visibile</label><br>
-        <!-- //radio button -->
-
-        <span class="btn border-info mb-2">
-            <a href="{{ url()->previous() }}" class="text-info">Indietro</a>
-        </span>
-    </form>
-    
+    <h1>Piatto: {{ $dish->name }}</h1>
+    <div class="img">
+        <img src="{{$dish->image}}" alt="{{$dish->name}}">
+    </div>
+    <div class="desc">
+        <h2>Descrizione</h2>
+        <p>{{$dish->description}}</p>
+    </div>
+    <div class="ingredients">
+        <h2>Ingredienti</h2>
+        <p>{{$dish->ingredients}}</p>
+    </div>
+    <div class="price">
+        <h2>Prezzo</h2>
+        <p>{{$dish->price}}€</p>
+    </div>
+    <a href="{{ url()->previous() }}">
+            <span class="btn border-info mb-2 text-info">Indietro</span>
+        </a>
 </div>
 @endsection
