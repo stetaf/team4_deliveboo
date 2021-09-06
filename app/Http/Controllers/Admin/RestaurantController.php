@@ -42,6 +42,8 @@ class RestaurantController extends Controller
         if(array_key_exists('image', $validated)){
             $file_path = Storage::disk('public')->put('dish_img', $validated['image']);
             $validated['image'] = $file_path;
+        } else { 
+            $validated['image'] = 'dish_img/placeholder.jpg';
         }
 
         $dish = new Dish($validated);
