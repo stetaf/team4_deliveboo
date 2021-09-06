@@ -55,6 +55,8 @@ class UserController extends Controller
         if(array_key_exists('image', $validated)){
             $file_path = Storage::disk('public')->put('restaurant_img', $validated['image']);
             $validated['image'] = $file_path;
+        } else {
+            $validated['image'] = 'restaurant_img/placeholder.jpg';
         }
 
         $restaurant = new Restaurant($validated);

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use App\User;
 use App\Restaurant;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -50,6 +51,11 @@ class RegisterController extends Controller
      */
     protected function validator(array $data)
     {
+        if (array_key_exists('image', $data)) {
+            $file_path = Storage::disk('public')->put('restaurant_img', $data['image']);
+            $data['image'] = $file_path;
+        } 
+
         return Validator::make($data, [
             'fullname' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
@@ -58,7 +64,7 @@ class RegisterController extends Controller
             'address' => ['required', 'string'],
             'piva' => ['required', 'numeric', 'regex:/^[0-9]{11}$/'],
             'tipologie' => ['required'],
-            'image' => ['nullable', 'image']
+            'image' => ['nullable', 'image', 'mimes:jpeg,png,jpg,svg']
         ]);
     }
 
@@ -74,7 +80,9 @@ class RegisterController extends Controller
                     'fullname' => $data['fullname'],
                     'email' => $data['email'],
                     'password' => Hash::make($data['password']),
-                ]);
+                ]);        
+
+        (array_key_exists('image', $data)) ? '' : $data['image'] = 'restaurant_img/placeholder.jpg';
 
         $restaurant = new Restaurant($data);                    
         $restaurant->user()->associate($user)->save();

@@ -34,8 +34,10 @@
                 <td class="align-middle"> {{substr($dish->ingredients, 0, 29)}}... </td>
                 <td class="text-center align-middle">&euro;{{$dish->price}} </td>
                 <td class="text-center align-middle"> @if ($dish->visible)
+                        Sì
                         <i class="fas fa-circle text-success"></i>
                     @else
+                        No
                         <i class="fas fa-circle text-danger"></i>
                     @endif
                 </td>
