@@ -10023,6 +10023,10 @@ main {
   /* /HOMEPAGE TYPES */
   /* SINGLE PAGE RESTAURANT MENU */
   /* /SINGLE PAGE RESTAURANT MENU */
+  /* SHOPPING CART */
+  /* /SHOPPING CART */
+  /* HOW IT WORKS */
+  /* /HOW IT WORKS */
 }
 main .jumbotron {
   height: 500px;
@@ -10055,8 +10059,8 @@ main .cuisine {
 main .sep {
   background-color: #ff702a;
 }
-main .fs-35 {
-  font-size: 35px;
+main .results .res, main .results i {
+  color: #ff702a;
 }
 main .type {
   background-color: white;
@@ -10538,6 +10542,59 @@ main .shopping_cart .items {
   font-size: 14px;
   padding-top: 2px;
 }
+main .cart_table {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+main .cart_table .count {
+  width: 25px;
+}
+main .cart_table .count > :focus {
+  border: 0;
+}
+main .cart_table input::-webkit-outer-spin-button,
+main .cart_table input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+main .cart_table input[type=number] {
+  -moz-appearance: textfield;
+}
+main .how {
+  margin: 30px 0;
+}
+main .how .step {
+  padding: 10px;
+  margin: 10px;
+  position: relative;
+  border: 1px solid #f6993f;
+}
+main .how > h2 {
+  font-size: 3rem;
+}
+main .how .fa-store-alt, main .how .fa-credit-card, main .how .fa-truck {
+  padding: 10px;
+  color: #f6993f;
+}
+main .how > h4 {
+  font-weight: 900;
+}
+main .how .number {
+  font-weight: 900;
+  color: #f6993f;
+  border: 1px solid #f6993f;
+  border-radius: 50%;
+  display: inline-block;
+  width: 25px;
+  height: 25px;
+  position: absolute;
+  top: -10%;
+  background: white;
+  left: 46%;
+}
 
 footer i {
   margin-left: 5px;
@@ -10554,6 +10611,10 @@ footer li {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
+}
+
+.fs-35 {
+  font-size: 35px;
 }
 
 a {
