@@ -28,7 +28,7 @@
             </div>
         </div>
     </div>
-    <div class="results py-3">
+    <div class="results py-3" :class="[ (filter == 0) ? 'd-none' : '']">
         <div class="container">
             <div class="text-center py-2" v-if="filtered_results.data && filtered_results.data.length > 0">
                 <h2 class="res">Risultati inerenti alla tua ricerca:</h2>
