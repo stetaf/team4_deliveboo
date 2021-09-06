@@ -10099,9 +10099,9 @@ main .restaurant_image h1 {
 main .ih-item.circle.effect1 .spinner {
   width: 160px;
   height: 160px;
-  border: 10px solid #ecab18;
-  border-right-color: #1ad280;
-  border-bottom-color: #1ad280;
+  border: 10px solid #28a745;
+  border-top-color: #90dc7f;
+  border-bottom-color: #90dc7f;
   border-radius: 50%;
   transition: all 0.8s ease-in-out;
 }
@@ -10160,7 +10160,7 @@ main .ih-item.circle.effect1 .info p {
   border-top: 1px solid rgba(255, 255, 255, 0.5);
 }
 main .ih-item.circle.effect1 span:hover .spinner {
-  transform: rotate(180deg);
+  transform: rotate(360deg);
 }
 main .ih-item.circle.effect1 span:hover .info {
   opacity: 1;
@@ -10218,6 +10218,10 @@ main .ih-item.circle .info {
   border-radius: 50%;
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
+}
+main .type_active {
+  opacity: 1 !important;
+  transition: unset !important;
 }
 @media screen and (max-width: 1199.98px) {
   main .ih-item.circle.effect1 .img {
@@ -10666,87 +10670,6 @@ li {
   height: 100%;
   -o-object-fit: cover;
      object-fit: cover;
-}
-
-.ih-item.circle.effect1 .spinner {
-  width: 160px;
-  height: 160px;
-  border: 10px solid #ecab18;
-  border-right-color: #1ad280;
-  border-bottom-color: #1ad280;
-  border-radius: 50%;
-  transition: all 0.5s ease-in-out;
-  cursor: pointer;
-}
-
-.ih-item.circle.effect1 .img {
-  position: absolute;
-  top: 9px;
-  bottom: 0;
-  left: 9px;
-  right: 0;
-  width: 140px;
-  height: 140px;
-  margin: auto;
-}
-.ih-item.circle.effect1 .img img {
-  background-color: white;
-  position: relative;
-  top: -5px;
-  left: -2px;
-}
-
-.ih-item.circle.effect1 .img:before {
-  display: none;
-}
-
-.ih-item.circle.effect1.colored .info {
-  background: #1a4a72;
-  background: rgba(26, 74, 114, 0.75);
-}
-
-.ih-item.circle.effect1 .info {
-  width: 140px;
-  height: 140px;
-  margin: auto;
-  left: 5px;
-  background: #333333;
-  background: rgba(0, 0, 0, 0.6);
-  opacity: 0;
-  transition: all 0.5s ease-in-out;
-  cursor: pointer;
-}
-
-.ih-item.circle.effect1 .info h3 {
-  color: #fff;
-  text-transform: uppercase;
-  position: relative;
-  letter-spacing: 2px;
-  font-size: 1rem;
-  font-weight: 600;
-  margin: 5px 5px;
-  padding: 55px 0 0 0;
-  height: 110px;
-  text-shadow: 0 0 1px white, 0 1px 2px rgba(0, 0, 0, 0.3);
-  text-align: center;
-  vertical-align: middle;
-}
-
-.ih-item.circle.effect1 .info p {
-  color: #bbb;
-  padding: 10px 5px;
-  font-style: italic;
-  margin: 0 30px;
-  font-size: 12px;
-  border-top: 1px solid rgba(255, 255, 255, 0.5);
-}
-
-.ih-item.circle.effect1 a:hover .spinner {
-  transform: rotate(180deg);
-}
-
-.ih-item.circle.effect1 a:hover .info {
-  opacity: 1;
 }
 
 @media screen and (max-width: 575.98px) {

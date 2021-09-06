@@ -81,9 +81,9 @@ main {
     .ih-item.circle.effect1 .spinner {
         width: 160px;
         height: 160px;
-        border: 10px solid #ecab18;
-        border-right-color: #1ad280;
-        border-bottom-color: #1ad280;
+        border: 10px solid #28a745;
+        border-top-color: #90dc7f;
+        border-bottom-color: #90dc7f;
         border-radius: 50%;
         -webkit-transition: all 0.8s ease-in-out;
         -moz-transition: all 0.8s ease-in-out;
@@ -114,8 +114,7 @@ main {
         background: #1a4a72;
         background: rgba(26, 74, 114, 0.75);
       }
-      .ih-item.circle.effect1 .info {
-      
+      .ih-item.circle.effect1 .info {      
           width: 160px;
           height: 160px;
           margin: auto;
@@ -149,11 +148,11 @@ main {
         border-top: 1px solid rgba(255, 255, 255, 0.5);
       }
       .ih-item.circle.effect1 span:hover .spinner {
-        -webkit-transform: rotate(180deg);
-        -moz-transform: rotate(180deg);
-        -ms-transform: rotate(180deg);
-        -o-transform: rotate(180deg);
-        transform: rotate(180deg);
+        -webkit-transform: rotate(360deg);
+        -moz-transform: rotate(360deg);
+        -ms-transform: rotate(360deg);
+        -o-transform: rotate(360deg);
+        transform: rotate(360deg);
       }
       .ih-item.circle.effect1 span:hover .info {
         opacity: 1;
@@ -220,6 +219,14 @@ main {
         -webkit-backface-visibility: hidden;
         backface-visibility: hidden;
       }
+
+      .type_active { 
+          opacity: 1 !important;
+          -webkit-transition: unset !important;
+          -moz-transition: unset !important;
+          transition: unset !important;
+        }
+
 
       @media screen and (max-width: 1199.98px)  {
         .ih-item.circle.effect1 .img {
