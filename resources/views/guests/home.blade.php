@@ -6,7 +6,7 @@
             <h1 class="display-4" >I tuoi piatti preferiti, quando vuoi.</h1>
         </div>
     </div>
-    <div class="sep p-4">
+    <div class="sep py-4">
         <div class="container">
             <div class="text-center">
                 <p class="display-4 text-white">Cosa vuoi mangiare?</p>
@@ -28,7 +28,7 @@
             </div>
         </div>
     </div>
-    <div class="results">
+    <div class="results py-3">
         <div class="container">
             <div class="text-center py-2" v-if="filtered_results.data && filtered_results.data.length > 0">
                 <h2 class="res">Risultati inerenti alla tua ricerca:</h2>
@@ -49,10 +49,10 @@
                         <div class="px-1 pt-2" style="min-height: 55px">
                             <h5 class="font-weight-bold text-center">@{{ restaurant.name }}</h5>
                         </div>
-                        <div class="cuisine">
+                        <!-- <div class="cuisine">
                             <i class="fas fa-bookmark" style="font-size: 60px;color: #0c6f80;transform: rotate(270deg);"></i>
                             <i class="fas fa-pizza-slice" style="position: absolute;left: 20%;top: 31%; color: white; font-size: 23px;"></i>
-                        </div>
+                        </div> -->
                         <div style="background-color: #dedede" class="p-2 d-flex justify-content-between align-items-center">
                             <a :href="/restaurant/ + restaurant.id">
                                 <span class="btn btn-sm text-light" style="background-color: #d3273e">
@@ -70,7 +70,7 @@
             </pagination>
         </div>
     </div>
-    <div class="categories">
+    <!-- <div class="categories">
         <div class="container">
             <div class="text-center">
                 <p class="display-4 text-white text-dark">Ristoranti popolari</p>
@@ -143,13 +143,13 @@
             </div>
 
         </div>
-    </div>
+    </div> -->
     <div class="how">
         <div class="container">
             <div class="row text-center">
                 <div class="col">
-                    <h2>Come funziona?</h2>
-                    <p>E' facile! Devi solo scegliere cosa mangiare</p>
+                    <h2 class="display-4">Come funziona?</h2>
+                    <h3 class="mb-5">E' facile! Devi solo scegliere cosa mangiare</h3>
                 </div>
             </div>
             <div class="row text-center">
