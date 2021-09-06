@@ -30,7 +30,9 @@
             @yield('content')
         </main>
 
-        @include('layouts.partials.footer')
+        @if (Route::currentRouteName() != 'login')
+            @include('layouts.partials.footer')
+        @endif
     </div>
 </body>
 </html>
