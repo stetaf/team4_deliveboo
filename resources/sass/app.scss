@@ -69,3 +69,11 @@ li { list-style: none !important; }
 
     .restaurant_image h1 { font-size: 35px; }
 }
+
+.menu_link { 
+    color: black;
+
+    &:active { 
+        background-color: #90dc7f;
+    }
+}

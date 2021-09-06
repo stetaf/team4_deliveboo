@@ -10018,7 +10018,16 @@ header span {
   font-weight: bold;
 }
 
-
+main {
+  /* HOMEPAGE TYPES */
+  /* /HOMEPAGE TYPES */
+  /* SINGLE PAGE RESTAURANT MENU */
+  /* /SINGLE PAGE RESTAURANT MENU */
+  /* SHOPPING CART */
+  /* /SHOPPING CART */
+  /* HOW IT WORKS */
+  /* /HOW IT WORKS */
+}
 main .jumbotron {
   height: 500px;
   width: 100%;
@@ -10679,4 +10688,10 @@ li {
   .restaurant_image h1 {
     font-size: 35px;
   }
+}
+.menu_link {
+  color: black;
+}
+.menu_link:active {
+  background-color: #90dc7f;
 }
