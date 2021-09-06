@@ -48,7 +48,7 @@
                         <div class="container-fluid">
                             <div class="row">
                                 <div class="col-12 d-flex">
-                                    <div class="d-flex justify-content-center flex-wrap">
+                                    <div class="d-flex flex-wrap">
                                         <img src="{{ $dish->image }}" class="w-100 mb-2" alt="{{ $dish->name }} image">
                                         <div class="text-left">
                                             <h4 class="font-weight-bold text-left">Ingredienti:</h4>
