@@ -14,11 +14,11 @@
             <div class="row row-cols-xs-1 row-cols-sm-2 row-cols-md-4 row-cols-lg-6">
                 <div v-for="type in types" @click="filterBy(type.id)" class="my-3 col d-flex align-items-center flex-column ih-item circle colored effect1">
                     <span class="m-auto" href="#">
-                        <div class="spinner"></div>
+                        <div class="spinner" ></div>
                         <div class="img">
                             <img :src="/img/ + type.image" alt="img">
                         </div>
-                        <div class="info">
+                        <div class="info" :class="[ (filter == type.id) ? 'type_active' : '' ]">
                             <div class="info-back">
                                 <h3>@{{ type.name }}</h3>
                             </div>

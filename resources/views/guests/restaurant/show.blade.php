@@ -14,7 +14,7 @@
             <div class="dish_card product_item">
                 <div class="body">
                     <div class="cp_img">
-                        <img src="{{ $dish->image }}" alt="Product" class="img-fluid w-100">
+                        <img src="{{ asset('storage/' . $dish->image) }}" alt="Product" class="img-fluid w-100">
                         <div class="hover">
                             <a href="#" class="btn btn-secondary btn-sm waves-effect text-white w-25" data-toggle="modal" data-target="{{ '#modalPush' . $dish->id }}">
                                 <i class="fas fa-info"></i>
@@ -48,8 +48,8 @@
                         <div class="container-fluid">
                             <div class="row">
                                 <div class="col-12 d-flex">
-                                    <div class="d-flex justify-content-center flex-wrap">
-                                        <img src="{{ $dish->image }}" class="w-100 mb-2" alt="{{ $dish->name }} image">
+                                    <div class="d-flex flex-wrap">
+                                        <img src="{{ asset('storage/' . $dish->image) }}" class="w-100 mb-2" alt="{{ $dish->name }} image">
                                         <div class="text-left">
                                             <h4 class="font-weight-bold text-left">Ingredienti:</h4>
                                             <p>{{ $dish->ingredients }}</p>
