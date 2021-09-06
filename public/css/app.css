@@ -10257,6 +10257,13 @@ main .ih-item.circle .info {
     left: 0px;
   }
 }
+main .card_res {
+  transition: all 0.2s ease-in-out;
+  top: 0;
+}
+main .card_res:hover {
+  top: -15px;
+}
 main .c_review {
   margin-bottom: 0;
 }

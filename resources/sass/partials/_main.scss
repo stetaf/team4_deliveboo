@@ -265,6 +265,17 @@ main {
           left: 0px;
         }
       }
+
+      .card_res { 
+        -webkit-transition: all 0.2s ease-in-out;
+        -moz-transition: all 0.2s ease-in-out;
+        transition: all 0.2s ease-in-out;
+        top: 0;
+       }
+
+      .card_res:hover {
+        top: -15px;
+      }
     /* /HOMEPAGE TYPES */
 
     /* SINGLE PAGE RESTAURANT MENU */
