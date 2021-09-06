@@ -10563,6 +10563,10 @@ main .cart_table input::-webkit-inner-spin-button {
 main .cart_table input[type=number] {
   -moz-appearance: textfield;
 }
+main #cart i {
+  color: unset;
+  padding: unset;
+}
 main .how {
   margin: 30px 0;
 }

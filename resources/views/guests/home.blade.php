@@ -140,73 +140,12 @@
                         </div>
                     </div>
                 </div>
-                <div class="col">
-                    <div class="card text-right">
-                        <img src="https://foodies-api.initstore.net/uploads/2.jpg" alt="">
-                        <h4>Da Giovanni</h4>
-                        <span>Mediterranea, pizza</span>
-                        <div class="cuisine">
-                            <i class="fas fa-bookmark" style="font-size: 60px;color: #0c6f80;transform: rotate(270deg);"></i>
-                            <i class="fas fa-pizza-slice" style="position: absolute;left: 20%;top: 31%; color: white; font-size: 23px;"></i>
-                        </div>
-                        <div style="background-color: #dedede" class="p-2 d-flex justify-content-between align-items-center">
-                            <span class="btn btn-sm text-light" style="background-color: #008080">Ordina</span>
-                            <small>Via Giuseppe Verdi, 12</small>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="card text-right">
-                        <img src="https://foodies-api.initstore.net/uploads/2.jpg" alt="">
-                        <h4>Da Giovanni</h4>
-                        <span>Mediterranea, pizza</span>
-                        <div class="cuisine">
-                            <i class="fas fa-bookmark" style="font-size: 60px;color: #0c6f80;transform: rotate(270deg);"></i>
-                            <i class="fas fa-pizza-slice" style="position: absolute;left: 20%;top: 31%; color: white; font-size: 23px;"></i>
-                        </div>
-                        <div style="background-color: #dedede" class="p-2 d-flex justify-content-between align-items-center">
-                            <span class="btn btn-sm text-light" style="background-color: #008080">Ordina</span>
-                            <small>Via Giuseppe Verdi, 12</small>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="card text-right">
-                        <img src="https://foodies-api.initstore.net/uploads/2.jpg" alt="">
-                        <h4>Da Giovanni</h4>
-                        <span>Mediterranea, pizza</span>
-                        <div class="cuisine">
-                            <i class="fas fa-bookmark" style="font-size: 60px;color: #0c6f80;transform: rotate(270deg);"></i>
-                            <i class="fas fa-pizza-slice" style="position: absolute;left: 20%;top: 31%; color: white; font-size: 23px;"></i>
-                        </div>
-                        <div style="background-color: #dedede" class="p-2 d-flex justify-content-between align-items-center">
-                            <span class="btn btn-sm text-light" style="background-color: #008080">Ordina</span>
-                            <small>Via Giuseppe Verdi, 12</small>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="card text-right">
-                        <img src="https://foodies-api.initstore.net/uploads/2.jpg" alt="">
-                        <h4>Da Giovanni</h4>
-                        <span>Mediterranea, pizza</span>
-                        <div class="cuisine">
-                            <i class="fas fa-bookmark" style="font-size: 60px;color: #0c6f80;transform: rotate(270deg);"></i>
-                            <i class="fas fa-pizza-slice" style="position: absolute;left: 20%;top: 31%; color: white; font-size: 23px;"></i>
-                        </div>
-                        <div style="background-color: #dedede" class="p-2 d-flex justify-content-between align-items-center">
-                            <span class="btn btn-sm text-light" style="background-color: #008080">Ordina</span>
-                            <small>Via Giuseppe Verdi, 12</small>
-                        </div>
-                    </div>
-                </div>
             </div>
 
         </div>
     </div>
-    <div class="container">
-
-        <div class="how">
+    <div class="how">
+        <div class="container">
             <div class="row text-center">
                 <div class="col">
                     <h2>Come funziona?</h2>
@@ -235,4 +174,5 @@
             </div>
         </div>
     </div>
+
 @endsection
