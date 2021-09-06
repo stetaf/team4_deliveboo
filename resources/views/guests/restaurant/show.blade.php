@@ -25,7 +25,7 @@
                         </div>
                     </div>
                     <div class="product_details">
-                        <h5><a href="ec-product-detail.html">{{ $dish->name }}</a></h5>
+                        <h5>{{ $dish->name }}</h5>
                         <ul class="product_price list-unstyled">
                             <li class="old_price">€ {{ $dish->price }}</li>
                         </ul>
@@ -65,7 +65,7 @@
                     </div>
                     <div class="modal-footer d-flex justify-content-between">
                         <span class="lead">&euro; {{ $dish->price }}</span>
-                        <span class="btn btn-success btn-sm waves-effect text-white" @click="addToCart({{ $restaurant->id }}, 1)">
+                        <span class="btn btn-success btn-sm waves-effect text-white" @click="addToCart({{ $restaurant->id }}, {{ $dish }})">
                             <i class="fas fa-shopping-cart mr-1"></i>
                             Aggiungi al carrello
                         </span>
