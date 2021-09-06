@@ -10617,6 +10617,10 @@ footer li {
   box-sizing: border-box;
 }
 
+body {
+  background-color: unset !important;
+}
+
 .fs-35 {
   font-size: 35px;
 }
