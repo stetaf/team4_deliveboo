@@ -32,4 +32,8 @@ class Restaurant extends Model
     public function getTypeIdAttribute() {
         return $this->types()->pluck('type_id');
     }
+
+    public function orders() {
+        return $this->hasMany(Order::class);
+    }
 }

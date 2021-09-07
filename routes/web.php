@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Middleware\VerifyUser;
+use App\Order;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -22,6 +23,7 @@ Route::get('/', function () {
 Route::get('/restaurant/{id}', 'RestaurantController@show')->name('guests.restaurant.show');
 Route::get('/restaurant/{id}/checkout', 'RestaurantController@checkout')->name('guests.restaurant.checkout');
 Route::any('/restaurant/{id}/pay', 'RestaurantController@pay')->name('guests.restaurant.pay');
+Route::any('/restaurant/{id}/confirm', 'RestaurantController@confirm')->name('guests.restaurant.confirm');
 
 Auth::routes();
 
@@ -54,6 +56,8 @@ Route::post('/pay', function (Request $request) {
       'privateKey' => config('services.braintree.privateKey')
   ]);
 
+
+  $req_order = json_decode($request->order);  
   $amount = $request->amount;
   $nonce = $request->payment_method_nonce;
 
@@ -71,10 +75,18 @@ Route::post('/pay', function (Request $request) {
   ]);
 
   if ($result->success) {
-      $transaction = $result->transaction;
-      // header("Location: transaction.php?id=" . $transaction->id);
-
-      return back()->with('message', 'Transaction successful. The ID is:'. $transaction->id);
+    $transaction = $result->transaction;
+    $order = new Order();
+    $order->customer_email   = $req_order->customer_email;
+    $order->customer_name    = $req_order->customer_name;
+    $order->customer_phone   = $req_order->customer_phone;
+    $order->customer_address = $req_order->customer_address;
+    $order->notes            = $req_order->notes;
+    $order->total            = $req_order->total;
+    $order->status = '1';
+    $order->restaurant()->associate($request->restaurant_id)->save();
+    
+    return redirect()->route('guests.restaurant.confirm', $request->restaurant_id)->with('message', 'Transaction successful. The ID is:'. $transaction->id);
   } else {
       $errorString = "";
 

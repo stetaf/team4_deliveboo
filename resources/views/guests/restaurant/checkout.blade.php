@@ -2,10 +2,13 @@
 
 @section('content')
     <div class="container">
+    @include ('layouts.partials.message')
+  @include ('layouts.partials.errors')
         <div class="row">
             <div class="col-7 py-5">
                 <h2>Inserisci i tuoi dati</h2>
-                <form>
+                <form method="POST" action="{{ Route('guests.restaurant.pay', $restaurant->id) }}">
+                    @csrf
                     <div class="form-row">
                         <div class="form-group col-md-6 mb-0">
                             <label for="customer_name">Nome completo</label>
@@ -27,8 +30,9 @@
                             <label for="notes">Note</label>
                             <textarea type="text" class="form-control" name="notes" rows="4"></textarea>
                         </div>
+                        <input type="hidden" name="total" :value="cart_total">
                         <div class="form-group col-12 mt-3 mb-0">
-                            <button type="submit" class="btn btn-primary">Paga</button>
+                            <button type="submit" class="btn btn-primary">Prosegui col pagamento</button>
                         </div>
                     </div>
                 </form>

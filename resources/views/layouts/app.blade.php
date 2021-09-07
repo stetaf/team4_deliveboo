@@ -44,9 +44,9 @@
             var form = document.querySelector('#payment-form');
             var client_token = "{{ $token }}";
             braintree.dropin.create({
-            locale: 'it_IT',
-            authorization: client_token,
-            selector: '#bt-dropin'
+                locale: 'it_IT',
+                authorization: client_token,
+                selector: '#bt-dropin'
             }, function (createErr, instance) {
             if (createErr) {
                 console.log('Create Error', createErr);
