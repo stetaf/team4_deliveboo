@@ -57,8 +57,6 @@ Route::post('/pay', function (Request $request) {
   $amount = $request->amount;
   $nonce = $request->payment_method_nonce;
 
-  dd($request);
-
   $result = $gateway->transaction()->sale([
       'amount' => $amount,
       'paymentMethodNonce' => $nonce,
@@ -76,7 +74,7 @@ Route::post('/pay', function (Request $request) {
       $transaction = $result->transaction;
       // header("Location: transaction.php?id=" . $transaction->id);
 
-      return back()->with('success_message', 'Transaction successful. The ID is:'. $transaction->id);
+      return back()->with('message', 'Transaction successful. The ID is:'. $transaction->id);
   } else {
       $errorString = "";
 
