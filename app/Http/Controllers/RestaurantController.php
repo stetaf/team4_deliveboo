@@ -17,7 +17,22 @@ class RestaurantController extends Controller
 
     public function checkout($id) {
         $restaurant = Restaurant::findOrFail($id);
-
+      
         return view('guests.restaurant.checkout', compact('restaurant'));
+    }
+
+    public function pay($id) {
+        $restaurant = Restaurant::findOrFail($id);
+
+        $gateway = new \Braintree\Gateway([
+            'environment' => config('services.braintree.environment'),
+            'merchantId' => config('services.braintree.merchantId'),
+            'publicKey' => config('services.braintree.publicKey'),
+            'privateKey' => config('services.braintree.privateKey')
+        ]);
+      
+        $token = $gateway->ClientToken()->generate();
+        
+        return view('guests.restaurant.pay', compact('restaurant', 'token'));
     }
 }
