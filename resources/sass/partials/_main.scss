@@ -278,7 +278,14 @@ main {
         -moz-transition: all 0.2s ease-in-out;
         transition: all 0.2s ease-in-out;
         top: 0;
-       }
+        justify-content: space-between;
+
+        img { 
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+        }
+      }
 
       .card_res:hover {
         top: -15px;

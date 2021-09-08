@@ -10264,6 +10264,13 @@ main .type_active {
 main .card_res {
   transition: all 0.2s ease-in-out;
   top: 0;
+  justify-content: space-between;
+}
+main .card_res img {
+  width: 100%;
+  height: 150px;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 main .card_res:hover {
   top: -15px;
@@ -10694,4 +10701,8 @@ li {
 }
 .menu_link:active {
   background-color: #90dc7f;
+}
+
+[data-braintree-id=toggle] {
+  display: none;
 }

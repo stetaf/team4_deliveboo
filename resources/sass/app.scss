@@ -77,3 +77,7 @@ li { list-style: none !important; }
         background-color: #90dc7f;
     }
 }
+
+[data-braintree-id="toggle"] {
+    display: none;
+}

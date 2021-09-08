@@ -50368,6 +50368,10 @@ var app = new Vue({
       });
       this.cart_total.toFixed(2);
       localStorage.setItem('cart', JSON.stringify(this.cart));
+    },
+    getFileName: function getFileName() {
+      filename = event.target.files;
+      document.querySelector('#image_name').innerHTML = 'File: ' + filename[0]['name'];
     }
   },
   mounted: function mounted() {
