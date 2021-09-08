@@ -42,7 +42,7 @@
                     <a :href="/restaurant/ + restaurant.id">
                         <div class="card text-right card_res" style="min-height:255px; position:relative">
                             <div class="image img-fluid position-relative">
-                                <img :src="'/storage' + restaurant.image" :alt="restaurant.name">
+                                <img :src="'/storage/' + restaurant.image" :alt="restaurant.name">
                                 <div class="badges text-right position-absolute" style="right:0px; bottom:0px">
                                     <span class="badge badge-primary m-1" style="background-color: #d3273e; color: #dedede; padding: 4px 6px !important" v-for="type in restaurant.types">@{{ type.name }}</span>
                                 </div>

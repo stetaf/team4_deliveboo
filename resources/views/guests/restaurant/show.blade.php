@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="restaurant_image">
-    <img src="{{ asset('storage' . $restaurant->image) }}" alt="">
+    <img src="{{ asset('storage/' . $restaurant->image) }}" alt="">
     <h1 class="display-4">{{ $restaurant->name }}</h1>
 </div>
 
