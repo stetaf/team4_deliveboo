@@ -32,7 +32,7 @@
             @yield('content')
         </main>
 
-        @if (Route::currentRouteName() != 'login')
+        @if (Route::currentRouteName() != 'login' && Route::currentRouteName() != 'register')
             @include('layouts.partials.footer')
         @endif
     </div>
@@ -71,6 +71,5 @@
             });
         </script>
     @endif
-
 </body>
 </html>
