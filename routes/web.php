@@ -1,8 +1,13 @@
 <?php
 
 use App\Http\Middleware\VerifyUser;
+use App\Mail\GuestOrderMail;
+use App\Mail\UserOrderMail;
 use App\Order;
+use App\Restaurant;
+use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -94,6 +99,31 @@ Route::post('/pay', function (Request $request) {
     }
   
     $order->dishes()->sync($order_dishes);
+
+    $restaurant = Restaurant::find($request->restaurant_id);
+
+    $user = User::find($restaurant->user_id);
+
+    $mail = [
+      'guest_name' => $order->customer_name,
+      'guest_email' => $order->customer_email,
+      'guest_phone' => $order->customer_phone,
+      'guest_address' => $order->customer_address,
+      'notes' => $order->notes,
+      'restaurant_name' => $restaurant->name,
+      'body' => [ 
+        'order' => $order_data[1],
+        'total_amount' => $order->total 
+      ],
+      'user_name' => $user->user,
+      'user_email' => $user->email
+      ];
+
+    Mail::to($order->customer_email)
+          ->send(new GuestOrderMail($mail));
+          
+    Mail::to($user->email)
+    ->send(new UserOrderMail($mail));
       
     return redirect()->route('guests.restaurant.confirm', $request->restaurant_id)->with('message', 'Transaction successful. The ID is:'. $transaction->id);
   } else {
