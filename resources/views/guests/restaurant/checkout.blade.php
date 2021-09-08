@@ -32,6 +32,9 @@
                         </div>
                         <input type="hidden" name="total" :value="cart_total">
                         <div class="form-group col-12 mt-3 mb-0">
+                            <a href="{{ url()->previous() }}">
+                                <span class="btn btn-secondary">Torna indietro</span>
+                            </a>
                             <button type="submit" class="btn btn-primary">Prosegui col pagamento</button>
                         </div>
                     </div>
