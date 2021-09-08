@@ -51,11 +51,6 @@ class RegisterController extends Controller
      */
     protected function validator(array $data)
     {
-        if (array_key_exists('image', $data)) {
-            $file_path = Storage::disk('public')->put('restaurant_img', $data['image']);
-            $data['image'] = $file_path;
-        } 
-
         return Validator::make($data, [
             'fullname' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
@@ -82,7 +77,13 @@ class RegisterController extends Controller
                     'password' => Hash::make($data['password']),
                 ]);        
 
-        (array_key_exists('image', $data)) ? '' : $data['image'] = 'restaurant_img/placeholder.jpg';
+
+        if (array_key_exists('image', $data)) {
+            $file_path = Storage::disk('public')->put('restaurant_img', $data['image']);
+            $data['image'] = $file_path;
+        } else {
+            $data['image'] = 'restaurant_img/placeholder.jpg';
+        }
 
         $restaurant = new Restaurant($data);                    
         $restaurant->user()->associate($user)->save();
