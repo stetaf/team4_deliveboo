@@ -42,7 +42,8 @@ Vue.component('pagination', require('laravel-vue-pagination'));
                 { 'rest_id' : 0 },
                 [ ]
             ],
-            cart_total: 0
+            cart_total: 0,
+            qty: 0
         }
     },
     methods: {
@@ -63,35 +64,37 @@ Vue.component('pagination', require('laravel-vue-pagination'));
             this.searched = true;
             this.getResults();
         },
-        addToCart(id, item) {
+        addToCart(id, item, action) {
+            (action == 1) ? this.qty = parseInt(document.querySelector('#qty' + item.id).value) : this.qty = 1;
+
             if (this.cart[1].length > 0) {
                 let already_there = false;
                 
                 for (let i = 0; i < this.cart[1].length; i++) {
                     if (item.name == this.cart[1][i]['name']) {
                         already_there = true;
-                        this.cart[1][i]['quantity'] += 1;
+                        (this.qty == 1) ? this.cart[1][i]['quantity'] += 1 : this.cart[1][i]['quantity'] += this.qty;
                     }
                 }
-                (already_there) ? '' : this.addItem(item);
+                (already_there) ? '' : this.addItem(item, this.qty);
             } else {
-                this.addItem(item);
+                this.addItem(item, this.qty);
                 this.cart[0]['rest_id'] = id;
             }
             this.calculateSubtotal();
         },
-        addItem(item) {
+        addItem(item, qty = 1) {
             const info = {
                 'id'   : item.id,
                 'name' : item.name,
                 'image': item.image,
                 'price': item.price,
-                'quantity'  : 1
+                'quantity'  : qty
             };
 
             this.cart[1].push(info);
         },
-        removeItem(item, input) {
+        removeItem(item) {
             for (let i = 0; i < this.cart[1].length; i++) {
                 if (item.name == this.cart[1][i]['name']) {
                     if ((this.cart[1][i]['quantity'] - 1) == 0) {
@@ -111,9 +114,6 @@ Vue.component('pagination', require('laravel-vue-pagination'));
             }
             this.calculateSubtotal();
         },
-        addQty(item) {
-            console.log(item);
-        },
         calculateSubtotal() {
             this.cart_total = 0;
 
@@ -124,6 +124,17 @@ Vue.component('pagination', require('laravel-vue-pagination'));
             this.cart_total.toFixed(2);
 
             localStorage.setItem('cart', JSON.stringify(this.cart));
+        },
+        addQty(id) {
+            let input = document.querySelector('#qty' + id);
+            let valore = parseInt(input.value);
+
+            ((valore + 1) > 99) ? input.value = 99 : input.value = valore + 1;
+        },
+        lowerQty(id) {
+            let input = document.querySelector('#qty' + id);
+
+            ((input.value - 1) <= 0) ? input.value = 0 : input.value -= 1;
         },
         getFileName() {
             filename = event.target.files;

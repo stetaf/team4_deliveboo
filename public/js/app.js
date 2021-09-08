@@ -50284,7 +50284,8 @@ var app = new Vue({
       cart: [{
         'rest_id': 0
       }, []],
-      cart_total: 0
+      cart_total: 0,
+      qty: 0
     };
   },
   methods: {
@@ -50305,36 +50306,39 @@ var app = new Vue({
       this.searched = true;
       this.getResults();
     },
-    addToCart: function addToCart(id, item) {
+    addToCart: function addToCart(id, item, action) {
+      action == 1 ? this.qty = parseInt(document.querySelector('#qty' + item.id).value) : this.qty = 1;
+
       if (this.cart[1].length > 0) {
         var already_there = false;
 
         for (var i = 0; i < this.cart[1].length; i++) {
           if (item.name == this.cart[1][i]['name']) {
             already_there = true;
-            this.cart[1][i]['quantity'] += 1;
+            this.qty == 1 ? this.cart[1][i]['quantity'] += 1 : this.cart[1][i]['quantity'] += this.qty;
           }
         }
 
-        already_there ? '' : this.addItem(item);
+        already_there ? '' : this.addItem(item, this.qty);
       } else {
-        this.addItem(item);
+        this.addItem(item, this.qty);
         this.cart[0]['rest_id'] = id;
       }
 
       this.calculateSubtotal();
     },
     addItem: function addItem(item) {
+      var qty = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 1;
       var info = {
         'id': item.id,
         'name': item.name,
         'image': item.image,
         'price': item.price,
-        'quantity': 1
+        'quantity': qty
       };
       this.cart[1].push(info);
     },
-    removeItem: function removeItem(item, input) {
+    removeItem: function removeItem(item) {
       for (var i = 0; i < this.cart[1].length; i++) {
         if (item.name == this.cart[1][i]['name']) {
           if (this.cart[1][i]['quantity'] - 1 == 0) {
@@ -50356,9 +50360,6 @@ var app = new Vue({
 
       this.calculateSubtotal();
     },
-    addQty: function addQty(item) {
-      console.log(item);
-    },
     calculateSubtotal: function calculateSubtotal() {
       var _this2 = this;
 
@@ -50368,6 +50369,15 @@ var app = new Vue({
       });
       this.cart_total.toFixed(2);
       localStorage.setItem('cart', JSON.stringify(this.cart));
+    },
+    addQty: function addQty(id) {
+      var input = document.querySelector('#qty' + id);
+      var valore = parseInt(input.value);
+      valore + 1 > 99 ? input.value = 99 : input.value = valore + 1;
+    },
+    lowerQty: function lowerQty(id) {
+      var input = document.querySelector('#qty' + id);
+      input.value - 1 <= 0 ? input.value = 0 : input.value -= 1;
     },
     getFileName: function getFileName() {
       filename = event.target.files;

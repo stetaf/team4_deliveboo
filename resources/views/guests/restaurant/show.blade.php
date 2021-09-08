@@ -7,28 +7,37 @@
 </div>
 
 <div class="container">
-    <h2 class="mt-3 mb-5">I nostri piatti</h2>
+    <h2 class="my-3 fs-35 font-weight-bold">I nostri piatti</h2>
     <div class="row">
         @foreach ($dishes as $dish)
         <div class="col-lg-3 col-md-4 col-sm-6">
-            <div class="dish_card product_item">
-                <div class="body">
-                    <div class="cp_img">
-                        <img src="{{ asset('storage/' . $dish->image) }}" alt="Product" class="img-fluid w-100">
-                        <div class="hover">
-                            <a href="#" class="btn btn-secondary btn-sm waves-effect text-white w-25" data-toggle="modal" data-target="{{ '#modalPush' . $dish->id }}">
-                                <i class="fas fa-info"></i>
-                            </a>
-                            <span class="btn btn-success btn-sm waves-effect text-white w-25" @click="addToCart({{ $restaurant->id }}, {{ $dish }})">
-                                <i class="fas fa-shopping-cart px-2"></i>
-                            </span>
+            <div class="card dish_card p-2 border">
+                <div class="cp_img position-relative">
+                    <img src="{{ asset('storage/' . $dish->image) }}" alt="Product" class="img-fluid w-100">
+                    <a href="#" class="btn btn-secondary btn-sm waves-effect text-white product_info" data-toggle="modal" data-target="{{ '#modalPush' . $dish->id }}">
+                        <i class="fas fa-info"></i>
+                    </a>
+                </div>
+                <div class="product_details mt-2 d-flex flex-column align-items-center">
+                    <h5 class="text-center">{{ $dish->name }}</h5>
+                    <span>&euro; {{ $dish->price }}</span>
+                </div>
+                <div class="product_actions d-flex justify-content-between">
+                    <div class="qty d-flex align-items-end">
+                        <div class="minus" @click="lowerQty({{ $dish->id }})">
+                            <i class="fas fa-minus-circle"></i>
+                        </div>
+                        <div class="num mx-1">
+                            <input class="text-center" type="number" name="qty" id="qty{{ $dish->id }}" pattern="[0-9]+" min="0" max="99" value="1">
+                        </div>
+                        <div class="plus" @click="addQty({{ $dish->id }})">
+                            <i class="fas fa-plus-circle"></i>
                         </div>
                     </div>
-                    <div class="product_details">
-                        <h5>{{ $dish->name }}</h5>
-                        <ul class="product_price list-unstyled">
-                            <li class="old_price">€ {{ $dish->price }}</li>
-                        </ul>
+                    <div class="add">
+                        <span class="btn btn-success btn-sm waves-effect text-white" @click="addToCart({{ $restaurant->id }}, {{ $dish }}, 1)">
+                            <i class="fas fa-shopping-cart px-2"></i>
+                        </span>
                     </div>
                 </div>
             </div>
@@ -65,7 +74,7 @@
                     </div>
                     <div class="modal-footer d-flex justify-content-between">
                         <span class="lead">&euro; {{ $dish->price }}</span>
-                        <span class="btn btn-success btn-sm waves-effect text-white" @click="addToCart({{ $restaurant->id }}, {{ $dish }})">
+                        <span class="btn btn-success btn-sm waves-effect text-white" @click="addToCart({{ $restaurant->id }}, {{ $dish }}, 0)">
                             <i class="fas fa-shopping-cart mr-1"></i>
                             Aggiungi al carrello
                         </span>
@@ -127,7 +136,7 @@
                                                 <i class="fas fa-minus"></i>
                                             </span>
                                             <input type="number" class="count border-0 text-center" name="quantity" :value="item.quantity" max="99">
-                                            <span class="plus" @click="addToCart({{ $restaurant->id }}, item)">
+                                            <span class="plus" @click="addToCart({{ $restaurant->id }}, item, 0)">
                                                 <i class="fas fa-plus"></i>
                                             </span>
                                         </div>
@@ -157,7 +166,7 @@
                         <i class="fas fa-times mr-1"></i>
                         Chiudi
                     </button>
-                    <a href="{{ Route('guests.restaurant.checkout', $restaurant->id) }}"  class="btn btn-success" :disabled="cart[1].length == 0">
+                    <a href="{{ Route('guests.restaurant.checkout', $restaurant->id) }}" class="btn btn-success text-white" :disabled="cart[1].length == 0">
                         <i class="far fa-credit-card mr-1 align-middle"></i>
                         Vai alla cassa
                     </a>
