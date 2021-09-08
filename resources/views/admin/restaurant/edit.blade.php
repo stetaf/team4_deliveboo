@@ -9,7 +9,7 @@
         @csrf
         @method('PUT')
 
-        <img src="{{asset('storage/'. $dish->image)}}" class="img-fluid ${3|rounded-top,rounded-right,rounded-bottom,rounded-left,rounded-circle,|} mb-2" alt="">
+        <img src="{{asset('storage/'. $dish->image)}}" class="mb-2" alt="{{ $dish->name }}" style="width:200px">
         <input type="file" name="image" class="@error('image') is-invalid @enderror d-block" id="image" placeholder="Carica un'immagine di massimo 150K" value="{{ $dish->image }}">
         
         <small>Nome</small>
