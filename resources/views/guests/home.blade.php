@@ -37,12 +37,12 @@
                 <i class="far fa-frown"></i>
                 <h2 class="res">Nessun risultato inerente alla tua ricerca</h2>
             </div>
-            <div class="row row-cols-xs-1 row-cols-sm-1 row-cols-md-3 row-cols-lg-4">
+            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4">
                 <div class="col" v-for="restaurant in filtered_results.data" :key="restaurant.id">
                     <a :href="/restaurant/ + restaurant.id">
                         <div class="card text-right card_res" style="min-height:255px; position:relative">
                             <div class="image img-fluid position-relative">
-                                <img src="https://foodies-api.initstore.net/uploads/2.jpg" alt="" class="w-100">
+                                <img :src="'/storage' + restaurant.image" :alt="restaurant.name">
                                 <div class="badges text-right position-absolute" style="right:0px; bottom:0px">
                                     <span class="badge badge-primary m-1" style="background-color: #d3273e; color: #dedede; padding: 4px 6px !important" v-for="type in restaurant.types">@{{ type.name }}</span>
                                 </div>
@@ -67,80 +67,6 @@
             </pagination>
         </div>
     </div>
-    <!-- <div class="categories">
-        <div class="container">
-            <div class="text-center">
-                <p class="display-4 text-white text-dark">Ristoranti popolari</p>
-            </div>
-            <div class="row row-cols-sm-1 row-cols-md-3 row-cols-lg-4">
-                <div class="col">
-                    <div class="card text-right">
-                        <img src="https://foodies-api.initstore.net/uploads/2.jpg" alt="">
-                        <h4>Da Giovanni</h4>
-                        <div class="p-1">
-                            <span class="badge badge-primary p-2" style="background-color: #d3273e; color: #dedede; padding: 4px 6px !important">Mediterranea</span>
-                            <span class="badge badge-secondary p-2" style="background-color: #d3273e; color: #dedede; padding: 4px 6px !important">Pizza</span>
-                            <span class="badge badge-success p-2" style="background-color: #d3273e; color: #dedede; padding: 4px 6px !important">Carne</span>
-                        </div>
-                        <div class="cuisine">
-                            <i class="fas fa-bookmark" style="font-size: 60px;color: #0c6f80;transform: rotate(270deg);"></i>
-                            <i class="fas fa-pizza-slice" style="position: absolute;left: 20%;top: 31%; color: white; font-size: 23px;"></i>
-                        </div>
-                        <div style="background-color: #dedede" class="p-2 d-flex justify-content-between align-items-center">
-                            <span class="btn btn-sm text-light" style="background-color: #d3273e">Ordina</span>
-                            <small>Via Giuseppe Verdi, 12</small>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="card text-right">
-                        <img src="https://foodies-api.initstore.net/uploads/2.jpg" alt="">
-                        <h4>Da Giovanni</h4>
-                        <span>Mediterranea, pizza</span>
-                        <div class="cuisine">
-                            <i class="fas fa-bookmark" style="font-size: 60px;color: #0c6f80;transform: rotate(270deg);"></i>
-                            <i class="fas fa-pizza-slice" style="position: absolute;left: 20%;top: 31%; color: white; font-size: 23px;"></i>
-                        </div>
-                        <div style="background-color: #dedede" class="p-2 d-flex justify-content-between align-items-center">
-                            <span class="btn btn-sm text-light" style="background-color: #008080">Ordina</span>
-                            <small>Via Giuseppe Verdi, 12</small>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="card text-right">
-                        <img src="https://foodies-api.initstore.net/uploads/2.jpg" alt="">
-                        <h4>Da Giovanni</h4>
-                        <span>Mediterranea, pizza</span>
-                        <div class="cuisine">
-                            <i class="fas fa-bookmark" style="font-size: 60px;color: #0c6f80;transform: rotate(270deg);"></i>
-                            <i class="fas fa-pizza-slice" style="position: absolute;left: 20%;top: 31%; color: white; font-size: 23px;"></i>
-                        </div>
-                        <div style="background-color: #dedede" class="p-2 d-flex justify-content-between align-items-center">
-                            <span class="btn btn-sm text-light" style="background-color: #008080">Ordina</span>
-                            <small>Via Giuseppe Verdi, 12</small>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="card text-right">
-                        <img src="https://foodies-api.initstore.net/uploads/2.jpg" alt="">
-                        <h4>Da Giovanni</h4>
-                        <span>Mediterranea, pizza</span>
-                        <div class="cuisine">
-                            <i class="fas fa-bookmark" style="font-size: 60px;color: #0c6f80;transform: rotate(270deg);"></i>
-                            <i class="fas fa-pizza-slice" style="position: absolute;left: 20%;top: 31%; color: white; font-size: 23px;"></i>
-                        </div>
-                        <div style="background-color: #dedede" class="p-2 d-flex justify-content-between align-items-center">
-                            <span class="btn btn-sm text-light" style="background-color: #008080">Ordina</span>
-                            <small>Via Giuseppe Verdi, 12</small>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-    </div> -->
     <div class="how">
         <div class="container">
             <div class="row text-center">
@@ -171,5 +97,4 @@
             </div>
         </div>
     </div>
-
 @endsection
