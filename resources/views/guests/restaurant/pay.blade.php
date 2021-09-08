@@ -23,7 +23,10 @@
             </div>
             
             <textarea name="order" id="order" hidden cols="30" rows="10">{{ json_encode($order) }}</textarea>
+            <textarea name="order_data" id="order_data" hidden value=""></textarea>
+
             <input type="hidden" name="restaurant_id" value="{{ $restaurant->id }}">
+
             <input id="nonce" name="payment_method_nonce" type="hidden" />
             <div class="d-flex justify-content-between">
               <a href="{{ Route('guests.restaurant.checkout', $restaurant->id) }}">

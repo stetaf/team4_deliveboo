@@ -126,14 +126,14 @@
                                             <span class="minus" @click="removeItem(item)">
                                                 <i class="fas fa-minus"></i>
                                             </span>
-                                            <input type="number" class="count border-0 text-center" name="qty" :value="item.qty" max="99">
+                                            <input type="number" class="count border-0 text-center" name="quantity" :value="item.quantity" max="99">
                                             <span class="plus" @click="addToCart({{ $restaurant->id }}, item)">
                                                 <i class="fas fa-plus"></i>
                                             </span>
                                         </div>
                                     </td>
                                     <td class="price">
-                                        &euro; @{{ (item.price * item.qty).toFixed(2) }}
+                                        &euro; @{{ (item.price * item.quantity).toFixed(2) }}
                                     </td>
                                     <td class="text-center">
                                         <span style="font-size:20px" @click="clearItem(item)">

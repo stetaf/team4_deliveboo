@@ -70,7 +70,7 @@ Vue.component('pagination', require('laravel-vue-pagination'));
                 for (let i = 0; i < this.cart[1].length; i++) {
                     if (item.name == this.cart[1][i]['name']) {
                         already_there = true;
-                        this.cart[1][i]['qty'] += 1;
+                        this.cart[1][i]['quantity'] += 1;
                     }
                 }
                 (already_there) ? '' : this.addItem(item);
@@ -86,7 +86,7 @@ Vue.component('pagination', require('laravel-vue-pagination'));
                 'name' : item.name,
                 'image': item.image,
                 'price': item.price,
-                'qty'  : 1
+                'quantity'  : 1
             };
 
             this.cart[1].push(info);
@@ -94,10 +94,10 @@ Vue.component('pagination', require('laravel-vue-pagination'));
         removeItem(item, input) {
             for (let i = 0; i < this.cart[1].length; i++) {
                 if (item.name == this.cart[1][i]['name']) {
-                    if ((this.cart[1][i]['qty'] - 1) == 0) {
+                    if ((this.cart[1][i]['quantity'] - 1) == 0) {
                         this.cart[1].splice(i, 1);
                     } else {
-                        this.cart[1][i]['qty'] -= 1;   
+                        this.cart[1][i]['quantity'] -= 1;   
                     }
                 }
             }
@@ -118,7 +118,7 @@ Vue.component('pagination', require('laravel-vue-pagination'));
             this.cart_total = 0;
 
             this.cart[1].forEach(item => {
-                this.cart_total += parseFloat(item.price) * item.qty;
+                this.cart_total += parseFloat(item.price) * item.quantity;
             });
 
             this.cart_total.toFixed(2);

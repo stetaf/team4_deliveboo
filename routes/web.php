@@ -56,7 +56,7 @@ Route::post('/pay', function (Request $request) {
       'privateKey' => config('services.braintree.privateKey')
   ]);
 
-
+  $order_data = json_decode($request->order_data);
   $req_order = json_decode($request->order);  
   $amount = $request->amount;
   $nonce = $request->payment_method_nonce;
@@ -85,7 +85,16 @@ Route::post('/pay', function (Request $request) {
     $order->total            = $req_order->total;
     $order->status = '1';
     $order->restaurant()->associate($request->restaurant_id)->save();
-    
+
+    $order_dishes = [];
+
+    foreach($order_data[1] as $dish) {
+      $food = [ 'dish_id' => $dish->id, 'quantity' => $dish->quantity ];
+      array_push($order_dishes, $food);
+    }
+  
+    $order->dishes()->sync($order_dishes);
+      
     return redirect()->route('guests.restaurant.confirm', $request->restaurant_id)->with('message', 'Transaction successful. The ID is:'. $transaction->id);
   } else {
       $errorString = "";
@@ -94,8 +103,6 @@ Route::post('/pay', function (Request $request) {
           $errorString .= 'Error: ' . $error->code . ": " . $error->message . "\n";
       }
 
-      // $_SESSION["errors"] = $errorString;
-      // header("Location: index.php");
       return back()->withErrors('An error occurred with the message: '.$result->message);
   }
 });

@@ -50312,7 +50312,7 @@ var app = new Vue({
         for (var i = 0; i < this.cart[1].length; i++) {
           if (item.name == this.cart[1][i]['name']) {
             already_there = true;
-            this.cart[1][i]['qty'] += 1;
+            this.cart[1][i]['quantity'] += 1;
           }
         }
 
@@ -50330,17 +50330,17 @@ var app = new Vue({
         'name': item.name,
         'image': item.image,
         'price': item.price,
-        'qty': 1
+        'quantity': 1
       };
       this.cart[1].push(info);
     },
     removeItem: function removeItem(item, input) {
       for (var i = 0; i < this.cart[1].length; i++) {
         if (item.name == this.cart[1][i]['name']) {
-          if (this.cart[1][i]['qty'] - 1 == 0) {
+          if (this.cart[1][i]['quantity'] - 1 == 0) {
             this.cart[1].splice(i, 1);
           } else {
-            this.cart[1][i]['qty'] -= 1;
+            this.cart[1][i]['quantity'] -= 1;
           }
         }
       }
@@ -50364,7 +50364,7 @@ var app = new Vue({
 
       this.cart_total = 0;
       this.cart[1].forEach(function (item) {
-        _this2.cart_total += parseFloat(item.price) * item.qty;
+        _this2.cart_total += parseFloat(item.price) * item.quantity;
       });
       this.cart_total.toFixed(2);
       localStorage.setItem('cart', JSON.stringify(this.cart));
