@@ -17,6 +17,7 @@
         <div class="col-12 text-center my-4">
             <a href="{{ Route('home') }}">
                 <span class="btn btn-sm btn-secondary">
+                    <i class="fas fa-home mr-1"></i>
                     Torna alla homepage
                 </span>
             </a>
