@@ -50283,8 +50283,7 @@ var app = new Vue({
       no_results: false,
       cart: [{
         'rest_id': 0
-      }, []],
-      cart_products: 0,
+      }, [], 0],
       cart_total: 0,
       qty: 0
     };
@@ -50308,28 +50307,30 @@ var app = new Vue({
       this.getResults();
     },
     addToCart: function addToCart(id, item, action) {
-      action == 1 ? this.qty = parseInt(document.querySelector('#qty' + item.id).value) : this.qty = 1;
+      if (parseInt(document.querySelector('#qty' + item.id).value) > 0) {
+        action == 1 ? this.qty = parseInt(document.querySelector('#qty' + item.id).value) : this.qty = 1;
 
-      if (this.cart[1].length > 0) {
-        var already_there = false;
+        if (this.cart[1].length > 0) {
+          var already_there = false;
 
-        for (var i = 0; i < this.cart[1].length; i++) {
-          if (item.name == this.cart[1][i]['name']) {
-            already_there = true;
-            this.qty == 1 ? this.cart[1][i]['quantity'] += 1 : this.cart[1][i]['quantity'] += this.qty;
-            this.cart_products += this.qty;
+          for (var i = 0; i < this.cart[1].length; i++) {
+            if (item.name == this.cart[1][i]['name']) {
+              already_there = true;
+              this.qty == 1 ? this.cart[1][i]['quantity'] += 1 : this.cart[1][i]['quantity'] += this.qty;
+            }
           }
+
+          already_there ? '' : this.addItem(item, this.qty);
+        } else {
+          this.addItem(item, this.qty);
+          this.cart[0]['rest_id'] = id;
         }
 
-        already_there ? '' : this.addItem(item, this.qty);
-      } else {
-        this.addItem(item, this.qty);
-        this.cart[0]['rest_id'] = id;
+        document.querySelector('#qty' + item.id).value = 0;
+        action == 0 ? '' : this.animateCart();
+        localStorage.setItem('cart_products', this.cart[2]);
+        this.calculateSubtotal();
       }
-
-      document.querySelector('#qty' + item.id).value = 0;
-      action == 0 ? '' : this.animateCart();
-      this.calculateSubtotal();
     },
     addItem: function addItem(item) {
       var qty = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 1;
@@ -50341,41 +50342,43 @@ var app = new Vue({
         'quantity': qty
       };
       this.cart[1].push(info);
-      this.cart_products += qty;
+      localStorage.setItem('cart_products', this.cart[2]);
     },
     removeItem: function removeItem(item) {
       for (var i = 0; i < this.cart[1].length; i++) {
         if (item.name == this.cart[1][i]['name']) {
           if (this.cart[1][i]['quantity'] - 1 == 0) {
             this.cart[1].splice(i, 1);
-            this.cart_products -= 1;
           } else {
             this.cart[1][i]['quantity'] -= 1;
-            this.cart_products -= 1;
           }
         }
       }
 
+      localStorage.setItem('cart_products', this.cart[2]);
       this.calculateSubtotal();
     },
     clearItem: function clearItem(item) {
       for (var i = 0; i < this.cart[1].length; i++) {
         if (item.name == this.cart[1][i]['name']) {
-          this.cart_products -= this.cart[1][i]['qty'];
           this.cart[1].splice(i, 1);
         }
       }
 
+      localStorage.setItem('cart_products', this.cart[2]);
       this.calculateSubtotal();
     },
     calculateSubtotal: function calculateSubtotal() {
       var _this2 = this;
 
       this.cart_total = 0;
+      this.cart[2] = 0;
       this.cart[1].forEach(function (item) {
         _this2.cart_total += parseFloat(item.price) * item.quantity;
+        _this2.cart[2] += item.quantity;
       });
       this.cart_total.toFixed(2);
+      localStorage.setItem('cart_products', this.cart[2]);
       localStorage.setItem('cart', JSON.stringify(this.cart));
     },
     addQty: function addQty(id) {
@@ -50425,6 +50428,7 @@ var app = new Vue({
       if (cart[0].rest_id == rest_id) {
         this.cart = cart;
         this.calculateSubtotal();
+        this.cart[2] = parseInt(localStorage.getItem('cart_products'));
       }
     }
   }

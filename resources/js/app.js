@@ -40,9 +40,9 @@ Vue.component('pagination', require('laravel-vue-pagination'));
             no_results: false,
             cart: [
                 { 'rest_id' : 0 },
-                [ ]
+                [ ],
+                0
             ],
-            cart_products: 0,
             cart_total: 0,
             qty: 0
         }
@@ -66,27 +66,29 @@ Vue.component('pagination', require('laravel-vue-pagination'));
             this.getResults();
         },
         addToCart(id, item, action) {
-            (action == 1) ? this.qty = parseInt(document.querySelector('#qty' + item.id).value) : this.qty = 1;
-
-            if (this.cart[1].length > 0) {
-                let already_there = false;
-                
-                for (let i = 0; i < this.cart[1].length; i++) {
-                    if (item.name == this.cart[1][i]['name']) {
-                        already_there = true;
-                        (this.qty == 1) ? this.cart[1][i]['quantity'] += 1 : this.cart[1][i]['quantity'] += this.qty;
-                        this.cart_products += this.qty;
+            if (parseInt(document.querySelector('#qty' + item.id).value) > 0) {
+                (action == 1) ? this.qty = parseInt(document.querySelector('#qty' + item.id).value) : this.qty = 1;
+    
+                if (this.cart[1].length > 0) {
+                    let already_there = false;
+                    
+                    for (let i = 0; i < this.cart[1].length; i++) {
+                        if (item.name == this.cart[1][i]['name']) {
+                            already_there = true;
+                            (this.qty == 1) ? this.cart[1][i]['quantity'] += 1 : this.cart[1][i]['quantity'] += this.qty;
+                        }
                     }
+                    (already_there) ? '' : this.addItem(item, this.qty);
+                } else {
+                    this.addItem(item, this.qty);
+                    this.cart[0]['rest_id'] = id;
                 }
-                (already_there) ? '' : this.addItem(item, this.qty);
-            } else {
-                this.addItem(item, this.qty);
-                this.cart[0]['rest_id'] = id;
+    
+                document.querySelector('#qty' + item.id).value = 0;
+                (action == 0) ? '' : this.animateCart();
+                localStorage.setItem('cart_products', this.cart[2]);
+                this.calculateSubtotal();
             }
-
-            document.querySelector('#qty' + item.id).value = 0;
-            (action == 0) ? '' : this.animateCart();
-            this.calculateSubtotal();
         },
         addItem(item, qty = 1) {
             const info = {
@@ -98,40 +100,42 @@ Vue.component('pagination', require('laravel-vue-pagination'));
             };
 
             this.cart[1].push(info);
-            this.cart_products += qty;
+            localStorage.setItem('cart_products', this.cart[2]);
         },
         removeItem(item) {
             for (let i = 0; i < this.cart[1].length; i++) {
                 if (item.name == this.cart[1][i]['name']) {
                     if ((this.cart[1][i]['quantity'] - 1) == 0) {
                         this.cart[1].splice(i, 1);
-                        this.cart_products -= 1;
                     } else {
                         this.cart[1][i]['quantity'] -= 1;   
-                        this.cart_products -= 1;
                     }
                 }
             }
+            localStorage.setItem('cart_products', this.cart[2]);
             this.calculateSubtotal();
         },
         clearItem(item) {
             for (let i = 0; i < this.cart[1].length; i++) {
                 if (item.name == this.cart[1][i]['name']) {
-                    this.cart_products -=  this.cart[1][i]['qty'];
                     this.cart[1].splice(i, 1);
                 }
             }
+            localStorage.setItem('cart_products',this.cart[2]);
             this.calculateSubtotal();
         },
         calculateSubtotal() {
             this.cart_total = 0;
+            this.cart[2] = 0;
 
             this.cart[1].forEach(item => {
                 this.cart_total += parseFloat(item.price) * item.quantity;
+                this.cart[2] += item.quantity;
             });
 
             this.cart_total.toFixed(2);
 
+            localStorage.setItem('cart_products',this.cart[2]);
             localStorage.setItem('cart', JSON.stringify(this.cart));
         },
         addQty(id) {
@@ -182,6 +186,7 @@ Vue.component('pagination', require('laravel-vue-pagination'));
             if (cart[0].rest_id == rest_id) {
                 this.cart = cart;
                 this.calculateSubtotal();
+                this.cart[2] = parseInt(localStorage.getItem('cart_products'));
             }
         }
         
