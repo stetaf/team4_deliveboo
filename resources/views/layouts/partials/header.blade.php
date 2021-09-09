@@ -9,17 +9,17 @@
         @guest
             <div class="actions d-flex " >
                 <span class="nav-item">
-                    <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                    <a class="nav-link p-0" href="{{ route('login') }}">{{ __('Login') }}</a>
                 </span>
                 @if (Route::has('register'))
                     <span class="nav-item">
-                        <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                        <a class="nav-link p-0" href="{{ route('register') }}">{{ __('Register') }}</a>
                     </span>
                 @endif
             </div>
         @else
             <li class="nav-item dropdown">
-                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                <a id="navbarDropdown" class="nav-link dropdown-toggle p-0" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                     <span>{{ Auth::user()->fullname }}</span>
                 </a>
 
