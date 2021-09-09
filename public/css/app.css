@@ -10675,3 +10675,11 @@ li {
 [data-braintree-id=toggle] {
   display: none;
 }
+
+.active > .page-link {
+  color: #ff702a !important;
+  border-color: #dee2e6 !important;
+  border-bottom: 3px solid #ff702a !important;
+  font-weight: bold;
+  background-color: unset !important;
+}

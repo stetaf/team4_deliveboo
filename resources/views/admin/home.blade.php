@@ -40,7 +40,7 @@
                                         Gestione
                                     </span>
                                 </a>
-                                <a href="#" data-toggle="modal" data-target="#" class="btn btn-sm btn-primary w-50 text-white my-2">
+                                <a href="{{ Route('admin.overview', $restaurant->id) }}" class="btn btn-sm btn-primary w-50 text-white my-2">
                                     <span>
                                         <i class="fas fa-chart-line" style="vertical-align:middle"></i> 
                                         Statistiche

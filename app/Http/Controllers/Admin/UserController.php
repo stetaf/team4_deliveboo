@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Restaurant;
 use App\Type;
 use App\Dish;
+use App\Order;
 use Illuminate\Support\Facades\Storage;
 
 class UserController extends Controller
@@ -130,5 +131,12 @@ class UserController extends Controller
         $restaurant->delete();
 
         return redirect()->route('admin.restaurants.index')->with('message', "Ristorante $restaurant->name eliminato con successo!");
+    }
+
+    public function overview(Restaurant $restaurant) {
+        
+        $orders = Order::where('restaurant_id', $restaurant->id)->orderBy('created_at', 'DESC')->paginate(10);
+
+        return view('admin.overview', compact('orders', 'restaurant'));
     }
 }
