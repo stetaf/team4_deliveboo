@@ -50307,9 +50307,10 @@ var app = new Vue({
       this.getResults();
     },
     addToCart: function addToCart(id, item, action) {
-      if (parseInt(document.querySelector('#qty' + item.id).value) > 0) {
-        action == 1 ? this.qty = parseInt(document.querySelector('#qty' + item.id).value) : this.qty = 1;
+      var qty_field = document.querySelector('#qty' + item.id);
+      action == 1 ? this.qty = parseInt(document.querySelector('#qty' + item.id).value) : this.qty = 1;
 
+      if (this.qty > 0) {
         if (this.cart[1].length > 0) {
           var already_there = false;
 
@@ -50326,7 +50327,7 @@ var app = new Vue({
           this.cart[0]['rest_id'] = id;
         }
 
-        document.querySelector('#qty' + item.id).value = 0;
+        qty_field ? qty_field.value = 0 : '';
         action == 0 ? '' : this.animateCart();
         localStorage.setItem('cart_products', this.cart[2]);
         this.calculateSubtotal();
