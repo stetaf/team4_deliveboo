@@ -66,11 +66,11 @@
                                                 Sei sicuro di voler eliminare il ristorante '{{ $restaurant->name }}' ?
                                             </div>
                                             <div class="modal-footer">
-                                                <button type="button" class="btn btn-dark" data-dismiss="modal">Cancel</button>
+                                                <button type="button" class="btn btn-sm btn-dark" data-dismiss="modal">Annulla</button>
                                                 <form action="{{ Route('admin.restaurants.destroy', $restaurant->id) }}" method="POST">
                                                     @csrf
                                                     @method('DELETE')
-                                                    <button type="submit" class="btn btn-danger">Confirm</button>
+                                                    <button type="submit" class="btn btn-sm btn-danger">Confirm</button>
                                                 </form>
                                             </div>
                                         </div>
