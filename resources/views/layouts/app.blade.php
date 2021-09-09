@@ -66,6 +66,7 @@
                 // Add the nonce to the form and submit
                 document.querySelector('#nonce').value = payload.nonce;
                 form.submit();
+                localStorage.clear();
                 });
             });
             });
