@@ -614,12 +614,15 @@ main {
             padding-top: 2px;
         }
 
-        .cart_alert { 
+        .cart_alert,
+        .cart_error { 
             position: absolute;
             right: 90px;
             bottom: 5px;
             width: 185px;
         }
+
+        .cart_error { width: 216px; }
     }
 
     @-webkit-keyframes fadeIn {

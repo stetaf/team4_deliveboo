@@ -50331,6 +50331,14 @@ var app = new Vue({
         action == 0 ? '' : this.animateCart();
         localStorage.setItem('cart_products', this.cart[2]);
         this.calculateSubtotal();
+      } else {
+        var alert = document.querySelector('.cart_error');
+        alert.classList.remove('d-none');
+        alert.classList.add('fade-in');
+        setTimeout(function () {
+          alert.classList.remove('fade-in');
+          alert.classList.add('d-none');
+        }, 2000);
       }
     },
     addItem: function addItem(item) {

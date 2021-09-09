@@ -109,6 +109,13 @@
             <span class="">Prodotto aggiunto</span>
         </div>
         <!-- /Cart alert -->
+
+        <!-- Cart error -->
+        <div class="cart_error alert alert-danger d-none">
+            <i class="fas fa-exclamation-triangle"></i>
+            <span class="">Selezionare la quantità!</span>
+        </div>
+        <!-- /Cart error -->
     </div>
     <!-- /Cart Icon -->
 

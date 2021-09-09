@@ -91,7 +91,17 @@ Vue.component('pagination', require('laravel-vue-pagination'));
                 (action == 0) ? '' : this.animateCart();
                 localStorage.setItem('cart_products', this.cart[2]);
                 this.calculateSubtotal();
-            } 
+            } else { 
+                const alert = document.querySelector('.cart_error');
+
+                alert.classList.remove('d-none'); 
+                alert.classList.add('fade-in'); 
+    
+                setTimeout(function() {
+                  alert.classList.remove('fade-in');
+                  alert.classList.add('d-none');
+                }, 2000);
+            }
         },
         addItem(item, qty = 1) {
             const info = {
