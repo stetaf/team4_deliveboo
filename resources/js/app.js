@@ -81,6 +81,9 @@ Vue.component('pagination', require('laravel-vue-pagination'));
                 this.addItem(item, this.qty);
                 this.cart[0]['rest_id'] = id;
             }
+
+            document.querySelector('#qty' + item.id).value = 0;
+            (action == 0) ? '' : this.animateCart();
             this.calculateSubtotal();
         },
         addItem(item, qty = 1) {
@@ -135,6 +138,17 @@ Vue.component('pagination', require('laravel-vue-pagination'));
             let input = document.querySelector('#qty' + id);
 
             ((input.value - 1) <= 0) ? input.value = 0 : input.value -= 1;
+        },
+        animateCart() {
+            const alert = document.querySelector('.cart_alert');
+
+            alert.classList.remove('d-none'); 
+            alert.classList.add('fade-in'); 
+
+            setTimeout(function() {
+              alert.classList.remove('fade-in');
+              alert.classList.add('d-none');
+            }, 2000);
         },
         getFileName() {
             filename = event.target.files;

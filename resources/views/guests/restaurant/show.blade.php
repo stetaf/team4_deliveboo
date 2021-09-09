@@ -28,7 +28,7 @@
                             <i class="fas fa-minus-circle"></i>
                         </div>
                         <div class="num mx-1">
-                            <input class="text-center" type="number" name="qty" id="qty{{ $dish->id }}" pattern="[0-9]+" min="0" max="99" value="1">
+                            <input class="text-center" type="number" name="qty" id="qty{{ $dish->id }}" pattern="[0-9]+" min="0" max="99" value="0"  disabled>
                         </div>
                         <div class="plus" @click="addQty({{ $dish->id }})">
                             <i class="fas fa-plus-circle"></i>
@@ -86,15 +86,26 @@
         @endforeach
     </div>
 
-    <div class="shopping_cart" data-toggle="modal" data-target="#cart">
-        <i class="fas fa-shopping-cart"></i>
-        <span class="items" v-if="cart[1].length > 0">
-            @{{ cart[1].length }}
-        </span>
-        <span class="items" v-else>
-            0
-        </span>
+    <!-- Cart Icon -->
+    <div class="cart_container">
+        <div class="shopping_cart" data-toggle="modal" data-target="#cart">
+            <i class="fas fa-shopping-cart"></i>
+            <span class="items" v-if="cart[1].length > 0">
+                @{{ cart[1].length }}
+            </span>
+            <span class="items" v-else>
+                0
+            </span>
+        </div>
+        
+        <!-- Cart alert -->
+        <div class="cart_alert alert alert-success d-none">
+            <i class="fas fa-thumbs-up"></i>
+            <span class="">Prodotto aggiunto</span>
+        </div>
+        <!-- /Cart alert -->
     </div>
+    <!-- /Cart Icon -->
 
     <!-- Cart modal -->
     <div class="modal fade" id="cart" tabindex="-1" role="dialog" aria-labelledby="cartTitle" aria-hidden="true">
@@ -115,16 +126,16 @@
                         <table class="table tbl-cart" v-else>
                             <thead>
                                 <tr>
-                                    <td class="border-top-0">Immagine</td>
-                                    <td class="border-top-0">Prodotto</td>
+                                    <td class="border-top-0 d-none d-md-block">Immagine</td>
+                                    <td class="border-top-0" style="width:140px">Prodotto</td>
                                     <td class="border-top-0">Quantità</td>
-                                    <td class="border-top-0">Prezzo</td>
+                                    <td class="border-top-0" style="min-width: 92px !important;">Prezzo</td>
                                     <td class="border-top-0"></td>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr v-for="item in cart[1]">
-                                    <td class="hidden-xs">
+                                    <td class="d-none d-md-block">
                                         <img :src="'/storage/'+ item.image" :alt="item.name" width="50" height="40">
                                     </td>
                                     <td>
@@ -133,11 +144,11 @@
                                     <td>
                                         <div class="qty">
                                             <span class="minus" @click="removeItem(item)">
-                                                <i class="fas fa-minus"></i>
+                                                <i class="fas fa-xs fa-minus"></i>
                                             </span>
-                                            <input type="number" class="count border-0 text-center" name="quantity" :value="item.quantity" max="99">
+                                            <input type="number" class="count border-0 text-center" name="quantity" :value="item.quantity" max="99"  disabled>
                                             <span class="plus" @click="addToCart({{ $restaurant->id }}, item, 0)">
-                                                <i class="fas fa-plus"></i>
+                                                <i class="fas fa-xs fa-plus"></i>
                                             </span>
                                         </div>
                                     </td>
@@ -145,20 +156,14 @@
                                         &euro; @{{ (item.price * item.quantity).toFixed(2) }}
                                     </td>
                                     <td class="text-center">
-                                        <span style="font-size:20px" @click="clearItem(item)">
+                                        <span class="cart_icon" @click="clearItem(item)">
                                             <i class="fas fa-trash-alt text-danger"></i>
                                         </span>
                                     </td>
                                 </tr>
-                                <tr>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td>Totale: € @{{ cart_total.toFixed(2) }}</td>
-                                    <td></td>
-                                </tr>
                             </tbody>
                         </table>
+                        <span class="text-right d-block font-weight-bold">Totale: € @{{ cart_total.toFixed(2) }}</span>
                     </div>
                 </div>
                 <div class="modal-footer">

@@ -10469,31 +10469,6 @@ main .dish_card .product_actions .qty input::-webkit-inner-spin-button {
 main .dish_card .product_actions .qty input[type=number] {
   -moz-appearance: textfield;
 }
-main .shopping_cart {
-  background: #a54617;
-  position: fixed;
-  bottom: 30px;
-  right: 30px;
-  z-index: 2;
-  padding: 14px 18px;
-  border-radius: 50%;
-  color: white;
-  font-size: 20px;
-}
-main .shopping_cart i {
-  margin-right: 3px;
-}
-main .shopping_cart .items {
-  background-color: #f95302;
-  color: white;
-  position: absolute;
-  top: -3px;
-  left: -6px;
-  padding: 0px 8px;
-  border-radius: 50%;
-  font-size: 14px;
-  padding-top: 2px;
-}
 main .cart_table {
   -webkit-touch-callout: none;
   -webkit-user-select: none;
@@ -10514,6 +10489,61 @@ main .cart_table input::-webkit-inner-spin-button {
 }
 main .cart_table input[type=number] {
   -moz-appearance: textfield;
+}
+main .cart_table .cart_icon {
+  font-size: 20px;
+}
+main .cart_container {
+  position: fixed;
+  bottom: 15px;
+  right: 15px;
+  z-index: 2;
+}
+main .cart_container .shopping_cart {
+  background: #a54617;
+  z-index: 2;
+  padding: 14px 18px;
+  border-radius: 50%;
+  color: white;
+  font-size: 20px;
+  width: 62px;
+  right: 15px;
+  bottom: 15px;
+  position: absolute;
+}
+main .cart_container i {
+  margin-right: 3px;
+}
+main .cart_container .items {
+  background-color: #f95302;
+  color: white;
+  position: absolute;
+  top: -3px;
+  left: -6px;
+  padding: 0px 8px;
+  border-radius: 50%;
+  font-size: 14px;
+  padding-top: 2px;
+}
+main .cart_container .cart_alert {
+  position: absolute;
+  right: 90px;
+  bottom: 5px;
+  width: 185px;
+}
+@-webkit-keyframes fadeIn {
+  to {
+    display: block;
+  }
+}
+@keyframes fadeIn {
+  to {
+    display: block;
+  }
+}
+main .fade-in {
+  -webkit-animation: fadeIn 1.5s ease-in 1 forwards;
+  animation: fadeIn 1.5s ease-in 1 forwards;
 }
 main #cart i {
   color: unset;

@@ -50325,6 +50325,8 @@ var app = new Vue({
         this.cart[0]['rest_id'] = id;
       }
 
+      document.querySelector('#qty' + item.id).value = 0;
+      action == 0 ? '' : this.animateCart();
       this.calculateSubtotal();
     },
     addItem: function addItem(item) {
@@ -50378,6 +50380,15 @@ var app = new Vue({
     lowerQty: function lowerQty(id) {
       var input = document.querySelector('#qty' + id);
       input.value - 1 <= 0 ? input.value = 0 : input.value -= 1;
+    },
+    animateCart: function animateCart() {
+      var alert = document.querySelector('.cart_alert');
+      alert.classList.remove('d-none');
+      alert.classList.add('fade-in');
+      setTimeout(function () {
+        alert.classList.remove('fade-in');
+        alert.classList.add('d-none');
+      }, 2000);
     },
     getFileName: function getFileName() {
       filename = event.target.files;
