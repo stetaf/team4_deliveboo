@@ -50284,6 +50284,7 @@ var app = new Vue({
       cart: [{
         'rest_id': 0
       }, []],
+      cart_products: 0,
       cart_total: 0,
       qty: 0
     };
@@ -50316,6 +50317,7 @@ var app = new Vue({
           if (item.name == this.cart[1][i]['name']) {
             already_there = true;
             this.qty == 1 ? this.cart[1][i]['quantity'] += 1 : this.cart[1][i]['quantity'] += this.qty;
+            this.cart_products += this.qty;
           }
         }
 
@@ -50339,14 +50341,17 @@ var app = new Vue({
         'quantity': qty
       };
       this.cart[1].push(info);
+      this.cart_products += qty;
     },
     removeItem: function removeItem(item) {
       for (var i = 0; i < this.cart[1].length; i++) {
         if (item.name == this.cart[1][i]['name']) {
           if (this.cart[1][i]['quantity'] - 1 == 0) {
             this.cart[1].splice(i, 1);
+            this.cart_products -= 1;
           } else {
             this.cart[1][i]['quantity'] -= 1;
+            this.cart_products -= 1;
           }
         }
       }
@@ -50356,6 +50361,7 @@ var app = new Vue({
     clearItem: function clearItem(item) {
       for (var i = 0; i < this.cart[1].length; i++) {
         if (item.name == this.cart[1][i]['name']) {
+          this.cart_products -= this.cart[1][i]['qty'];
           this.cart[1].splice(i, 1);
         }
       }

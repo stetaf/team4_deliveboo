@@ -91,7 +91,7 @@
         <div class="shopping_cart" data-toggle="modal" data-target="#cart">
             <i class="fas fa-shopping-cart"></i>
             <span class="items" v-if="cart[1].length > 0">
-                @{{ cart[1].length }}
+                @{{ cart_products }}
             </span>
             <span class="items" v-else>
                 0
