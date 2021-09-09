@@ -182,11 +182,13 @@ Vue.component('pagination', require('laravel-vue-pagination'));
         if (url_path.includes('restaurant')) {
             const cart = JSON.parse(localStorage.getItem('cart'));
             const rest_id = url_path.match(/\d+/)[0];
-            
-            if (cart[0].rest_id == rest_id) {
-                this.cart = cart;
-                this.calculateSubtotal();
-                this.cart[2] = parseInt(localStorage.getItem('cart_products'));
+
+            if (localStorage.getItem("cart") != null) {
+                if (cart[0].rest_id == rest_id) {
+                    this.cart = cart;
+                    this.calculateSubtotal();
+                    this.cart[2] = parseInt(localStorage.getItem('cart_products'));
+                }
             }
         }
         

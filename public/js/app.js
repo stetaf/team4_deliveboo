@@ -50425,10 +50425,12 @@ var app = new Vue({
       var cart = JSON.parse(localStorage.getItem('cart'));
       var rest_id = url_path.match(/\d+/)[0];
 
-      if (cart[0].rest_id == rest_id) {
-        this.cart = cart;
-        this.calculateSubtotal();
-        this.cart[2] = parseInt(localStorage.getItem('cart_products'));
+      if (localStorage.getItem("cart") != null) {
+        if (cart[0].rest_id == rest_id) {
+          this.cart = cart;
+          this.calculateSubtotal();
+          this.cart[2] = parseInt(localStorage.getItem('cart_products'));
+        }
       }
     }
   }
