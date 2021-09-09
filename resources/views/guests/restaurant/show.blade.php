@@ -159,7 +159,7 @@
                                 </tr>
                             </tbody>
                         </table>
-                        <span class="text-right d-block font-weight-bold">Totale: € @{{ cart_total.toFixed(2) }}</span>
+                        <span class="text-right d-block font-weight-bold" v-if="cart[1].length > 0">Totale: € @{{ cart_total.toFixed(2) }}</span>
                     </div>
                 </div>
                 <div class="modal-footer">
