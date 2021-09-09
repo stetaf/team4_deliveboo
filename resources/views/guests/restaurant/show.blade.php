@@ -72,12 +72,8 @@
                             </div>
                         </div>
                     </div>
-                    <div class="modal-footer d-flex justify-content-between">
+                    <div class="modal-footer d-flex justify-content-start">
                         <span class="lead">&euro; {{ $dish->price }}</span>
-                        <span class="btn btn-success btn-sm waves-effect text-white" @click="addToCart({{ $restaurant->id }}, {{ $dish }}, 0)">
-                            <i class="fas fa-shopping-cart mr-1"></i>
-                            Aggiungi al carrello
-                        </span>
                     </div>
                 </div>
             </div>
