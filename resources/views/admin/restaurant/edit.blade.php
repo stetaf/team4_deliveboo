@@ -31,10 +31,14 @@
         <label for="visible"> Non visibile</label><br>
         <!-- //radio button -->
 
-        <button type="submit" class="btn btn-success mb-2">Modifica</button>
-        <a href="{{ url()->previous() }}">
-            <span class="btn border-info mb-2 text-info">Indietro</span>
+        <a href="{{ url()->previous() }}" class="btn btn-sm btn-secondary text-white">
+            <i class="fas fa-arrow-left mr-1"></i>
+            <span>Indietro</span>
         </a>
+        <button type="submit" class="btn btn-sm btn-success">
+            <i class="fas fa-check mr-1"></i>
+            Modifica
+        </button>
     </form>
     
 </div>
