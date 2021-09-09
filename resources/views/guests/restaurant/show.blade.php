@@ -7,7 +7,16 @@
 </div>
 
 <div class="container">
-    <h2 class="my-3 fs-35 font-weight-bold">I nostri piatti</h2>
+    <div class="d-flex justify-content-between align-items-center">
+        <h2 class="my-3 fs-35 font-weight-bold">I nostri piatti</h2>
+
+        <a href="{{ Route('home') }}">
+            <span class="btn btn-sm" style="color:#fff;background:#ff702a;box-shadow: 0px 0px 8px 2px rgb(255 112 42);font-size: 19px;">
+                <i class="fas fa-home mr-1"></i>
+                Torna alla home
+            </span>
+        </a>
+    </div>
     <div class="row">
         @foreach ($dishes as $dish)
         <div class="col-lg-3 col-md-4 col-sm-6">
