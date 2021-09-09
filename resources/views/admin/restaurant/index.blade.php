@@ -52,15 +52,41 @@
                         <span class="btn btn-sm btn-warning my-1 w-100">
                             <i class="fas fa-pencil-alt fa-sm fa-fw"></i> Modifica
                         </span>
-                    </a>                    
-                    <form action="{{ Route('admin.dish.delete', $dish->id) }}" class="d-inline-block" method="post">
-                        @csrf
-                        @method('DELETE')
-                        <button type="submit" value="Elimina" class="btn btn-sm btn-danger" style="min-width: 100%;">
-                            <i class="fas fa-trash fa-sm fa-fw"></i> 
+                    </a>                 
+                    <a href="#" data-toggle="modal" data-target="#del{{ $dish->id }}" class="btn btn-sm btn-danger text-white">
+                        <span>
+                            <i class="fas fa-trash-alt mr-1" style="vertical-align:middle"></i>
                             Elimina
-                        </button>
-                    </form>                   
+                        </span>
+                    </a>      
+                    <div class="modal fade" id="del{{ $dish->id }}" tabindex="-1" role="dialog" aria-labelledby="modal_label" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="modal_label">Warning</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    Sei sicuro di voler eliminare il piatto '{{ $dish->name }}' ?
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-sm btn-dark" data-dismiss="modal">
+                                        Annulla
+                                    </button>
+                                    <form action="{{ Route('admin.dish.delete', $dish->id) }}" class="d-inline-block" method="post">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" value="Elimina" class="btn btn-sm btn-danger" style="min-width: 100%;">
+                                            <i class="fas fa-trash fa-sm fa-fw"></i> 
+                                            Elimina
+                                        </button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>             
                 </td>
             </tr>
             @endforeach
