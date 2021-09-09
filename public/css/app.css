@@ -10660,6 +10660,11 @@ li {
     font-size: 35px;
   }
 }
+@media screen and (min-width: 575.98px) {
+  main {
+    min-height: 600px;
+  }
+}
 .menu_link {
   color: black;
 }
