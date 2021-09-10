@@ -8,7 +8,7 @@
         </h2>
         @guest
             <div class="actions d-flex " >
-                <span class="nav-item">
+                <span class="nav-item mr-4">
                     <a class="nav-link p-0" href="{{ route('login') }}">{{ __('Login') }}</a>
                 </span>
                 @if (Route::has('register'))
