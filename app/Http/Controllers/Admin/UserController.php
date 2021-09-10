@@ -9,6 +9,7 @@ use App\Restaurant;
 use App\Type;
 use App\Dish;
 use App\Order;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 
 class UserController extends Controller
@@ -136,7 +137,44 @@ class UserController extends Controller
     public function overview(Restaurant $restaurant) {
         
         $orders = Order::where('restaurant_id', $restaurant->id)->orderBy('created_at', 'DESC')->paginate(10);
-
+            
         return view('admin.overview', compact('orders', 'restaurant'));
+    }
+
+    public function graphs(Restaurant $restaurant) {
+        /* STATISTICHE VENDITE */
+        $order_quantity = Order::select(DB::raw("MONTHNAME(created_at) month"), Order::raw('count(*) as total'), DB::raw('max(created_at) as createdAt'))
+        ->orderBy('createdAt', 'asc')
+        ->groupBy('month')
+        ->pluck('total', 'month')->all();
+
+        $chart_quantity = [
+            'labels' => (array_keys($order_quantity)),
+            'dataset' => (array_values($order_quantity))
+        ];
+
+        for( $g = 0; $g < sizeof($chart_quantity['labels']); $g++) {
+            $chart_quantity['labels'][$g] = strval($chart_quantity['labels'][$g]); 
+        }
+        /* /STATISTICHE VENDITE */
+
+
+        /* STATISTICHE INCASSI */
+        $order_amount = Order::select(DB::raw("MONTHNAME(created_at) month"), Order::raw('sum(total) as amount'), DB::raw('max(created_at) as createdAt'))
+                    ->orderBy('createdAt', 'asc')
+                    ->groupBy('month')
+                    ->pluck('amount', 'month')->all();
+
+        $chart_amount = [
+            'labels' => (array_keys($order_amount)),
+            'dataset' => (array_values($order_amount))
+        ];
+
+        for( $h = 0; $h < sizeof($chart_amount['labels']); $h++) {
+            $chart_amount['labels'][$h] = strval($chart_amount['labels'][$h]); 
+        }
+        /* /STATISTICHE INCASSI */
+
+        return view('admin.graphs', compact('restaurant', 'chart_quantity', 'chart_amount'));
     }
 }

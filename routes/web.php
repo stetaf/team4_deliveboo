@@ -39,6 +39,7 @@ Route::prefix('admin')
       ->group(function() {
         Route::resource('restaurants', 'UserController');
         Route::get('restaurant/{restaurant}/overview', 'UserController@overview')->name('overview');
+        Route::get('restaurant/{restaurant}/overview/graphs', 'UserController@graphs')->name('overview.graphs');
         Route::post('restaurant/dish/{dish}/store', 'RestaurantController@Store')->name('dish.store');
         Route::get('restaurant/{restaurant}/dish/', 'RestaurantController@Create')->name('dish.create');
         Route::get('restaurant/dish/{dish}/show', 'RestaurantController@Show')->name('dish.show');

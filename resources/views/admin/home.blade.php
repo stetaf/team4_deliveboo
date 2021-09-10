@@ -40,7 +40,13 @@
                                         Gestione
                                     </span>
                                 </a>
-                                <a href="{{ Route('admin.overview', $restaurant->id) }}" class="btn btn-sm btn-primary w-50 text-white my-2">
+                                <a href="{{ Route('admin.overview', $restaurant->id) }}" class="btn btn-sm btn-primary w-50 text-white mt-1">
+                                    <span>
+                                        <i class="fas fa-paste" style="vertical-align:middle"></i> 
+                                        Riepilogo
+                                    </span>
+                                </a>
+                                <a href="{{ Route('admin.overview.graphs', $restaurant->id) }}" class="btn btn-sm btn-info w-50 text-white my-1">
                                     <span>
                                         <i class="fas fa-chart-line" style="vertical-align:middle"></i> 
                                         Statistiche
