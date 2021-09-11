@@ -152,6 +152,7 @@ class UserController extends Controller
 
         /* STATISTICHE VENDITE */
         $order_quantity = Order::select(DB::raw("MONTHNAME(created_at) month"), Order::raw('count(*) as total'), DB::raw('max(created_at) as createdAt'))
+        ->where('restaurant_id', $restaurant->id)
         ->whereYear('created_at', $year)
         ->orderBy('createdAt', 'asc')
         ->groupBy('month')
@@ -170,6 +171,7 @@ class UserController extends Controller
 
         /* STATISTICHE INCASSI */
         $order_amount = Order::select(DB::raw("MONTHNAME(created_at) month"), Order::raw('sum(total) as amount'), DB::raw('max(created_at) as createdAt'))
+                    ->where('restaurant_id', $restaurant->id)
                     ->whereYear('created_at', $year)
                     ->orderBy('createdAt', 'asc')
                     ->groupBy('month')
