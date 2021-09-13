@@ -192,7 +192,7 @@ Vue.component('pagination', require('laravel-vue-pagination'));
             })
         
         let url_path = window.location.pathname;
-        if (url_path.includes('restaurant')) {
+        if (url_path.includes('restaurant') && !url_path.includes('admin')) {
             const cart = JSON.parse(localStorage.getItem('cart'));
             const rest_id = url_path.match(/\d+/)[0];
 

@@ -50430,7 +50430,7 @@ var app = new Vue({
     });
     var url_path = window.location.pathname;
 
-    if (url_path.includes('restaurant')) {
+    if (url_path.includes('restaurant') && !url_path.includes('admin')) {
       var cart = JSON.parse(localStorage.getItem('cart'));
       var rest_id = url_path.match(/\d+/)[0];
 
