@@ -11,6 +11,7 @@ use App\Dish;
 use App\Order;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Carbon;
 
 class UserController extends Controller
 {
@@ -141,7 +142,7 @@ class UserController extends Controller
         return view('admin.overview', compact('orders', 'restaurant'));
     }
 
-    public function graphs(Restaurant $restaurant, Request $request) {
+    public function graphs2(Restaurant $restaurant, Request $request) {
         $year = date('Y');
 
         $years = [
@@ -151,21 +152,24 @@ class UserController extends Controller
         ($request->year) ? $year = $request->year : '';
 
         /* STATISTICHE VENDITE */
-        $order_quantity = Order::select(DB::raw("MONTHNAME(created_at) month"), Order::raw('count(*) as total'), DB::raw('max(created_at) as createdAt'))
+        $order_quantity = Order::select(DB::raw("MONTHNAME(created_at) month"), DB::raw("YEAR(created_at) year"), Order::raw('count(*) as total'), DB::raw('max(created_at) as createdAt'))
         ->where('restaurant_id', $restaurant->id)
         ->whereYear('created_at', $year)
+        ->whereDate('created_at', '<=', now()->subMonths(12)->setTime(0, 0, 0)->toDateTimeString())
         ->orderBy('createdAt', 'asc')
-        ->groupBy('month')
-        ->pluck('total', 'month',)->all();
+        ->groupBy('month', 'year')
+        ->get();
+
+        $order_quantity->flatten()->all();
 
         $chart_quantity = [
-            'labels' => (array_keys($order_quantity)),
-            'dataset' => (array_values($order_quantity))
+            'labels' => '',
+            'dataset' => ''
         ];
 
-        for( $g = 0; $g < sizeof($chart_quantity['labels']); $g++) {
-            $chart_quantity['labels'][$g] = strval($chart_quantity['labels'][$g]); 
-        }
+        // for( $g = 0; $g < sizeof($chart_quantity['labels']); $g++) {
+        //     $chart_quantity['labels'][$g] = strval($chart_quantity['labels'][$g]); 
+        // }
         /* /STATISTICHE VENDITE */
 
 
@@ -187,6 +191,117 @@ class UserController extends Controller
         }
         /* /STATISTICHE INCASSI */
 
-        return view('admin.graphs', compact('restaurant', 'chart_quantity', 'chart_amount', 'year', 'years'));
+        return view('admin.graphs', compact('restaurant', 'chart_quantity', 'chart_amount', 'year', 'years', 'order_quantity'));
+    }
+
+    public function graphs(Restaurant $restaurant, Request $request) {
+        if ($request->year == 'summary' || !$request->year) {
+            $years = Order::select(DB::raw("DISTINCT YEAR(`created_at`) AS 'Year'"))
+                        ->get();
+
+            $year = 's';
+
+            $start_date = date('Y-m-d', strtotime('-1 year'));
+            $final_date = date('Y-m-d');
+                    
+            $order_quantity = Order::select(DB::raw("MONTHNAME(created_at) month"), DB::raw("YEAR(created_at) year"), Order::raw('count(*) as total'), DB::raw('max(created_at) as createdAt'))
+                            ->where('restaurant_id', $restaurant->id)
+                            ->whereDate('created_at', '>=', $start_date)
+                            ->whereDate('created_at', '<=', $final_date)
+                            ->orderBy('createdAt', 'asc')
+                            ->groupBy('month', 'year')
+                            ->get();
+
+            $order_quantity->flatten()->all();        
+            $orders = json_decode($order_quantity);
+
+            $keys = [];
+
+            for ($l = 0; $l < sizeof($orders); $l++) {
+                array_push($keys, $orders[$l]->year . ' ' . $orders[$l]->month);
+            }
+            
+            $counter = 0;
+            for ($i = strtotime($keys[0]); $i <= strtotime(end($keys)); $i += 86400*31){
+                $search = array_search(date("Y F", $i), $keys);
+                if($search !== false){
+                    if ($counter < sizeof($orders)) {
+                        $new[$keys[$search]] = $orders[$counter]->total;
+                        $counter += 1;
+                    }
+                }else{
+                    $new[date("Y F", $i)] = 0;
+                }
+            }
+
+            json_encode($new); // 1
+
+            $order_amount = Order::select(DB::raw("MONTH(created_at) month"), DB::raw("YEAR(created_at) year"), Order::raw('sum(total) as amount'), DB::raw('max(created_at) as createdAt'))
+                            ->where('restaurant_id', $restaurant->id)
+                            ->whereDate('created_at', '>=', $start_date)
+                            ->whereDate('created_at', '<=', $final_date)
+                            ->orderBy('createdAt', 'asc')
+                            ->groupBy('month', 'year')
+                            ->get();
+
+            $order_amount->flatten()->all();        
+            $orders = json_decode($order_amount);
+                
+            $counter = 0;
+
+            for ($h = strtotime($keys[0]); $h <= strtotime(end($keys)); $h += 86400*31){
+                $search = array_search(date("Y F", $h), $keys);
+                if($search !== false){
+                    if ($counter < sizeof($orders)) {
+                        $new2[$keys[$search]] = floatval($orders[$counter]->amount);
+                        $counter += 1;
+                    }
+                }else{
+                    $new2[date("Y F", $h)] = 0;
+                }
+            }
+            json_encode($new2); // 2
+
+            return view('admin.graphs', compact('restaurant', 'new', 'new2', 'years', 'year'));
+        
+        } else {     
+            $year = $request->year;
+
+            $years = Order::select(DB::raw("DISTINCT YEAR(`created_at`) AS 'Year'"))
+                    ->get();
+
+            $order_quantity = Order::select(DB::raw("MONTH(created_at) month"), Order::raw('count(*) as total'), DB::raw('max(created_at) as createdAt'))
+                            ->where('restaurant_id', $restaurant->id)
+                            ->whereYear('created_at', $year)
+                            ->orderBy('createdAt', 'asc')
+                            ->groupBy('month')
+                            ->get();
+
+            $order_quantity->flatten()->all();        
+            $orders = json_decode($order_quantity);
+
+            $dati = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+            for ($h = 0; $h < sizeof($orders); $h++) {
+                $dati[($orders[$h]->month)-1] = $orders[$h]->total;
+            }
+
+            $order_amount = Order::select(DB::raw("MONTH(created_at) month"), Order::raw('sum(total) as amount'), DB::raw('max(created_at) as createdAt'))
+                            ->where('restaurant_id', $restaurant->id)
+                            ->whereYear('created_at', $year)
+                            ->orderBy('createdAt', 'asc')
+                            ->groupBy('month')
+                            ->get();
+
+            $order_amount->flatten()->all();        
+
+            $orders_2 = json_decode($order_amount);
+
+            $dati_2 = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+            for ($g = 0; $g < sizeof($orders_2); $g++) {
+                $dati_2[($orders[$g]->month)-1] = floatval($orders_2[$g]->amount);
+            }
+
+            return view('admin.graphs', compact('restaurant', 'dati', 'dati_2', 'years', 'year'));
+        }
     }
 }
