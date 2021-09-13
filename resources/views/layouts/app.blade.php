@@ -46,7 +46,7 @@
             const cart = localStorage.getItem('cart');
             const field = document.querySelector('#order_data');
             field.value = cart;
-            
+
             braintree.dropin.create({
                 locale: 'it_IT',
                 authorization: client_token,
@@ -72,5 +72,6 @@
             });
         </script>
     @endif
+
 </body>
 </html>

@@ -6,12 +6,50 @@ header {
     height: 85px;
 
     .logo {
+        margin-top: 5px;
         margin-bottom: 0 !important;
+        padding: 0;
         font-weight: bold;
         font-size: 40px;
+        transition: 0.5s;
+        height: 55px;
+
+        p{
+            font-size: 14px;
+            text-align: center;
+            margin: -8px;
+            visibility: hidden;
+            opacity: 0;
+            transition: visibility 0s, opacity 0.5s linear;
+        }
+
+        &:hover{
+            border-bottom: 2px solid white;
+            border-radius: 40px;
+            padding: 0px 10px;
+            font-size: 37px;
+            cursor: pointer;
+            transition: 0.5s;
+
+            p{
+                visibility: visible;
+                opacity: 1;
+            }
+        }
+
     }
     span {
         font-size: 18px;
         font-weight: bold;
+        transition: 0.5s;
+
+        &:hover{
+            border-bottom: 2px solid white;
+            border-radius: 40px;
+            padding: 7px 10px;
+            font-size: 25px;
+            cursor: pointer;
+            transition: 0.5s;
+        }
     }
 }

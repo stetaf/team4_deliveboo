@@ -12,7 +12,7 @@
                 <p class="display-4 text-white">Cosa vuoi mangiare?</p>
             </div>
             <div class="row row-cols-xs-1 row-cols-sm-2 row-cols-md-4 row-cols-lg-6">
-                <div v-for="type in types" @click="filterBy(type.id)" class="my-3 col d-flex align-items-center flex-column ih-item circle colored effect1">
+                <div href="#" v-for="type in types" @click="filterBy(type.id)" class="my-3 col d-flex align-items-center flex-column ih-item circle colored effect1" v-scroll-to="{el:'#results', duration:1500}">
                     <span class="m-auto" href="#">
                         <div class="spinner" ></div>
                         <div class="img">
@@ -28,7 +28,7 @@
             </div>
         </div>
     </div>
-    <div class="results py-3" :class="[ (filter == 0) ? 'd-none' : '']">
+    <div id="results" class="results py-3" :class="[ (filter == 0) ? 'd-none' : '']">
         <div class="container">
             <div class="text-center py-2" v-if="filtered_results.data && filtered_results.data.length > 0">
                 <h2 class="res">Risultati inerenti alla tua ricerca:</h2>
@@ -46,7 +46,7 @@
                                 <div class="badges text-right position-absolute" style="right:0px; bottom:0px">
                                     <span class="badge badge-primary m-1" style="background-color: #d3273e; color: #dedede; padding: 4px 6px !important" v-for="type in restaurant.types">@{{ type.name }}</span>
                                 </div>
-                            </div>    
+                            </div>
                             <div class="px-1 pt-2" style="min-height: 55px">
                                 <h5 class="font-weight-bold text-center">@{{ restaurant.name }}</h5>
                             </div>

@@ -15,7 +15,7 @@ class OrderSeeder extends Seeder
     {
         for ($i = 0; $i < 50; $i++) {
             $d = new Order;
-            $d->restaurant_id = 1;
+            $d->restaurant_id = 10;
             $d->customer_name = $faker->name();
             $d->customer_email = $faker->email();
             $d->customer_phone = '3333333333';
@@ -23,8 +23,8 @@ class OrderSeeder extends Seeder
             $d->notes = '';
             $d->total = $faker->randomFloat(2, 1, 100);
             $d->status = 1;
-            $d->created_at = $faker->dateTime('now', 'UTC'); 
-            $d->updated_at = $faker->dateTime('now', 'UTC'); 
+            $d->created_at = $faker->dateTime('now', 'UTC');
+            $d->updated_at = $faker->dateTime('now', 'UTC');
             $d->save();
         }
     }

@@ -13,7 +13,7 @@
                         @csrf
                         <div class="row row-cols-1 row-cols-sm-2">
 
-                        
+
                             <div class="col border-right">
                                 <h4>Dati utente</h4>
 
@@ -70,13 +70,13 @@
 
                             <div class="col">
                                 <h4>Dati ristorante</h4>
-        
+
                                 <div class="form-group row">
                                     <label for="name" class="col-md-4 col-form-label">Nome Attivit&agrave;  <small style="color:red">*</small></label>
-        
+
                                     <div class="col-md-6">
                                         <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name">
-        
+
                                         @error('nome_attivita')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
@@ -84,13 +84,13 @@
                                         @enderror
                                     </div>
                                 </div>
-        
+
                                 <div class="form-group row">
                                     <label for="address" class="col-md-4 col-form-label">Indirizzo  <small style="color:red">*</small></label>
-        
+
                                     <div class="col-md-6">
                                         <input id="address" type="text" class="form-control @error('address') is-invalid @enderror" name="address" value="{{ old('address') }}" required autocomplete="address">
-        
+
                                         @error('address')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
@@ -98,13 +98,13 @@
                                         @enderror
                                     </div>
                                 </div>
-        
+
                                 <div class="form-group row">
                                     <label for="piva" class="col-md-4 col-form-label">P.IVA  <small style="color:red">*</small></label>
-        
+
                                     <div class="col-md-6">
                                         <input id="piva" type="text" class="form-control @error('piva') is-invalid @enderror" name="piva" value="{{ old('piva') }}" required autocomplete="piva" minlength="11" maxlength="11">
-        
+
                                         @error('piva')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
@@ -112,7 +112,7 @@
                                         @enderror
                                     </div>
                                 </div>
-        
+
                                 <div class="form-group row justify-content-center">
                                     <label for="tipologie" class="col-12 col-form-label">Tipi di cucina <small style="color:red">*</small></label>
                                     <div class="col">
@@ -170,7 +170,7 @@
                                                             <small class="form-check-small" for="type-12">Kebab</small>
                                                     </div>
                                                 </div>
-                                            </div>    
+                                            </div>
                                         </div>
 
                                     </div>
@@ -180,7 +180,7 @@
                                             </span>
                                         @enderror
                                 </div>
-        
+
                                 <div class="form-group row">
                                     <div class="col">
                                         <input id="image_file" type="file" @change="getFileName()" class="pt-1 @error('image') is-invalid @enderror" name="image" value="{{ old('image') }}" hidden>
@@ -196,12 +196,12 @@
                                         @enderror
                                     </div>
                                 </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-12 d-flex justify-content-center mt-4">
-                                    <button type="submit" class="btn btn-success">
-                                        Registrati
-                                    </button>
+                                <div class="row">
+                                    <div class="col-12 d-flex justify-content-center mt-4">
+                                        <button type="submit" class="btn btn-success">
+                                            Registrati
+                                        </button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
