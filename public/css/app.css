@@ -10002,8 +10002,24 @@ h3 {
     border-color: #dee2e6;
   }
 }
+@media screen and (min-width: 1199.98px) {
+  header .logo {
+    height: 55px;
+  }
+  header .logo:hover {
+    border-bottom: 2px solid white;
+    border-radius: 40px;
+    padding: 0px 10px;
+    font-size: 37px;
+    cursor: pointer;
+    transition: 0.5s;
+  }
+  header .logo:hover p {
+    visibility: visible;
+    opacity: 1;
+  }
+}
 header {
-  color: #d3273e;
   box-shadow: 0px 0px 10px 4px rgba(0, 0, 0, 0.37);
   position: relative;
   height: 85px;
@@ -10015,7 +10031,6 @@ header .logo {
   font-weight: bold;
   font-size: 40px;
   transition: 0.5s;
-  height: 55px;
 }
 header .logo p {
   font-size: 14px;
@@ -10025,29 +10040,9 @@ header .logo p {
   opacity: 0;
   transition: visibility 0s, opacity 0.5s linear;
 }
-header .logo:hover {
-  border-bottom: 2px solid white;
-  border-radius: 40px;
-  padding: 0px 10px;
-  font-size: 37px;
-  cursor: pointer;
-  transition: 0.5s;
-}
-header .logo:hover p {
-  visibility: visible;
-  opacity: 1;
-}
 header span {
   font-size: 18px;
   font-weight: bold;
-  transition: 0.5s;
-}
-header span:hover {
-  border-bottom: 2px solid white;
-  border-radius: 40px;
-  padding: 7px 10px;
-  font-size: 25px;
-  cursor: pointer;
   transition: 0.5s;
 }
 
@@ -10717,8 +10712,8 @@ li {
     font-size: 14px;
   }
 
-  header .logo {
-    font-size: 25px;
+  .logo {
+    font-size: 30px !important;
   }
 
   .restaurant_image h1 {
@@ -10753,4 +10748,94 @@ li {
   color: #ff702a;
   font-size: 45px;
   font-weight: bold;
+}
+
+.ih-item a {
+  border: 8px solid #fff;
+}
+
+.ih-item.square.effect3 {
+  overflow: hidden;
+}
+
+.ih-item.square.effect3.colored .info {
+  background: #1a4a72;
+}
+
+.ih-item.square.effect3 .img {
+  transform: translateY(0);
+  transition: all 0.35s ease-in-out;
+}
+
+.ih-item.square.effect3 .info {
+  height: 65px;
+  opacity: 0;
+  transition: all 0.35s ease-in-out;
+  background: #dedede;
+}
+
+.ih-item.square.effect3 .info h3 {
+  text-transform: uppercase;
+  color: #fff;
+  text-align: center;
+  font-size: 17px;
+  padding: 10px 10px 0 4px;
+  margin: 4px 0 0 0;
+}
+
+.ih-item.square.effect3 .info p {
+  font-style: italic;
+  font-size: 12px;
+  position: relative;
+  color: #bbb;
+  padding: 5px;
+  text-align: center;
+}
+
+.ih-item.square.effect3 a:hover .info {
+  visibility: visible;
+  opacity: 1;
+}
+
+.ih-item.square.effect3.bottom_to_top .info {
+  top: auto;
+  transform: translateY(100%);
+}
+
+.ih-item.square.effect3.bottom_to_top a:hover .img {
+  transform: translateY(-50px);
+}
+
+.ih-item.square.effect3.bottom_to_top a:hover .info {
+  transform: translateY(0);
+}
+
+.ih-item.square.effect3.top_to_bottom .info {
+  bottom: auto;
+  transform: translateY(-100%);
+}
+
+.ih-item.square.effect3.top_to_bottom a:hover .img {
+  transform: translateY(50px);
+}
+
+.ih-item.square.effect3.top_to_bottom a:hover .info {
+  transform: translateY(0);
+}
+
+.ih-item.square {
+  position: relative;
+  width: 316px;
+  height: 216px;
+}
+
+.ih-item.square .info {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  text-align: center;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
 }
