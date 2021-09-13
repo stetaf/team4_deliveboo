@@ -10009,13 +10009,46 @@ header {
   height: 85px;
 }
 header .logo {
+  margin-top: 5px;
   margin-bottom: 0 !important;
+  padding: 0;
   font-weight: bold;
   font-size: 40px;
+  transition: 0.5s;
+  height: 55px;
+}
+header .logo p {
+  font-size: 14px;
+  text-align: center;
+  margin: -8px;
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0s, opacity 0.5s linear;
+}
+header .logo:hover {
+  border-bottom: 2px solid white;
+  border-radius: 40px;
+  padding: 0px 10px;
+  font-size: 37px;
+  cursor: pointer;
+  transition: 0.5s;
+}
+header .logo:hover p {
+  visibility: visible;
+  opacity: 1;
 }
 header span {
   font-size: 18px;
   font-weight: bold;
+  transition: 0.5s;
+}
+header span:hover {
+  border-bottom: 2px solid white;
+  border-radius: 40px;
+  padding: 7px 10px;
+  font-size: 25px;
+  cursor: pointer;
+  transition: 0.5s;
 }
 
 main {
@@ -10027,7 +10060,6 @@ main {
   /* /SHOPPING CART */
   /* HOW IT WORKS */
   /* /HOW IT WORKS */
-  /* LOGIN */
 }
 main .jumbotron {
   height: 500px;
@@ -10130,8 +10162,8 @@ main .ih-item.circle.effect1.colored .info {
   background: rgba(26, 74, 114, 0.75);
 }
 main .ih-item.circle.effect1 .info {
-  width: 160px;
-  height: 160px;
+  width: 141px;
+  height: 141px;
   margin: auto;
   background: #333333;
   background: rgba(0, 0, 0, 0.6);
@@ -10165,6 +10197,7 @@ main .ih-item.circle.effect1 span:hover .spinner {
 }
 main .ih-item.circle.effect1 span:hover .info {
   opacity: 1;
+  cursor: pointer;
 }
 main .ih-item {
   position: relative;
@@ -10586,18 +10619,12 @@ main .how .number {
   background: white;
   left: 46%;
 }
-main .login_card, main .register_card {
-  border: 1px solid #ff702a;
-}
-main .login_card .card-header, main .register_card .card-header {
-  background: #ff702a;
-  color: white;
-  font-weight: bold;
-  font-size: 25px;
-}
-main .login_card button, main .register_card button {
-  background-color: #ff702a;
-  border: 0;
+main .form-control:focus {
+  color: #495057;
+  background-color: #fff;
+  border-color: #ff702a;
+  outline: 0;
+  box-shadow: 0 0 0 0.2rem rgba(255, 112, 42, 0.4);
 }
 
 footer i {

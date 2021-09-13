@@ -5,9 +5,13 @@
  */
 
 const { default: Axios } = require('axios');
-
+const { result } = require('lodash');
 require('./bootstrap');
 
+var Vue = require('vue');
+var VueScrollTo = require('vue-scrollto');
+
+Vue.use(VueScrollTo);
 window.Vue = require('vue');
 
 /**
@@ -73,7 +77,7 @@ Vue.component('pagination', require('laravel-vue-pagination'));
             if (this.qty > 0) {
                 if (this.cart[1].length > 0) {
                     let already_there = false;
-                    
+
                     for (let i = 0; i < this.cart[1].length; i++) {
                         if (item.name == this.cart[1][i]['name']) {
                             already_there = true;
@@ -85,18 +89,18 @@ Vue.component('pagination', require('laravel-vue-pagination'));
                     this.addItem(item, this.qty);
                     this.cart[0]['rest_id'] = id;
                 }
-    
+
                 (qty_field) ? qty_field.value = 0 : '';
-    
+
                 (action == 0) ? '' : this.animateCart();
                 localStorage.setItem('cart_products', this.cart[2]);
                 this.calculateSubtotal();
-            } else { 
+            } else {
                 const alert = document.querySelector('.cart_error');
 
-                alert.classList.remove('d-none'); 
-                alert.classList.add('fade-in'); 
-    
+                alert.classList.remove('d-none');
+                alert.classList.add('fade-in');
+
                 setTimeout(function() {
                   alert.classList.remove('fade-in');
                   alert.classList.add('d-none');
@@ -121,7 +125,7 @@ Vue.component('pagination', require('laravel-vue-pagination'));
                     if ((this.cart[1][i]['quantity'] - 1) == 0) {
                         this.cart[1].splice(i, 1);
                     } else {
-                        this.cart[1][i]['quantity'] -= 1;   
+                        this.cart[1][i]['quantity'] -= 1;
                     }
                 }
             }
@@ -165,8 +169,8 @@ Vue.component('pagination', require('laravel-vue-pagination'));
         animateCart() {
             const alert = document.querySelector('.cart_alert');
 
-            alert.classList.remove('d-none'); 
-            alert.classList.add('fade-in'); 
+            alert.classList.remove('d-none');
+            alert.classList.add('fade-in');
 
             setTimeout(function() {
               alert.classList.remove('fade-in');
@@ -175,7 +179,7 @@ Vue.component('pagination', require('laravel-vue-pagination'));
         },
         getFileName() {
             filename = event.target.files;
-            document.querySelector('#image_name').innerHTML = 'File: ' + filename[0]['name']; 
+            document.querySelector('#image_name').innerHTML = 'File: ' + filename[0]['name'];
         }
     },
     mounted: function() {
@@ -190,7 +194,7 @@ Vue.component('pagination', require('laravel-vue-pagination'));
             .catch(errors => {
                 console.error("Something went wrong: " + errors);
             })
-        
+
         let url_path = window.location.pathname;
         if (url_path.includes('restaurant') && !url_path.includes('admin')) {
             const cart = JSON.parse(localStorage.getItem('cart'));
@@ -204,6 +208,6 @@ Vue.component('pagination', require('laravel-vue-pagination'));
                 }
             }
         }
-        
+
     }
 })

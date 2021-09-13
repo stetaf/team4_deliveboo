@@ -4,6 +4,7 @@
             <a href="{{ Route('home') }}">
                 <i class="fas fa-utensils"></i>
                 Deliveboo
+                <p>Vai alla Home</p>
             </a>
         </h2>
         @guest
