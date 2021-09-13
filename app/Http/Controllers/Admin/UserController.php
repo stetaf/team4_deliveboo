@@ -141,12 +141,22 @@ class UserController extends Controller
         return view('admin.overview', compact('orders', 'restaurant'));
     }
 
-    public function graphs(Restaurant $restaurant) {
+    public function graphs(Restaurant $restaurant, Request $request) {
+        $year = date('Y');
+
+        $years = [
+            $year - 2, $year - 1, $year - 0
+        ];
+
+        ($request->year) ? $year = $request->year : '';
+
         /* STATISTICHE VENDITE */
         $order_quantity = Order::select(DB::raw("MONTHNAME(created_at) month"), Order::raw('count(*) as total'), DB::raw('max(created_at) as createdAt'))
+        ->where('restaurant_id', $restaurant->id)
+        ->whereYear('created_at', $year)
         ->orderBy('createdAt', 'asc')
         ->groupBy('month')
-        ->pluck('total', 'month')->all();
+        ->pluck('total', 'month',)->all();
 
         $chart_quantity = [
             'labels' => (array_keys($order_quantity)),
@@ -161,6 +171,8 @@ class UserController extends Controller
 
         /* STATISTICHE INCASSI */
         $order_amount = Order::select(DB::raw("MONTHNAME(created_at) month"), Order::raw('sum(total) as amount'), DB::raw('max(created_at) as createdAt'))
+                    ->where('restaurant_id', $restaurant->id)
+                    ->whereYear('created_at', $year)
                     ->orderBy('createdAt', 'asc')
                     ->groupBy('month')
                     ->pluck('amount', 'month')->all();
@@ -175,6 +187,6 @@ class UserController extends Controller
         }
         /* /STATISTICHE INCASSI */
 
-        return view('admin.graphs', compact('restaurant', 'chart_quantity', 'chart_amount'));
+        return view('admin.graphs', compact('restaurant', 'chart_quantity', 'chart_amount', 'year', 'years'));
     }
 }

@@ -12,6 +12,18 @@
         </a>
     </div>
     
+    <div class="d-flex justify-content-start align-items-center mb-3">
+        <h4 class="m-0">Filtra per anno: </h4>
+        <form action="{{ Route('admin.overview.graphs', $restaurant) }}" method="post" class="ml-2">
+            @csrf
+            <select class="selectpicker border rounded" id="year" name="year" onchange="this.form.submit();">
+                @foreach($years as $y)
+                    <option value="{{ $y }}" @if ($year == $y) selected="selected" @endif>{{ $y }}</option>
+                @endforeach
+            </select>
+        </form>
+    </div>
+    
     <div id="total" class="pb-5">
         <h4>Statistiche vendite</h4>
         <canvas id="totalSales"></canvas>

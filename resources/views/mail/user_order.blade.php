@@ -43,11 +43,13 @@
 
             <p>Di seguito, i dati del cliente:</p>
             <ul>
-                <li>{{ $guest_name }}</li>
-                <li>{{ $guest_email }}</li>
-                <li>{{ $guest_phone }}</li>
-                <li>{{ $guest_address }}</li>
-                <li>Note aggiuntive: {{ $notes }}</li>
+                <li>Nome: {{ $guest_name }}</li>
+                <li>Email: {{ $guest_email }}</li>
+                <li>Telefono: {{ $guest_phone }}</li>
+                <li>Indirizzo: {{ $guest_address }}</li>
+                @if ($notes != '')
+                    <li>Note aggiuntive: {{ $notes }}</li>
+                @endif
             </ul>
 
             <p>Questo è il riepilogo dell'ordine:</p>

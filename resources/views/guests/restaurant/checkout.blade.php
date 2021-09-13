@@ -71,7 +71,7 @@
                         </div>
                         <div class="form-group col-12 mb-0">
                             <label for="customer_phone">Telefono</label>
-                            <input type="number" class="form-control" name="customer_phone" placeholder="Telefono" value="{{ old('customer_phone') }}" pattern="[0-9]+" required>
+                            <input type="text" class="form-control" name="customer_phone" class="customer_phone" placeholder="Telefono" value="{{ old('customer_phone') }}" pattern="[0-9]+" required>
                         </div>
                         <div class="form-group col-12 mb-0">
                             <label for="notes">Note</label>

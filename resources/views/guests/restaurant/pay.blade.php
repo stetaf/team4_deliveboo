@@ -28,7 +28,7 @@
             <input type="hidden" name="restaurant_id" value="{{ $restaurant->id }}">
 
             <input id="nonce" name="payment_method_nonce" type="hidden" />
-            <div class="d-flex justify-content-between">
+            <div class="d-flex justify-content-between" id="pay_nav">
               <a href="{{ Route('guests.restaurant.checkout', $restaurant->id) }}">
                 <span class="btn btn-sm btn-secondary">
                   Torna indietro
