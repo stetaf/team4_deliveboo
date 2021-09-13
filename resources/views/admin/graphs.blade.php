@@ -40,7 +40,7 @@
             align: 'left'
         },
         chart: {
-            type: 'column'
+            type: 'line'
         },
          xAxis: {
             categories: ['Gennaio', 'Febbraio', 'Marzo', 'Aprile', 'Maggio', 'Giugno', 'Luglio', 'Agosto', 'Settembre', 'Ottobre', 'Novembre', 'Dicembre']
@@ -130,7 +130,7 @@
             align: 'left'
         },
         chart: {
-            type: 'column',
+            type: 'line',
         },
          xAxis: {
             categories: cat
