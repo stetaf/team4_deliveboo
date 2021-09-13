@@ -26,9 +26,11 @@
 </head>
 <body>
     <div id="app">
-        @include('layouts.partials.header')
+        @if (Route::currentRouteName() != 'login' && Route::currentRouteName() != 'register')
+            @include('layouts.partials.header')
+        @endif
 
-        <main>
+        <main @if (Route::currentRouteName() == 'login' || Route::currentRouteName() =='register') style="background-color: #ff702a47" @endif>
             @yield('content')
         </main>
 
@@ -66,6 +68,9 @@
                 // Add the nonce to the form and submit
                 document.querySelector('#nonce').value = payload.nonce;
                 form.submit();
+                const pay_nav = document.querySelector('#pay_nav');
+                pay_nav.classList.remove('d-flex');
+                pay_nav.classList.add('d-none');
                 localStorage.clear();
                 });
             });
