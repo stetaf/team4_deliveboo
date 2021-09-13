@@ -10027,6 +10027,7 @@ main {
   /* /SHOPPING CART */
   /* HOW IT WORKS */
   /* /HOW IT WORKS */
+  /* LOGIN */
 }
 main .jumbotron {
   height: 500px;
@@ -10585,6 +10586,19 @@ main .how .number {
   background: white;
   left: 46%;
 }
+main .login_card, main .register_card {
+  border: 1px solid #ff702a;
+}
+main .login_card .card-header, main .register_card .card-header {
+  background: #ff702a;
+  color: white;
+  font-weight: bold;
+  font-size: 25px;
+}
+main .login_card button, main .register_card button {
+  background-color: #ff702a;
+  border: 0;
+}
 
 footer i {
   margin-left: 5px;
@@ -10686,4 +10700,10 @@ li {
   border-bottom: 3px solid #ff702a !important;
   font-weight: bold;
   background-color: unset !important;
+}
+
+.logo_l_r {
+  color: #ff702a;
+  font-size: 45px;
+  font-weight: bold;
 }

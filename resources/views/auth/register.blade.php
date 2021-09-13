@@ -2,9 +2,15 @@
 
 @section('content')
 <div class="container">
-    <div class="row justify-content-center">
+    <div class="row justify-content-center align-items-center" style="height:calc(100vh - 85px)">
         <div class="col">
-            <div class="card">
+            <h2 class="logo_l_r text-center">
+                <a href="{{ Route('home') }}">
+                    <i class="fas fa-utensils"></i>
+                    Deliveboo
+                </a>
+            </h2>
+            <div class="card register_card">
                 @include('layouts.partials.errors')
                 <div class="card-header">Registra un nuovo account</div>
 

@@ -26,9 +26,7 @@
 </head>
 <body>
     <div id="app">
-        @if (Route::currentRouteName() != 'login' && Route::currentRouteName() != 'register')
-            @include('layouts.partials.header')
-        @endif
+        @include('layouts.partials.header')
 
         <main @if (Route::currentRouteName() == 'login' || Route::currentRouteName() =='register') style="background-color: #ff702a47" @endif>
             @yield('content')

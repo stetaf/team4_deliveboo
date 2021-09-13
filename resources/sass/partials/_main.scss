@@ -683,4 +683,22 @@ main {
         }
     }
     /* /HOW IT WORKS */
+
+    /* LOGIN */
+    .login_card, .register_card { 
+        border: 1px solid #ff702a;
+
+        .card-header { 
+            background: #ff702a;
+            color: white;
+            font-weight: bold;
+            font-size: 25px;
+        }
+
+        button { 
+            background-color: #ff702a;
+            border: 0;
+        }
+
+    }
 }
