@@ -10626,6 +10626,26 @@ main .form-control:focus {
   outline: 0;
   box-shadow: 0 0 0 0.2rem rgba(255, 112, 42, 0.4);
 }
+main .login_card,
+main .register_card {
+  border: 1px solid #ff702a;
+}
+main .login_card .card-header,
+main .register_card .card-header {
+  background: #ff702a;
+  color: white;
+  font-size: 22px;
+  font-weight: bold;
+}
+main .login_card button,
+main .register_card button {
+  background: #ff702a;
+  border: 0;
+}
+main .login_card button:hover,
+main .register_card button:hover {
+  background: #bb5420;
+}
 
 footer i {
   margin-left: 5px;

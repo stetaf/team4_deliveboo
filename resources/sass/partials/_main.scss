@@ -685,13 +685,29 @@ main {
     }
     /* /HOW IT WORKS */
 
-
-
     .form-control:focus{
-    color: #495057;
-    background-color: #fff;
-    border-color: #ff702a;
-    outline: 0;
-    box-shadow: 0 0 0 0.2rem rgb(255 112 42 / 40%);
+        color: #495057;
+        background-color: #fff;
+        border-color: #ff702a;
+        outline: 0;
+        box-shadow: 0 0 0 0.2rem rgb(255 112 42 / 40%);
+    }
+
+    .login_card, 
+    .register_card { 
+        border: 1px solid #ff702a;
+
+        .card-header { 
+            background: #ff702a;
+            color: white;
+            font-size: 22px;
+            font-weight: bold;            
+        }
+
+        button { 
+            background: #ff702a; 
+            border: 0;
+        }
+        button:hover { background: #bb5420; }
     }
 }
