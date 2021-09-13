@@ -29,7 +29,7 @@ class RestaurantController extends Controller
         $validated = $request->validate([
             'customer_email'     => 'required|string|email|max:255',
             'customer_name'      => 'required|max:255',
-            'customer_phone'     => 'required|numeric|min:10|max:10',
+            'customer_phone'     => 'required|regex:[[0-9]{10}]|size:10',
             'customer_address'   => 'required|max:255',
             'notes'              => 'nullable',
             'total'              => 'required|numeric|between:0,9999.99'
