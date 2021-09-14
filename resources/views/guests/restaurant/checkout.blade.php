@@ -3,7 +3,7 @@
 @section('content')
     <div class="container">
     @include ('layouts.partials.message')
-  @include ('layouts.partials.errors')
+    @include ('layouts.partials.errors')
         <div class="row">
         <div class="col-12 col-lg-6 py-5">
                 <h2>Il tuo ordine</h2>
@@ -79,10 +79,14 @@
                         </div>
                         <input type="hidden" name="total" :value="cart_total">
                         <div class="form-group col-12 mt-3 mb-0">
-                            <a href="{{ url()->previous() }}">
-                                <span class="btn btn-secondary">Torna indietro</span>
+                            <a href="{{ Route('guests.restaurant.show', $restaurant) }}" class="btn btn-secondary text-white">
+                                <i class="fas fa-arrow-left mr-1"></i>
+                                <span>Torna indietro</span>
                             </a>
-                            <button type="submit" class="btn btn-primary">Prosegui col pagamento</button>
+                            <button type="submit" class="btn btn-success">
+                                <i class="fas fa-shopping-cart mr-1"></i>
+                                Prosegui col pagamento
+                            </button>
                         </div>
                     </div>
                 </form>

@@ -1,12 +1,12 @@
 @extends('layouts.admin')
 
 @section('content')
-<div class="d-flex justify-content-between align-items-center">
+<div class="overview d-flex justify-content-between align-items-center">
     <h2 class="py-5">Riepilogo ordini: {{ $restaurant->name }}</h2>
 
-    <a href="{{ Route('admin.restaurants.index') }}">
-        <span class="btn btn-sm btn-secondary">
-            <i class="fas fa-arrow-left mr-1"></i>
+    <a href="{{ Route('admin.restaurants.index') }}" class="btn btn-sm btn-secondary text-white">
+        <i class="fas fa-arrow-left mr-1"></i>
+        <span>
             Torna alla dashboard
         </span>
     </a>
@@ -21,7 +21,7 @@
                 <th scope="col">Email</th>
                 <th scope="col">Telefono</th>
                 <th scope="col">Indirizzo</th>
-                <th scope="col">Totale</th>
+                <th scope="col" style="min-width:100px">Totale</th>
                 <th scope="col">Data</th>
             </tr>
         </thead>

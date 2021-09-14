@@ -31,10 +31,14 @@
             <div class="d-flex justify-content-between" id="pay_nav">
               <a href="{{ Route('guests.restaurant.checkout', $restaurant->id) }}">
                 <span class="btn btn-sm btn-secondary">
+                  <i class="fas fa-arrow-left mr-1"></i>
                   Torna indietro
                 </span>
               </a>
-              <button class="btn btn-sm btn-success" type="submit"><span>Effettua il pagamento</span></button>
+              <button class="btn btn-sm btn-success" type="submit">
+                <i class="fas fa-credit-card mr-1"></i>
+                <span>Effettua il pagamento</span>
+              </button>
             </div>
         </form>
       </div>

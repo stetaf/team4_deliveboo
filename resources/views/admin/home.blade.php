@@ -35,26 +35,26 @@
                             <div class="actions d-flex flex-column justify-content-center align-items-end w-50">
     
                                 <a href="{{ Route('admin.restaurants.show', $restaurant->id) }}" class="btn btn-sm btn-success w-50 text-white">
-                                    <span>
-                                        <i class="fas fa-cog mr-1" style="vertical-align:middle"></i>
+                                    <i class="fas fa-cog mr-1"   style="vertical-align:middle"></i>
+                                    <span class="d-none d-md-inline">
                                         Gestione
                                     </span>
                                 </a>
                                 <a href="{{ Route('admin.overview', $restaurant->id) }}" class="btn btn-sm btn-primary w-50 text-white mt-1">
-                                    <span>
-                                        <i class="fas fa-paste" style="vertical-align:middle"></i> 
+                                    <i class="fas fa-paste mr-1" style="vertical-align:middle"></i> 
+                                    <span class="d-none d-md-inline">
                                         Riepilogo
                                     </span>
                                 </a>
                                 <a href="{{ Route('admin.overview.graphs', $restaurant->id) }}" class="btn btn-sm btn-info w-50 text-white my-1">
-                                    <span>
-                                        <i class="fas fa-chart-line" style="vertical-align:middle"></i> 
+                                    <i class="fas fa-chart-line mr-1" style="vertical-align:middle"></i> 
+                                    <span class="d-none d-md-inline">
                                         Statistiche
                                     </span>
                                 </a>
                                 <a href="#" data-toggle="modal" data-target="#del{{ $restaurant->id }}" class="btn btn-sm btn-danger w-50 text-white">
-                                    <span>
-                                        <i class="fas fa-trash-alt mr-1" style="vertical-align:middle"></i>
+                                    <i class="fas fa-trash-alt mr-1" style="vertical-align:middle"></i>
+                                    <span class="d-none d-md-inline">
                                         Elimina
                                     </span>
                                 </a>
