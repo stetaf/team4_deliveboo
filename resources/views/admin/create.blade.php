@@ -32,12 +32,16 @@
             </div>
         </div>
 
-        <button type="submit" class="btn btn-success mb-2">Crea</button>
-        <a href="{{ Route('admin.restaurants.index') }}">
-            <span class="btn border-info text-info mb-2">
+        <a href="{{ Route('admin.restaurants.index') }}" class="btn border-info text-info">
+            <i class="fas fa-arrow-left mr-1"></i>
+            <span>
                 Indietro
             </span>
         </a>
+        <button type="submit" class="btn btn-success">
+            <i class="fas fa-store-alt mr-1"></i>
+            Crea
+        </button>
     </form>    
 </div>
 @endsection
