@@ -164,6 +164,7 @@ class UserController extends Controller
     public function graphs(Restaurant $restaurant, Request $request) {
         if ($request->year == 'summary' || !$request->year) {
             $years = Order::select(DB::raw("DISTINCT YEAR(`created_at`) AS 'Year'"))
+                        ->orderByDesc('Year')
                         ->get();
 
             $year = 's';
@@ -241,7 +242,8 @@ class UserController extends Controller
             $year = $request->year;
 
             $years = Order::select(DB::raw("DISTINCT YEAR(`created_at`) AS 'Year'"))
-                    ->get();
+                        ->orderByDesc('Year')
+                        ->get();
 
             $order_quantity = Order::select(DB::raw("MONTH(created_at) month"), Order::raw('count(*) as total'), DB::raw('max(created_at) as createdAt'))
                             ->where('restaurant_id', $restaurant->id)
