@@ -12,6 +12,7 @@
     </a>
 </div>
 
+@if (sizeof($orders) > 0)
 <div class="table-responsive table-striped table-inverse">
     <table class="table">
         <thead>
@@ -40,6 +41,12 @@
         </tbody>
     </table>
 </div>
+@else
+<div class="alert alert-danger" role="alert">
+    <i class="fas fa-exclamation mr-1"></i>
+    Non hai ancora nessun ordine
+</div>
+@endif
 
 <div class="w-100 d-flex justify-content-center align-items-center">
     {{ $orders->links() }}
