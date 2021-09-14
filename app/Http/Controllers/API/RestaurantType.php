@@ -14,8 +14,6 @@ class RestaurantType extends Controller
     }
 
     public function type_filter($id) {
-        //$collection = RestaurantResource::collection(Restaurant::with('types')->paginate());
-
         $restaurants = Restaurant::whereHas('types', function ($q) use ($id) {
             $q->where('id', $id);
         })->paginate(4);
