@@ -13,6 +13,7 @@
             </span>
         </a>
     </div>   
+    @if (sizeof($dishes) > 0)
     <table class="table table-striped table-inverse table-responsive">
         <thead class="thead-inverse">
             <tr>
@@ -92,6 +93,12 @@
             @endforeach
         </tbody>
     </table>
+    @else
+    <div class="alert alert-danger" role="alert">
+        <i class="fas fa-exclamation mr-1"></i>
+        Nessun piatto presente nel menù.
+    </div>
+    @endif
     <a href="{{ Route('admin.restaurants.index') }}">
         <span class="btn btn-sm btn-secondary">
             <i class="fas fa-arrow-left mr-1"></i>
