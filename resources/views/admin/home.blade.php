@@ -54,6 +54,12 @@
                                         Statistiche
                                     </span>
                                 </a>
+                                <a href="{{ Route('admin.restaurants.edit', $restaurant->id) }}" class="btn btn-sm w-50 text-white mb-1" style="background-color: #607d8b;border-color: #607d8b;">
+                                    <i class="fas fa-hammer mr-1" style="vertical-align:middle"></i> 
+                                    <span class="d-none d-md-inline">
+                                        Modifica
+                                    </span>
+                                </a>
                                 <a href="#" data-toggle="modal" data-target="#del{{ $restaurant->id }}" class="btn btn-sm btn-danger w-50 text-white">
                                     <i class="fas fa-trash-alt mr-1" style="vertical-align:middle"></i>
                                     <span class="d-none d-md-inline">

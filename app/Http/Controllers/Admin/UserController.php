@@ -91,30 +91,49 @@ class UserController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  Restaurant  $restaurant
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Restaurant $restaurant)
     {
-        /// TO BE CODED AS AN ADDITIONAL FUNCTIONALITY
-
-        /*
         if ($restaurant->user_id !== Auth::user()->id) {
             abort(403, 'Access denied');
         }
-        */
+        $types = Type::all();
+
+        return view('admin.edit', compact('restaurant', 'types'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  Restaurant  $restaurant
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Restaurant $restaurant)
     {
-        /// TO BE CODED AS AN ADDITIONAL FUNCTIONALITY
+        $validated = $request->validate([
+            'name'    => 'required|max:255',
+            'address' => 'required|max:255',
+            'piva'    => 'required|max:11|min:11',
+            'image'   => 'nullable|image|max:150',
+            'types'   => 'required'
+        ]);
+
+
+        if ($request->hasFile('image')) {
+            Storage::delete($restaurant->image);
+            $image = Storage::disk('public')->put('restaurant_img', $request->image);
+            $validated['image'] = $image;
+            
+            $restaurant->image = $validated['image'];
+        }   
+
+        $restaurant->update($validated);        
+        $restaurant->types()->sync($validated['types']);
+
+        return redirect()->route('admin.restaurants.index')->with('message', "Ristorante $restaurant->name modificato!");
     }
 
     /**
