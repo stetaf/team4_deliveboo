@@ -215,55 +215,61 @@ class UserController extends Controller
             $order_quantity->flatten()->all();        
             $orders = json_decode($order_quantity);
 
-            $keys = [];
-
-            for ($l = 0; $l < sizeof($orders); $l++) {
-                array_push($keys, $orders[$l]->year . ' ' . $orders[$l]->month);
-            }
-            
-            $counter = 0;
-            for ($i = strtotime($keys[0]); $i <= strtotime(end($keys)); $i += 86400*31){
-                $search = array_search(date("Y F", $i), $keys);
-                if($search !== false){
-                    if ($counter < sizeof($orders)) {
-                        $new[$keys[$search]] = $orders[$counter]->total;
-                        $counter += 1;
-                    }
-                }else{
-                    $new[date("Y F", $i)] = 0;
+            if (sizeof($orders) > 0) {
+                $keys = [];
+    
+                for ($l = 0; $l < sizeof($orders); $l++) {
+                    array_push($keys, $orders[$l]->year . ' ' . $orders[$l]->month);
                 }
-            }
-
-            json_encode($new); // 1
-
-            $order_amount = Order::select(DB::raw("MONTH(created_at) month"), DB::raw("YEAR(created_at) year"), Order::raw('sum(total) as amount'), DB::raw('max(created_at) as createdAt'))
-                            ->where('restaurant_id', $restaurant->id)
-                            ->whereDate('created_at', '>=', $start_date)
-                            ->whereDate('created_at', '<=', $final_date)
-                            ->orderBy('createdAt', 'asc')
-                            ->groupBy('month', 'year')
-                            ->get();
-
-            $order_amount->flatten()->all();        
-            $orders = json_decode($order_amount);
                 
-            $counter = 0;
-
-            for ($h = strtotime($keys[0]); $h <= strtotime(end($keys)); $h += 86400*31){
-                $search = array_search(date("Y F", $h), $keys);
-                if($search !== false){
-                    if ($counter < sizeof($orders)) {
-                        $new2[$keys[$search]] = floatval($orders[$counter]->amount);
-                        $counter += 1;
+                $counter = 0;
+                for ($i = strtotime($keys[0]); $i <= strtotime(end($keys)); $i += 86400*31){
+                    $search = array_search(date("Y F", $i), $keys);
+                    if($search !== false){
+                        if ($counter < sizeof($orders)) {
+                            $new[$keys[$search]] = $orders[$counter]->total;
+                            $counter += 1;
+                        }
+                    }else{
+                        $new[date("Y F", $i)] = 0;
                     }
-                }else{
-                    $new2[date("Y F", $h)] = 0;
                 }
-            }
-            json_encode($new2); // 2
+    
+                json_encode($new); // 1
+    
+                $order_amount = Order::select(DB::raw("MONTH(created_at) month"), DB::raw("YEAR(created_at) year"), Order::raw('sum(total) as amount'), DB::raw('max(created_at) as createdAt'))
+                                ->where('restaurant_id', $restaurant->id)
+                                ->whereDate('created_at', '>=', $start_date)
+                                ->whereDate('created_at', '<=', $final_date)
+                                ->orderBy('createdAt', 'asc')
+                                ->groupBy('month', 'year')
+                                ->get();
+    
+                $order_amount->flatten()->all();        
+                $orders = json_decode($order_amount);
+                    
+                $counter = 0;
+    
+                for ($h = strtotime($keys[0]); $h <= strtotime(end($keys)); $h += 86400*31){
+                    $search = array_search(date("Y F", $h), $keys);
+                    if($search !== false){
+                        if ($counter < sizeof($orders)) {
+                            $new2[$keys[$search]] = floatval($orders[$counter]->amount);
+                            $counter += 1;
+                        }
+                    }else{
+                        $new2[date("Y F", $h)] = 0;
+                    }
+                }
+                json_encode($new2); // 2
+    
+                return view('admin.graphs', compact('restaurant', 'new', 'new2', 'years', 'year'));
+            } else {
+                $new = [];
+                $new2 = [];
 
-            return view('admin.graphs', compact('restaurant', 'new', 'new2', 'years', 'year'));
-        
+                return view('admin.graphs', compact('restaurant', 'new', 'new2', 'years', 'year'));
+            }
         } else {     
             $year = $request->year;
 
