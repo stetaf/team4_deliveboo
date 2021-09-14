@@ -58,20 +58,6 @@ li { list-style: none !important; }
     object-fit: cover;
 }
 
-@media screen and (max-width:575.98px) {
-    .nav-link {
-        padding-left: 0;
-    }
-
-    .nav-item { font-size: 14px; }
-    .logo { font-size: 30px !important; }
-    .restaurant_image h1 { font-size: 35px; }
-}
-
-@media screen and (min-width:575.98px) {
-    main { min-height: 600px; }
-}
-
 .menu_link { 
     color: black;
 
@@ -101,3 +87,28 @@ li { list-style: none !important; }
 }
 
 .highcharts-credits { display: none !important; }
+
+@media screen and (max-width:575.98px) {
+    .nav-link {
+        padding-left: 0;
+    }
+
+    .nav-item { font-size: 14px; }
+    .logo { font-size: 30px !important; }
+    .restaurant_image h1 { font-size: 35px; }
+}
+
+@media screen and (min-width:575.98px) {
+    main { min-height: 600px; }
+}
+
+@media screen and (max-width:991.98px) {
+    .overview { 
+        flex-wrap: wrap;
+        h2 { 
+            padding: 0 !important;
+            padding-top: 15px!important; 
+        }
+        a { margin-bottom: 15px; }
+    }
+}
