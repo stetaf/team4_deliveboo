@@ -1,8 +1,8 @@
 <header>
     <div class="container d-flex justify-content-between align-items-center h-100">
-        <h2 class="logo">
+        <h2 class="logo m-0">
             <a href="{{ Route('home') }}">
-                <i class="fas fa-utensils"></i>
+                <i class="fas fa-utensils d-none d-sm-inline"></i>
                 Deliveboo
                 <p>Vai alla Home</p>
             </a>

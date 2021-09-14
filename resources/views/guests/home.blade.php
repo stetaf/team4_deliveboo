@@ -11,7 +11,7 @@
             <div class="text-center">
                 <p class="display-4 text-white">Cosa vuoi mangiare?</p>
             </div>
-            <div class="row row-cols-xs-1 row-cols-sm-2 row-cols-md-4 row-cols-lg-6">
+            <div class="row row-cols-2 row-cols-sm-3 row-cols-md-4 row-cols-lg-6">
                 <div href="#" v-for="type in types" @click="filterBy(type.id)" class="my-3 col d-flex align-items-center flex-column ih-item circle colored effect1" v-scroll-to="{el:'#results', duration:1500}">
                     <span class="m-auto" href="#">
                         <div class="spinner" ></div>

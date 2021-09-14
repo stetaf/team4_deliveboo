@@ -1,14 +1,16 @@
 @extends('layouts.admin')
 
 @section('content')
-    <div class="row row-cols-xs-1 row-cols-sm-1 row-cols-md-1 row-cols-lg-1">
+    <div class="row row-cols-1 row-cols-sm-1 row-cols-md-1 row-cols-lg-1">
         <div class="col-12">
             <div class="head d-flex justify-content-between align-items-center mt-3 w-100">
                 <h2>I tuoi ristoranti</h2>
                 <div class="btn btn-sm btn-success">
                     <a href="{{ Route('admin.restaurants.create') }}">
-                        <i class="fas fa-plus mr-1" style="vertical-align:middle"></i>
-                        Aggiungi ristorante
+                        <i class="fas fa-plus" style="vertical-align:middle"></i>
+                        <span class="d-none d-md-inline ml-1">
+                            Aggiungi ristorante
+                        </span>
                     </a>
                 </div>
             </div>

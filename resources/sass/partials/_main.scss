@@ -244,9 +244,14 @@ main {
         }
 
         .ih-item.circle.effect1 .info {
-          width: 144px;
-          height: 144px;
-          left: 13px;
+          width: 125.5px;
+          height: 125px;
+          left: 15px;
+        }
+
+        .ih-item.circle.effect1 .info h3 {
+            margin: 10px 2px;
+            padding: 46px 0 0 0;
         }
       }
 
@@ -256,9 +261,14 @@ main {
         }
 
         .ih-item.circle.effect1 .info {
-          width: 144px;
-          height: 144px;
+          width: 125px;
+          height: 125px;
           left: 0px;
+        }
+
+        .ih-item.circle.effect1 .info h3 {
+            margin: 10px 2px;
+            padding: 46px 0 0 0;
         }
       }
 
@@ -268,9 +278,40 @@ main {
         }
 
         .ih-item.circle.effect1 .info {
-          width: 144px;
-          height: 144px;
-          left: 0px;
+            width: 125px;
+            height: 125px;
+            left: -1px;
+            top: 1px;
+        }
+
+        .ih-item.circle.effect1 .info h3 {
+            margin: 10px 3px;
+            padding: 46px 0 0 0;
+        }
+      }
+
+      @media screen and (max-width:575.98px) {
+        .ih-item.circle.effect1 .spinner {
+            width: 111px;
+            height: 111px;
+        }
+
+        .ih-item.circle.effect1 .img {
+            width: 96px;
+            height: 96px;
+        }
+
+        .ih-item.circle.effect1 .info {
+            width: 96px;
+            height: 96px;
+            left: 0px;
+            top: 1px;
+        }
+
+        .ih-item.circle.effect1 .info h3 {
+            margin: 10px 5px;
+            padding: 31px 0 0 0;
+            font-size: 11px;
         }
       }
 
