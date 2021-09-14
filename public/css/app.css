@@ -10736,6 +10736,7 @@ li {
   height: 100%;
   -o-object-fit: cover;
      object-fit: cover;
+  min-height: 275px;
 }
 
 .menu_link {
