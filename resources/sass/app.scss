@@ -88,6 +88,21 @@ li { list-style: none !important; }
 
 .highcharts-credits { display: none !important; }
 
+@media screen and (max-width:767.98px) {
+    main .jumbotron { 
+        background-position: 87%;
+        div {
+            justify-content: start !important;
+        }
+        h1 { 
+            font-size: 4rem;
+            text-align: unset;
+            width: unset;
+            max-width: 305px;
+        }
+    }
+}
+
 @media screen and (max-width:575.98px) {
     .nav-link {
         padding-left: 0;
@@ -96,6 +111,19 @@ li { list-style: none !important; }
     .nav-item { font-size: 14px; }
     .logo { font-size: 30px !important; }
     .restaurant_image h1 { font-size: 35px; }
+
+    main .jumbotron { 
+        background-position: 87%;
+        div {
+            justify-content: start !important;
+        }
+        h1 { 
+            font-size: 3.5rem;
+            text-align: unset;
+            width: unset;
+            max-width: 250px;
+        }
+    }
 }
 
 @media screen and (min-width:575.98px) {

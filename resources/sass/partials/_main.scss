@@ -10,9 +10,12 @@ main {
     }
 
     .jumbotron h1 {
-        font-size: 4.5rem;
+        font-size: 5rem;
         text-align: center;
         width: 700px;
+        text-shadow: 3px 4px 1px #212529;
+        font-weight: bold;
+        color: #ff702a;
     }
 
     .categories {

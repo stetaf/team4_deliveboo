@@ -10066,9 +10066,12 @@ main .jumbotron {
   margin-bottom: 0 !important;
 }
 main .jumbotron h1 {
-  font-size: 4.5rem;
+  font-size: 5rem;
   text-align: center;
   width: 700px;
+  text-shadow: 3px 4px 1px #212529;
+  font-weight: bold;
+  color: #ff702a;
 }
 main .categories {
   padding: 25px 0;
@@ -10764,6 +10767,20 @@ li {
   display: none !important;
 }
 
+@media screen and (max-width: 767.98px) {
+  main .jumbotron {
+    background-position: 87%;
+  }
+  main .jumbotron div {
+    justify-content: start !important;
+  }
+  main .jumbotron h1 {
+    font-size: 4rem;
+    text-align: unset;
+    width: unset;
+    max-width: 305px;
+  }
+}
 @media screen and (max-width: 575.98px) {
   .nav-link {
     padding-left: 0;
@@ -10779,6 +10796,19 @@ li {
 
   .restaurant_image h1 {
     font-size: 35px;
+  }
+
+  main .jumbotron {
+    background-position: 87%;
+  }
+  main .jumbotron div {
+    justify-content: start !important;
+  }
+  main .jumbotron h1 {
+    font-size: 3.5rem;
+    text-align: unset;
+    width: unset;
+    max-width: 250px;
   }
 }
 @media screen and (min-width: 575.98px) {
