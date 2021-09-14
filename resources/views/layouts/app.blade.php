@@ -7,7 +7,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>{{ config('app.name', 'Deliveboo') }}</title>
 
     <!-- Scripts -->
     @if (Route::currentRouteName() != 'guests.restaurant.pay')
@@ -17,7 +17,7 @@
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
-
+    <link rel="shortcut icon" href="{{asset('img/utensils-solid.svg')}}" type="svg/x-icon">
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
