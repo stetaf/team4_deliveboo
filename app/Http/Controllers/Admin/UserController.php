@@ -142,58 +142,6 @@ class UserController extends Controller
         return view('admin.overview', compact('orders', 'restaurant'));
     }
 
-    public function graphs2(Restaurant $restaurant, Request $request) {
-        $year = date('Y');
-
-        $years = [
-            $year - 2, $year - 1, $year - 0
-        ];
-
-        ($request->year) ? $year = $request->year : '';
-
-        /* STATISTICHE VENDITE */
-        $order_quantity = Order::select(DB::raw("MONTHNAME(created_at) month"), DB::raw("YEAR(created_at) year"), Order::raw('count(*) as total'), DB::raw('max(created_at) as createdAt'))
-        ->where('restaurant_id', $restaurant->id)
-        ->whereYear('created_at', $year)
-        ->whereDate('created_at', '<=', now()->subMonths(12)->setTime(0, 0, 0)->toDateTimeString())
-        ->orderBy('createdAt', 'asc')
-        ->groupBy('month', 'year')
-        ->get();
-
-        $order_quantity->flatten()->all();
-
-        $chart_quantity = [
-            'labels' => '',
-            'dataset' => ''
-        ];
-
-        // for( $g = 0; $g < sizeof($chart_quantity['labels']); $g++) {
-        //     $chart_quantity['labels'][$g] = strval($chart_quantity['labels'][$g]); 
-        // }
-        /* /STATISTICHE VENDITE */
-
-
-        /* STATISTICHE INCASSI */
-        $order_amount = Order::select(DB::raw("MONTHNAME(created_at) month"), Order::raw('sum(total) as amount'), DB::raw('max(created_at) as createdAt'))
-                    ->where('restaurant_id', $restaurant->id)
-                    ->whereYear('created_at', $year)
-                    ->orderBy('createdAt', 'asc')
-                    ->groupBy('month')
-                    ->pluck('amount', 'month')->all();
-
-        $chart_amount = [
-            'labels' => (array_keys($order_amount)),
-            'dataset' => (array_values($order_amount))
-        ];
-
-        for( $h = 0; $h < sizeof($chart_amount['labels']); $h++) {
-            $chart_amount['labels'][$h] = strval($chart_amount['labels'][$h]); 
-        }
-        /* /STATISTICHE INCASSI */
-
-        return view('admin.graphs', compact('restaurant', 'chart_quantity', 'chart_amount', 'year', 'years', 'order_quantity'));
-    }
-
     public function graphs(Restaurant $restaurant, Request $request) {
         if ($request->year == 'summary' || !$request->year) {
             $years = Order::select(DB::raw("DISTINCT YEAR(`created_at`) AS 'Year'"))
