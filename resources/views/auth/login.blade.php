@@ -2,10 +2,12 @@
 
 @section('content')
 <div class="container">
-    <div class="row justify-content-center align-items-center" style="height:calc(100vh - 85px)">
-        <div class="col-md-8">
+    <div class="row justify-content-center align-items-center">
+        <div class="col-md-8 mt-5 py-sm-4">
             <div class="card login_card">
-                <div class="card-header">{{ __('Login') }}</div>
+                <div class="card-header">
+                    Inserisci i tuoi dati
+                </div>
 
                 <div class="card-body">
                     <form method="POST" action="{{ route('login') }}">
@@ -54,7 +56,8 @@
                         <div class="form-group row mb-0">
                             <div class="col-md-8 offset-md-4">
                                 <button type="submit" class="btn btn-primary">
-                                    {{ __('Login') }}
+                                    <i class="fas fa-lock mr-1"></i>
+                                    Accedi
                                 </button>
 
                                 @if (Route::has('password.request'))

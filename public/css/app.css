@@ -10648,8 +10648,6 @@ footer i {
   vertical-align: middle;
 }
 footer li {
-  display: flex;
-  justify-content: flex-end;
   padding-top: 5px;
 }
 

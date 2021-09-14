@@ -28,7 +28,7 @@
     <div id="app">
         @include('layouts.partials.header')
 
-        <main @if (Route::currentRouteName() == 'login' || Route::currentRouteName() =='register') style="background-color: #ff702a47" @endif>
+        <main>
             @yield('content')
         </main>
 

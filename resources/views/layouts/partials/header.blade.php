@@ -10,11 +10,11 @@
         @guest
             <div class="actions d-flex " >
                 <span class="nav-item mr-4">
-                    <a class="nav-link p-0" href="{{ route('login') }}">{{ __('Login') }}</a>
+                    <a class="nav-link p-0" href="{{ route('login') }}">Accedi</a>
                 </span>
                 @if (Route::has('register'))
                     <span class="nav-item">
-                        <a class="nav-link p-0" href="{{ route('register') }}">{{ __('Register') }}</a>
+                        <a class="nav-link p-0" href="{{ route('register') }}">Registrati</a>
                     </span>
                 @endif
             </div>

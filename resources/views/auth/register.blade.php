@@ -2,8 +2,8 @@
 
 @section('content')
 <div class="container">
-    <div class="row justify-content-center align-items-center" style="height:calc(100vh - 85px)">
-        <div class="col">
+    <div class="row justify-content-center align-items-center">
+        <div class="col my-5 py-sm-4">
             <div class="card register_card">
                 @include('layouts.partials.errors')
                 <div class="card-header">Registra un nuovo account</div>
@@ -199,6 +199,7 @@
                                 <div class="row">
                                     <div class="col-12 d-flex justify-content-center mt-4">
                                         <button type="submit" class="btn btn-success">
+                                            <i class="fas fa-edit mr-1"></i>
                                             Registrati
                                         </button>
                                     </div>
