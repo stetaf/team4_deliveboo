@@ -50970,6 +50970,14 @@ var app = new Vue({
       var input = document.querySelector('#qty' + id);
       input.value - 1 <= 0 ? input.value = 0 : input.value -= 1;
     },
+    emptyCart: function emptyCart() {
+      this.cart = [{
+        'rest_id': this.cart[0]['rest_id']
+      }, [], 0];
+      localStorage.setItem('cart', this.cart);
+      localStorage.setItem('cart_products', this.cart[2]);
+      this.calculateSubtotal();
+    },
     animateCart: function animateCart() {
       var alert = document.querySelector('.cart_alert');
       alert.classList.remove('d-none');
