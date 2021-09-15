@@ -83,10 +83,14 @@
                                 <i class="fas fa-arrow-left mr-1"></i>
                                 <span>Torna indietro</span>
                             </a>
-                            <button type="submit" class="btn btn-success">
+                            <button type="submit" class="btn btn-success" v-if="cart[2] > 0">
                                 <i class="fas fa-shopping-cart mr-1"></i>
                                 Prosegui col pagamento
                             </button>
+                            <span class="btn btn-success text-white" style="opacity:0.5" v-else>
+                                <i class="far fa-credit-card mr-1 align-middle"></i>
+                                Prosegui col pagamento
+                            </span>
                         </div>
                     </div>
                 </form>
