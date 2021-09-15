@@ -123,7 +123,9 @@ class UserController extends Controller
 
 
         if ($request->hasFile('image')) {
-            Storage::delete($restaurant->image);
+            if ($restaurant->image != 'restaurant_img/placeholder.jpg') {
+                Storage::delete($restaurant->image);
+            }
             $image = Storage::disk('public')->put('restaurant_img', $request->image);
             $validated['image'] = $image;
             

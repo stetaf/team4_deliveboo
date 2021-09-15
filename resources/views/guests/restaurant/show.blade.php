@@ -18,77 +18,86 @@
         </a>
     </div>
     <div class="row">
-        @foreach ($dishes as $dish)
-        <div class="col-lg-3 col-md-4 col-sm-6">
-            <div class="card dish_card p-2 border">
-                <div class="cp_img position-relative">
-                    <img src="{{ asset('storage/' . $dish->image) }}" alt="Product" class="img-fluid w-100">
-                    <a href="#" class="btn btn-secondary btn-sm waves-effect text-white product_info" data-toggle="modal" data-target="{{ '#modalPush' . $dish->id }}">
-                        <i class="fas fa-info"></i>
-                    </a>
-                </div>
-                <div class="product_details mt-2 d-flex flex-column align-items-center">
-                    <h5 class="text-center">{{ $dish->name }}</h5>
-                    <span>&euro; {{ $dish->price }}</span>
-                </div>
-                <div class="product_actions d-flex justify-content-between">
-                    <div class="qty d-flex align-items-end">
-                        <div class="minus" @click="lowerQty({{ $dish->id }})">
-                            <i class="fas fa-minus-circle"></i>
-                        </div>
-                        <div class="num mx-1">
-                            <input class="text-center" type="number" name="qty" id="qty{{ $dish->id }}" pattern="[0-9]+" min="0" max="99" value="0"  disabled>
-                        </div>
-                        <div class="plus" @click="addQty({{ $dish->id }})">
-                            <i class="fas fa-plus-circle"></i>
-                        </div>
+        @if (sizeof($dishes) > 0)
+            @foreach ($dishes as $dish)
+            <div class="col-lg-3 col-md-4 col-sm-6">
+                <div class="card dish_card p-2 border">
+                    <div class="cp_img position-relative">
+                        <img src="{{ asset('storage/' . $dish->image) }}" alt="Product" class="img-fluid w-100">
+                        <a href="#" class="btn btn-secondary btn-sm waves-effect text-white product_info" data-toggle="modal" data-target="{{ '#modalPush' . $dish->id }}">
+                            <i class="fas fa-info"></i>
+                        </a>
                     </div>
-                    <div class="add">
-                        <span class="btn btn-success btn-sm waves-effect text-white" @click="addToCart({{ $restaurant->id }}, {{ $dish }}, 1)">
-                            <i class="fas fa-shopping-cart px-2"></i>
-                        </span>
+                    <div class="product_details mt-2 d-flex flex-column align-items-center">
+                        <h5 class="text-center">{{ $dish->name }}</h5>
+                        <span>&euro; {{ $dish->price }}</span>
+                    </div>
+                    <div class="product_actions d-flex justify-content-between">
+                        <div class="qty d-flex align-items-end">
+                            <div class="minus" @click="lowerQty({{ $dish->id }})">
+                                <i class="fas fa-minus-circle"></i>
+                            </div>
+                            <div class="num mx-1">
+                                <input class="text-center" type="number" name="qty" id="qty{{ $dish->id }}" pattern="[0-9]+" min="0" max="99" value="0"  disabled>
+                            </div>
+                            <div class="plus" @click="addQty({{ $dish->id }})">
+                                <i class="fas fa-plus-circle"></i>
+                            </div>
+                        </div>
+                        <div class="add">
+                            <span class="btn btn-success btn-sm waves-effect text-white" @click="addToCart({{ $restaurant->id }}, {{ $dish }}, 1)">
+                                <i class="fas fa-shopping-cart px-2"></i>
+                            </span>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <!-- Product modal -->
-        <div class="modal fade" id="{{ 'modalPush' . $dish->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-            <div class="modal-dialog modal-dialog modal-dialog-centered modal-notify modal-info" role="document">
-                <div class="modal-content text-center">
-                    <div class="modal-header d-flex justify-content-between">
-                        <h3 class="heading">{{ $dish->name }}</h3>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="container-fluid">
-                            <div class="row">
-                                <div class="col-12 d-flex">
-                                    <div class="d-flex flex-wrap">
-                                        <img src="{{ asset('storage/' . $dish->image) }}" class="w-100 mb-2" alt="{{ $dish->name }} image">
-                                        <div class="text-left">
-                                            <h4 class="font-weight-bold text-left">Ingredienti:</h4>
-                                            <p>{{ $dish->ingredients }}</p>
+            <!-- Product modal -->
+            <div class="modal fade" id="{{ 'modalPush' . $dish->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+                <div class="modal-dialog modal-dialog modal-dialog-centered modal-notify modal-info" role="document">
+                    <div class="modal-content text-center">
+                        <div class="modal-header d-flex justify-content-between">
+                            <h3 class="heading">{{ $dish->name }}</h3>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="container-fluid">
+                                <div class="row">
+                                    <div class="col-12 d-flex">
+                                        <div class="d-flex flex-wrap">
+                                            <img src="{{ asset('storage/' . $dish->image) }}" class="w-100 mb-2" alt="{{ $dish->name }} image">
+                                            <div class="text-left">
+                                                <h4 class="font-weight-bold text-left">Ingredienti:</h4>
+                                                <p>{{ $dish->ingredients }}</p>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="col-12 text-left">
-                                    <h4 class="font-weight-bold">Descrizione:</h4>
-                                    <p>{{ $dish->description}}</p>
+                                    <div class="col-12 text-left">
+                                        <h4 class="font-weight-bold">Descrizione:</h4>
+                                        <p>{{ $dish->description}}</p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="modal-footer d-flex justify-content-start">
-                        <span class="lead">&euro; {{ $dish->price }}</span>
+                        <div class="modal-footer d-flex justify-content-start">
+                            <span class="lead">&euro; {{ $dish->price }}</span>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <!-- /Product modal -->
-        @endforeach
+            <!-- /Product modal -->
+            @endforeach
+            @else
+            <div class="col">
+                <div class="alert alert-danger" role="alert">
+                    <i class="far fa-sad-cry fa-lg mr-1"></i>
+                    Al momento il menù del ristorante non è disponibile, controlla più tardi
+                </div>
+            </div>
+        @endif
     </div>
 
     <!-- Cart Icon -->

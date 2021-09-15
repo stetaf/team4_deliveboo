@@ -99,7 +99,9 @@ class RestaurantController extends Controller
         ]);
 
         if ($request->hasFile('image')) {
-            Storage::delete($dish->image);
+            if ($dish->image !== 'dish_img/placeholder.jpg') {
+                Storage::delete($dish->image);
+            }
             $image = Storage::disk('public')->put('dish_img', $request->image);
             $validated['image'] = $image;
 

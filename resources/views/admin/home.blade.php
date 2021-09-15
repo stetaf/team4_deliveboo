@@ -84,7 +84,7 @@
                                                 <form action="{{ Route('admin.restaurants.destroy', $restaurant->id) }}" method="POST">
                                                     @csrf
                                                     @method('DELETE')
-                                                    <button type="submit" class="btn btn-sm btn-danger">Confirm</button>
+                                                    <button type="submit" class="btn btn-sm btn-danger">Conferma</button>
                                                 </form>
                                             </div>
                                         </div>

@@ -4,10 +4,11 @@
 <div class="container">
     <div class="row justify-content-center align-items-center">
         <div class="col my-5 py-sm-4">
+            @include('layouts.partials.errors')
             <div class="card register_card">
-                @include('layouts.partials.errors')
-                <div class="card-header">Registra un nuovo account</div>
-
+                <div class="card-header">
+                    Registra un nuovo account
+                </div>
                 <div class="card-body">
                     <form method="POST" action="{{ route('register') }}" enctype="multipart/form-data">
                         @csrf
@@ -120,53 +121,53 @@
                                             <div class="row row-cols-2 row-cols-sm-1 row-cols-md-2">
                                                 <div class="col">
                                                     <div class="form-check">
-                                                            <input class="form-check-input" type="checkbox" id="type-1" name="tipologie[]" value="1" style="margin-bottom: 0">
+                                                            <input class="form-check-input" type="checkbox" id="type-1" name="tipologie[]" value="1"  @if (is_array(old('tipologie')) && in_array(1, old('tipologie'))) checked @endif style="margin-bottom: 0">
                                                             <small class="form-check-small" for="type-1">Italiano</small>
                                                     </div>
                                                     <div class="form-check">
-                                                            <input class="form-check-input" type="checkbox" id="type-2" name="tipologie[]" value="2" style="margin-bottom: 0">
+                                                            <input class="form-check-input" type="checkbox" id="type-2" name="tipologie[]" value="2" @if (is_array(old('tipologie')) && in_array(2, old('tipologie'))) checked @endif style="margin-bottom: 0">
                                                             <small class="form-check-small" for="type-2">Cinese</small>
                                                     </div>
                                                     <div class="form-check">
-                                                            <input class="form-check-input" type="checkbox" id="type-3" name="tipologie[]" value="3" style="margin-bottom: 0">
+                                                            <input class="form-check-input" type="checkbox" id="type-3" name="tipologie[]" value="3" @if (is_array(old('tipologie')) && in_array(3, old('tipologie'))) checked @endif style="margin-bottom: 0">
                                                             <small class="form-check-small" for="type-3">Giapponese</small>
                                                     </div>
                                                     <div class="form-check">
-                                                            <input class="form-check-input" type="checkbox" id="type-4" name="tipologie[]" value="4" style="margin-bottom: 0">
+                                                            <input class="form-check-input" type="checkbox" id="type-4" name="tipologie[]" value="4" @if (is_array(old('tipologie')) && in_array(4, old('tipologie'))) checked @endif style="margin-bottom: 0">
                                                             <small class="form-check-small" for="type-4">Messicano</small>
                                                     </div>
                                                     <div class="form-check">
-                                                            <input class="form-check-input" type="checkbox" id="type-5" name="tipologie[]" value="5" style="margin-bottom: 0">
+                                                            <input class="form-check-input" type="checkbox" id="type-5" name="tipologie[]" value="5" @if (is_array(old('tipologie')) && in_array(5, old('tipologie'))) checked @endif style="margin-bottom: 0">
                                                             <small class="form-check-small" for="type-5">Carne</small>
                                                     </div>
                                                     <div class="form-check">
-                                                            <input class="form-check-input" type="checkbox" id="type-6" name="tipologie[]" value="6" style="margin-bottom: 0">
+                                                            <input class="form-check-input" type="checkbox" id="type-6" name="tipologie[]" value="6" @if (is_array(old('tipologie')) && in_array(6, old('tipologie'))) checked @endif style="margin-bottom: 0">
                                                             <small class="form-check-small" for="type-6">Pesce</small>
                                                     </div>
                                                 </div>
                                                 <div class="col">
                                                     <div class="form-check">
-                                                            <input class="form-check-input" type="checkbox" id="type-7" name="tipologie[]" value="7" style="margin-bottom: 0">
+                                                            <input class="form-check-input" type="checkbox" id="type-7" name="tipologie[]" value="7" @if (is_array(old('tipologie')) && in_array(7, old('tipologie'))) checked @endif style="margin-bottom: 0">
                                                             <small class="form-check-small" for="type-7">Pizza</small>
                                                     </div>
                                                     <div class="form-check">
-                                                            <input class="form-check-input" type="checkbox" id="type-8" name="tipologie[]" value="8" style="margin-bottom: 0">
+                                                            <input class="form-check-input" type="checkbox" id="type-8" name="tipologie[]" value="8" @if (is_array(old('tipologie')) && in_array(8, old('tipologie'))) checked @endif style="margin-bottom: 0">
                                                             <small class="form-check-small" for="type-8">Vegano</small>
                                                     </div>
                                                     <div class="form-check">
-                                                            <input class="form-check-input" type="checkbox" id="type-9" name="tipologie[]" value="9" style="margin-bottom: 0">
+                                                            <input class="form-check-input" type="checkbox" id="type-9" name="tipologie[]" value="9" @if (is_array(old('tipologie')) && in_array(9, old('tipologie'))) checked @endif style="margin-bottom: 0">
                                                             <small class="form-check-small" for="type-9">Fast Food</small>
                                                     </div>
                                                     <div class="form-check">
-                                                            <input class="form-check-input" type="checkbox" id="type-10" name="tipologie[]" value="10" style="margin-bottom: 0">
+                                                            <input class="form-check-input" type="checkbox" id="type-10" name="tipologie[]" value="10" @if (is_array(old('tipologie')) && in_array(10, old('tipologie'))) checked @endif style="margin-bottom: 0">
                                                             <small class="form-check-small" for="type-10">Indiano</small>
                                                     </div>
                                                     <div class="form-check">
-                                                            <input class="form-check-input" type="checkbox" id="type-11" name="tipologie[]" value="11" style="margin-bottom: 0">
+                                                            <input class="form-check-input" type="checkbox" id="type-11" name="tipologie[]" value="11" @if (is_array(old('tipologie')) && in_array(11, old('tipologie'))) checked @endif style="margin-bottom: 0">
                                                             <small class="form-check-small" for="type-11">Pasticceria</small>
                                                     </div>
                                                     <div class="form-check">
-                                                            <input class="form-check-input" type="checkbox" id="type-12" name="tipologie[]" value="12" style="margin-bottom: 0">
+                                                            <input class="form-check-input" type="checkbox" id="type-12" name="tipologie[]" value="12" @if (is_array(old('tipologie')) && in_array(12, old('tipologie'))) checked @endif style="margin-bottom: 0">
                                                             <small class="form-check-small" for="type-12">Kebab</small>
                                                     </div>
                                                 </div>

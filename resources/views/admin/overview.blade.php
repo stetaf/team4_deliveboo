@@ -17,7 +17,6 @@
     <table class="table">
         <thead>
             <tr>
-                <th scope="col">#</th>
                 <th scope="col">Nome</th>
                 <th scope="col">Email</th>
                 <th scope="col">Telefono</th>
@@ -29,7 +28,6 @@
         <tbody>
             @foreach($orders as $order)
             <tr>
-                <td>{{ $order->id }}</td>
                 <td>{{ $order->customer_name }}</td>
                 <td>{{ $order->customer_email }}</td>
                 <td>{{ $order->customer_phone }}</td>
